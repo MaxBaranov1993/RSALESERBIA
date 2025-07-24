@@ -1,8 +1,11 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { useFavorites } from '../context/FavoritesContext';
+import { useLanguage } from '../context/LanguageContext';
 
 export default function ProductCard({ product }) {
   const { addToFavorites, removeFromFavorites, isFavorite } = useFavorites();
+  const { t } = useLanguage();
   
   const formatPrice = (price) => {
     if (price >= 1000) {
@@ -25,16 +28,17 @@ export default function ProductCard({ product }) {
   const isProductFavorite = isFavorite(product.id);
 
   return (
-    <div className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-all duration-200 transform hover:scale-[1.02]">
-      <div className="relative">
-        <img 
-          src={product.image} 
-          alt={product.title} 
-          className="w-full h-48 object-cover"
-        />
+    <Link to={`/product/${product.id}`} className="block">
+      <div className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-all duration-200 transform hover:scale-[1.02]">
+        <div className="relative">
+          <img 
+            src={product.photo || product.image} 
+            alt={product.title} 
+            className="w-full h-48 object-cover"
+          />
         {product.isService && (
           <div className="absolute top-2 left-2 bg-violet-600 text-white px-2 py-1 rounded-full text-xs font-medium">
-            Услуга
+            {t('product.service')}
           </div>
         )}
         <button 
@@ -75,19 +79,20 @@ export default function ProductCard({ product }) {
         <div className="flex justify-between items-center mb-3">
           <span className="font-bold text-xl text-violet-600">{formatPrice(product.price)}</span>
           <div className="flex items-center space-x-2 text-xs text-gray-500">
-            <span>👁 {product.views}</span>
-            <span>❤ {product.favorites}</span>
+            <span>👁 {product.views} {t('product.views')}</span>
+            <span>❤ {product.favorites} {t('product.favorites')}</span>
           </div>
         </div>
         
         <div className="text-sm text-gray-600 mb-3 truncate">
-          Продавец: {product.seller}
+          {t('product.seller')}: {product.sellerName || product.seller}
         </div>
         
         <button className="w-full bg-violet-600 hover:bg-violet-700 text-white px-4 py-2 rounded-lg transition-all duration-200 font-medium">
-          {product.isService ? 'Заказать' : 'В корзину'}
+          {product.isService ? t('product.order') : t('product.addToCart')}
         </button>
       </div>
     </div>
+    </Link>
   );
 }

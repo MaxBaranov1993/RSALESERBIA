@@ -1,0 +1,141 @@
+{
+  "header": {
+    "location": "Београд",
+    "about": "О нама",
+    "news": "Вести",
+    "advertising": "Оглашавање",
+    "search": "Претрага",
+    "login": "Пријава"
+  },
+  "categories": {
+    "title": "Категорије",
+    "all": "Све категорије",
+    "cars": "Аутомобили",
+    "clothes": "Одећа",
+    "computers": "Рачунари",
+    "electronics": "Електроника",
+    "estate": "Некретнине",
+    "furniture": "Намештај",
+    "goods": "Роба",
+    "kids": "Дечји производи",
+    "services": "Услуге"
+  },
+  "home": {
+    "title": "Почетна",
+    "featuredProducts": "Истакнути производи",
+    "viewAll": "Погледај све"
+  },
+  "product": {
+    "title": "Производ",
+    "addToCart": "Додај у корпу",
+    "order": "Поручи",
+    "service": "Услуга",
+    "seller": "Продавац",
+    "views": "прегледа",
+    "favorites": "омиљено",
+    "condition": {
+      "label": "Стање",
+      "new": "Ново",
+      "excellent": "Одлично",
+      "good": "Добро",
+      "satisfactory": "Задовољавајуће",
+      "service": "Услуга"
+    },
+    "currency": "€",
+    "category": "Категорија",
+    "categoryLink": "Иди на категорију",
+    "date": "Датум објаве",
+    "description": "Опис",
+    "noDescription": "Опис није доступан",
+    "contact": "Контакт",
+    "message": "Пошаљи поруку",
+    "loading": "Учитавање производа...",
+    "errorTitle": "Грешка учитавања",
+    "notFoundTitle": "Производ није пронађен",
+    "notFound": "Тражени производ није пронађен",
+    "error": "Дошло је до грешке при учитавању производа",
+    "goBack": "Врати се назад",
+    "sellerUnknown": "Непознати продавац",
+    "locationUnknown": "Локација није наведена"
+  },
+  "favorites": {
+    "title": "Омиљено",
+    "empty": "Још увек немате омиљене производе",
+    "emptyDescription": "Додајте производе у омиљено да их касније брзо пронађете",
+    "clearAll": "Очисти све",
+    "itemsCount": "производа у омиљеном"
+  },
+  "profile": {
+    "title": "Профил",
+    "personalInfo": "Лични подаци",
+    "settings": "Подешавања",
+    "logout": "Одјава"
+  },
+  "register": {
+    "title": "Регистрација",
+    "subtitle": "Креирајте налог за приступ сервису",
+    "firstName": "Име",
+    "lastName": "Презиме",
+    "email": "Имејл",
+    "password": "Лозинка",
+    "confirmPassword": "Потврдите лозинку",
+    "submit": "Региструј се",
+    "alreadyHaveAccount": "Већ имате налог?",
+    "loginLink": "Пријава",
+    "validation": {
+      "firstNameRequired": "Име је обавезно",
+      "lastNameRequired": "Презиме је обавезно",
+      "emailRequired": "Имејл је обавезан",
+      "emailInvalid": "Унесите важећи имејл",
+      "passwordRequired": "Лозинка је обавезна",
+      "passwordMinLength": "Лозинка мора садржати најмање 6 карактера",
+      "confirmPasswordRequired": "Потврда лозинке је обавезна",
+      "passwordsNotMatch": "Лозинке се не поклапају"
+    }
+  },
+  "mobile": {
+    "search": "Претрага",
+    "favorites": "Омиљено",
+    "add": "Додај",
+    "messages": "Поруке",
+    "profile": "Профил"
+  },
+  "common": {
+    "loading": "Учитавање...",
+    "error": "Грешка",
+    "success": "Успешно",
+    "cancel": "Откажи",
+    "save": "Сачувај",
+    "delete": "Обриши",
+    "edit": "Уреди",
+    "close": "Затвори"
+  },
+  "breadcrumbs": {
+    "home": "Почетна",
+    "separator": ">"
+  },
+  "category": {
+    "foundProducts": "Пронађено производа: {count}",
+    "sortBy": "Сортирај по",
+    "filterBy": "Филтрирај по",
+    "sort": {
+      "date": "Датуму",
+      "priceLow": "Цени (растуће)",
+      "priceHigh": "Цени (опадајуће)",
+      "popular": "Популарности"
+    },
+    "filter": {
+      "all": "Све",
+      "new": "Ново",
+      "excellent": "Одлично",
+      "good": "Добро",
+      "satisfactory": "Задовољавајуће",
+      "service": "Услуге"
+    },
+    "noProducts": "Производи нису пронађени",
+    "noProductsDescription": "У овој категорији још нема производа. Покушајте да промените филтре или се вратите касније.",
+    "notFound": "Категорија није пронађена",
+    "notFoundDescription": "Тражена категорија не постоји или је уклоњена.",
+    "backToHome": "Назад на почетну"
+  }
+} 

@@ -6,6 +6,7 @@ import addIcon from '../assets/svg/add.svg';
 import messageIcon from '../assets/svg/message.svg';
 import personalIcon from '../assets/svg/personal.svg';
 import { useFavorites } from '../context/FavoritesContext';
+import { useLanguage } from '../context/LanguageContext';
 
 // Константы для стилей
 const STYLES = {
@@ -21,15 +22,6 @@ const STYLES = {
     special: ""
   }
 };
-
-// Конфигурация меню
-const MENU_ITEMS = [
-  { icon: Searchicon, label: "Поиск" },
-  { icon: Favorite, label: "Избранное", href: "/favorites", isFavorite: true },
-  { icon: addIcon, label: "Добавить", isSpecial: true },
-  { icon: messageIcon, label: "Сообщения" },
-  { icon: personalIcon, label: "Профиль", href: "/profile" }
-];
 
 // Оптимизированный компонент MenuItem
 const MenuItem = React.memo(({ icon, label, href, isSpecial = false, isFavorite = false }) => {
@@ -81,6 +73,16 @@ MenuItem.displayName = 'MenuItem';
 
 // Основной компонент
 const MobileBottomMenu = React.memo(() => {
+  const { t } = useLanguage();
+  
+  const MENU_ITEMS = [
+    { icon: Searchicon, label: t('mobile.search') },
+    { icon: Favorite, label: t('mobile.favorites'), href: "/favorites", isFavorite: true },
+    { icon: addIcon, label: t('mobile.add'), isSpecial: true },
+    { icon: messageIcon, label: t('mobile.messages') },
+    { icon: personalIcon, label: t('mobile.profile'), href: "/profile" }
+  ];
+
   return (
     <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 shadow-lg md:hidden pb-safe">
       <div className="flex items-center justify-between text-gray-600 py-3 max-w-sm mx-auto">

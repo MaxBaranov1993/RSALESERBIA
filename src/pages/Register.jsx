@@ -1,5 +1,6 @@
 import React, { useState, useCallback, useMemo } from 'react';
 import { Link } from 'react-router-dom';
+import { useLanguage } from '../context/LanguageContext';
 
 // Константы для валидации
 const VALIDATION_RULES = {
@@ -112,18 +113,21 @@ const BackgroundDecorations = React.memo(() => (
 BackgroundDecorations.displayName = 'BackgroundDecorations';
 
 // Компонент заголовка
-const FormHeader = React.memo(() => (
-  <div className={STYLES.header.wrapper}>
-    <div className="text-center">
-      <h2 className={STYLES.header.title}>
-        Регистрация
-      </h2>
-      <p className={STYLES.header.subtitle}>
-        Создайте аккаунт для доступа к сервису
-      </p>
+const FormHeader = React.memo(() => {
+  const { t } = useLanguage();
+  return (
+    <div className={STYLES.header.wrapper}>
+      <div className="text-center">
+        <h2 className={STYLES.header.title}>
+          {t('register.title')}
+        </h2>
+        <p className={STYLES.header.subtitle}>
+          {t('register.subtitle')}
+        </p>
+      </div>
     </div>
-  </div>
-));
+  );
+});
 
 FormHeader.displayName = 'FormHeader';
 
@@ -131,6 +135,7 @@ FormHeader.displayName = 'FormHeader';
 const Register = () => {
   const [formData, setFormData] = useState(INITIAL_FORM_STATE);
   const [errors, setErrors] = useState({});
+  const { t } = useLanguage();
 
   // Мемоизированная функция обработки изменений
   const handleChange = useCallback((e) => {
@@ -202,8 +207,8 @@ const Register = () => {
     {
       id: 'firstName',
       name: 'firstName',
-      label: 'Имя',
-      placeholder: 'Введите имя',
+      label: t('register.firstName'),
+      placeholder: t('register.firstName'),
       value: formData.firstName,
       error: errors.firstName,
       required: true
@@ -211,8 +216,8 @@ const Register = () => {
     {
       id: 'lastName',
       name: 'lastName',
-      label: 'Фамилия',
-      placeholder: 'Введите фамилию',
+      label: t('register.lastName'),
+      placeholder: t('register.lastName'),
       value: formData.lastName,
       error: errors.lastName,
       required: true
@@ -221,7 +226,7 @@ const Register = () => {
       id: 'email',
       name: 'email',
       type: 'email',
-      label: 'Email',
+      label: t('register.email'),
       placeholder: 'example@email.com',
       value: formData.email,
       error: errors.email,
@@ -231,8 +236,8 @@ const Register = () => {
       id: 'password',
       name: 'password',
       type: 'password',
-      label: 'Пароль',
-      placeholder: 'Минимум 6 символов',
+      label: t('register.password'),
+      placeholder: t('register.validation.passwordMinLength'),
       value: formData.password,
       error: errors.password,
       required: true
@@ -241,16 +246,16 @@ const Register = () => {
       id: 'confirmPassword',
       name: 'confirmPassword',
       type: 'password',
-      label: 'Подтвердите пароль',
-      placeholder: 'Повторите пароль',
+      label: t('register.confirmPassword'),
+      placeholder: t('register.confirmPassword'),
       value: formData.confirmPassword,
       error: errors.confirmPassword,
       required: true
     }
-  ], [formData, errors]);
+  ], [formData, errors, t]);
 
   return (
-    <div className={STYLES.container}>
+    <div className={`${STYLES.container} py-8`}>
       <BackgroundDecorations />
       <FormHeader />
       
@@ -279,23 +284,23 @@ const Register = () => {
 
             {/* Кнопка регистрации */}
             <div>
-              <button
-                type="submit"
-                className={STYLES.button.submit}
-              >
-                Зарегистрироваться
-              </button>
+                          <button
+              type="submit"
+              className={STYLES.button.submit}
+            >
+              {t('register.submit')}
+            </button>
             </div>
 
             {/* Ссылка на вход */}
             <div className="text-center">
               <p className="text-sm text-gray-600">
-                Уже есть аккаунт?{' '}
+                {t('register.alreadyHaveAccount')}{' '}
                 <Link 
                   to="/login" 
                   className={STYLES.link}
                 >
-                  Войти
+                  {t('register.loginLink')}
                 </Link>
               </p>
             </div>

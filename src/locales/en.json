@@ -1,0 +1,141 @@
+{
+  "header": {
+    "location": "Belgrade",
+    "about": "About",
+    "news": "News",
+    "advertising": "Advertising",
+    "search": "Search",
+    "login": "Login"
+  },
+  "categories": {
+    "title": "Categories",
+    "all": "All Categories",
+    "cars": "Cars",
+    "clothes": "Clothes",
+    "computers": "Computers",
+    "electronics": "Electronics",
+    "estate": "Real Estate",
+    "furniture": "Furniture",
+    "goods": "Goods",
+    "kids": "Kids",
+    "services": "Services"
+  },
+  "home": {
+    "title": "Home",
+    "featuredProducts": "Featured Products",
+    "viewAll": "View All"
+  },
+  "product": {
+    "title": "Product",
+    "addToCart": "Add to Cart",
+    "order": "Order",
+    "service": "Service",
+    "seller": "Seller",
+    "views": "views",
+    "favorites": "favorites",
+    "condition": {
+      "label": "Condition",
+      "new": "New",
+      "excellent": "Excellent",
+      "good": "Good",
+      "satisfactory": "Satisfactory",
+      "service": "Service"
+    },
+    "currency": "€",
+    "category": "Category",
+    "categoryLink": "Go to category",
+    "date": "Date posted",
+    "description": "Description",
+    "noDescription": "No description available",
+    "contact": "Contact",
+    "message": "Send Message",
+    "loading": "Loading product...",
+    "errorTitle": "Loading Error",
+    "notFoundTitle": "Product Not Found",
+    "notFound": "The requested product was not found",
+    "error": "An error occurred while loading the product",
+    "goBack": "Go Back",
+    "sellerUnknown": "Unknown seller",
+    "locationUnknown": "Location not specified"
+  },
+  "favorites": {
+    "title": "Favorites",
+    "empty": "You don't have any favorites yet",
+    "emptyDescription": "Add items to favorites to find them quickly later",
+    "clearAll": "Clear All",
+    "itemsCount": "items in favorites"
+  },
+  "profile": {
+    "title": "Profile",
+    "personalInfo": "Personal Information",
+    "settings": "Settings",
+    "logout": "Logout"
+  },
+  "register": {
+    "title": "Registration",
+    "subtitle": "Create an account to access the service",
+    "firstName": "First Name",
+    "lastName": "Last Name",
+    "email": "Email",
+    "password": "Password",
+    "confirmPassword": "Confirm Password",
+    "submit": "Register",
+    "alreadyHaveAccount": "Already have an account?",
+    "loginLink": "Login",
+    "validation": {
+      "firstNameRequired": "First name is required",
+      "lastNameRequired": "Last name is required",
+      "emailRequired": "Email is required",
+      "emailInvalid": "Please enter a valid email",
+      "passwordRequired": "Password is required",
+      "passwordMinLength": "Password must be at least 6 characters",
+      "confirmPasswordRequired": "Password confirmation is required",
+      "passwordsNotMatch": "Passwords do not match"
+    }
+  },
+  "mobile": {
+    "search": "Search",
+    "favorites": "Favorites",
+    "add": "Add",
+    "messages": "Messages",
+    "profile": "Profile"
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success",
+    "cancel": "Cancel",
+    "save": "Save",
+    "delete": "Delete",
+    "edit": "Edit",
+    "close": "Close"
+  },
+  "breadcrumbs": {
+    "home": "Home",
+    "separator": ">"
+  },
+  "category": {
+    "foundProducts": "Found {count} products",
+    "sortBy": "Sort by",
+    "filterBy": "Filter by",
+    "sort": {
+      "date": "Date",
+      "priceLow": "Price (Low to High)",
+      "priceHigh": "Price (High to Low)",
+      "popular": "Popularity"
+    },
+    "filter": {
+      "all": "All",
+      "new": "New",
+      "excellent": "Excellent",
+      "good": "Good",
+      "satisfactory": "Satisfactory",
+      "service": "Services"
+    },
+    "noProducts": "No products found",
+    "noProductsDescription": "No products in this category yet. Try changing filters or check back later.",
+    "notFound": "Category not found",
+    "notFoundDescription": "The requested category does not exist or has been removed.",
+    "backToHome": "Back to Home"
+  }
+} 

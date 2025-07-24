@@ -5,18 +5,38 @@ import child from '../assets/svg/categorykids.svg';
 import electronics from '../assets/svg/categoryComputer.svg';
 import sport from '../assets/svg/categoryClothes.svg';
 import home from '../assets/svg/categoryGoods.svg';
+import furniture from '../assets/svg/categoryFurniture.svg';
 
-const categories = [
-  { name: 'Недвижимость', icon: house, link: '/category/недвижимость' },
-  { name: 'Услуги', icon: service, link: '/category/услуги' },
-  { name: 'Авто', icon: car, link: '/category/авто' },
-  { name: 'Для детей', icon: child, link: '/category/для детей' },
-  { name: 'Электроника', icon: electronics, link: '/category/электроника' },
-  { name: 'Спорт', icon: sport, link: '/category/спорт' },
-  { name: 'Для дома', icon: home, link: '/category/для дома' },
-  { name: 'Для дома', icon: home, link: '/category/для дома' },
-  { name: 'Для дома', icon: home, link: '/category/для дома' },
-  { name: 'Для дома', icon: home, link: '/category/для дома' },
+// Базовые данные категорий
+const baseCategories = [
+  { key: 'estate', icon: house, link: '/category/estate' },
+  { key: 'services', icon: service, link: '/category/services' },
+  { key: 'cars', icon: car, link: '/category/cars' },
+  { key: 'kids', icon: child, link: '/category/kids' },
+  { key: 'electronics', icon: electronics, link: '/category/electronics' },
+  { key: 'computers', icon: electronics, link: '/category/computers' },
+  { key: 'clothes', icon: sport, link: '/category/clothes' },
+  { key: 'goods', icon: home, link: '/category/goods' },
+  { key: 'furniture', icon: furniture, link: '/category/furniture' },
 ];
 
-export default categories; 
+// Функция для получения категорий с количеством товаров
+export const getCategoriesWithStats = () => {
+  // Импортируем функцию динамически, чтобы избежать циклических зависимостей
+  const { getCategoriesStats } = require('../data/productsData');
+  const stats = getCategoriesStats();
+  
+  return baseCategories.map(category => ({
+    ...category,
+    count: stats[category.key] || 0
+  }));
+};
+
+// Функция для получения только категорий с товарами
+export const getCategoriesWithItems = () => {
+  const categoriesWithStats = getCategoriesWithStats();
+  return categoriesWithStats.filter(category => category.count > 0);
+};
+
+// Экспортируем базовые категории для обратной совместимости
+export default baseCategories; 

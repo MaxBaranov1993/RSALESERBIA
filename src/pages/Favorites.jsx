@@ -1,9 +1,11 @@
 import React from 'react';
 import { useFavorites } from '../context/FavoritesContext';
 import ProductCard from '../components/ProductCard';
+import { useLanguage } from '../context/LanguageContext';
 
 const Favorites = () => {
   const { favorites, clearFavorites, getFavoritesCount } = useFavorites();
+  const { t } = useLanguage();
 
   if (favorites.length === 0) {
     return (
@@ -25,16 +27,16 @@ const Favorites = () => {
             </svg>
           </div>
           <h2 className="text-2xl font-bold text-gray-900 mb-4">
-            Ваше избранное пусто
+            {t('favorites.empty')}
           </h2>
           <p className="text-gray-600 mb-8">
-            Добавляйте товары в избранное, нажимая на сердечко в карточке товара
+            {t('favorites.emptyDescription')}
           </p>
           <a 
             href="/" 
             className="inline-flex items-center px-6 py-3 bg-violet-600 text-white font-medium rounded-lg hover:bg-violet-700 transition-colors"
           >
-            Перейти к товарам
+            {t('home.viewAll')}
           </a>
         </div>
       </div>
@@ -42,21 +44,21 @@ const Favorites = () => {
   }
 
   return (
-    <div className="container mx-auto px-4 py-8">
+    <div className="container mx-auto px-4">
       <div className="flex justify-between items-center mb-8">
         <div>
           <h1 className="text-3xl font-bold text-gray-900 mb-2">
-            Избранное
+            {t('favorites.title')}
           </h1>
           <p className="text-gray-600">
-            {getFavoritesCount()} товар{getFavoritesCount() === 1 ? '' : getFavoritesCount() < 5 ? 'а' : 'ов'} в избранном
+            {getFavoritesCount()} {t('favorites.itemsCount')}
           </p>
         </div>
         <button
           onClick={clearFavorites}
           className="px-4 py-2 text-red-600 hover:text-red-700 font-medium transition-colors"
         >
-          Очистить все
+          {t('favorites.clearAll')}
         </button>
       </div>
 

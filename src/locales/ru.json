@@ -1,0 +1,141 @@
+{
+  "header": {
+    "location": "Белград",
+    "about": "О нас",
+    "news": "Новости",
+    "advertising": "Реклама",
+    "search": "Поиск",
+    "login": "Войти"
+  },
+  "categories": {
+    "title": "Категории",
+    "all": "Все категории",
+    "cars": "Автомобили",
+    "clothes": "Одежда",
+    "computers": "Компьютеры",
+    "electronics": "Электроника",
+    "estate": "Недвижимость",
+    "furniture": "Мебель",
+    "goods": "Товары",
+    "kids": "Детские товары",
+    "services": "Услуги"
+  },
+  "home": {
+    "title": "Главная",
+    "featuredProducts": "Рекомендуемые товары",
+    "viewAll": "Посмотреть все"
+  },
+  "product": {
+    "title": "Товар",
+    "addToCart": "В корзину",
+    "order": "Заказать",
+    "service": "Услуга",
+    "seller": "Продавец",
+    "views": "просмотров",
+    "favorites": "избранное",
+    "condition": {
+      "label": "Состояние",
+      "new": "Новое",
+      "excellent": "Отличное",
+      "good": "Хорошее",
+      "satisfactory": "Удовлетворительное",
+      "service": "Услуга"
+    },
+    "currency": "€",
+    "category": "Категория",
+    "categoryLink": "Перейти к категории",
+    "date": "Дата публикации",
+    "description": "Описание",
+    "noDescription": "Описание отсутствует",
+    "contact": "Связаться",
+    "message": "Написать сообщение",
+    "loading": "Загрузка товара...",
+    "errorTitle": "Ошибка загрузки",
+    "notFoundTitle": "Товар не найден",
+    "notFound": "Запрашиваемый товар не найден",
+    "error": "Произошла ошибка при загрузке товара",
+    "goBack": "Вернуться назад",
+    "sellerUnknown": "Неизвестный продавец",
+    "locationUnknown": "Местоположение не указано"
+  },
+  "favorites": {
+    "title": "Избранное",
+    "empty": "У вас пока нет избранных товаров",
+    "emptyDescription": "Добавляйте товары в избранное, чтобы быстро найти их позже",
+    "clearAll": "Очистить все",
+    "itemsCount": "товаров в избранном"
+  },
+  "profile": {
+    "title": "Профиль",
+    "personalInfo": "Личная информация",
+    "settings": "Настройки",
+    "logout": "Выйти"
+  },
+  "register": {
+    "title": "Регистрация",
+    "subtitle": "Создайте аккаунт для доступа к сервису",
+    "firstName": "Имя",
+    "lastName": "Фамилия",
+    "email": "Email",
+    "password": "Пароль",
+    "confirmPassword": "Подтвердите пароль",
+    "submit": "Зарегистрироваться",
+    "alreadyHaveAccount": "Уже есть аккаунт?",
+    "loginLink": "Войти",
+    "validation": {
+      "firstNameRequired": "Имя обязательно",
+      "lastNameRequired": "Фамилия обязательна",
+      "emailRequired": "Email обязателен",
+      "emailInvalid": "Введите корректный email",
+      "passwordRequired": "Пароль обязателен",
+      "passwordMinLength": "Пароль должен содержать минимум 6 символов",
+      "confirmPasswordRequired": "Подтверждение пароля обязательно",
+      "passwordsNotMatch": "Пароли не совпадают"
+    }
+  },
+  "mobile": {
+    "search": "Поиск",
+    "favorites": "Избранное",
+    "add": "Добавить",
+    "messages": "Сообщения",
+    "profile": "Профиль"
+  },
+  "common": {
+    "loading": "Загрузка...",
+    "error": "Ошибка",
+    "success": "Успешно",
+    "cancel": "Отмена",
+    "save": "Сохранить",
+    "delete": "Удалить",
+    "edit": "Редактировать",
+    "close": "Закрыть"
+  },
+  "breadcrumbs": {
+    "home": "Главная",
+    "separator": ">"
+  },
+  "category": {
+    "foundProducts": "Найдено товаров: {count}",
+    "sortBy": "Сортировать по",
+    "filterBy": "Фильтровать по",
+    "sort": {
+      "date": "Дате",
+      "priceLow": "Цене (по возрастанию)",
+      "priceHigh": "Цене (по убыванию)",
+      "popular": "Популярности"
+    },
+    "filter": {
+      "all": "Все",
+      "new": "Новые",
+      "excellent": "Отличное",
+      "good": "Хорошее",
+      "satisfactory": "Удовлетворительное",
+      "service": "Услуги"
+    },
+    "noProducts": "Товары не найдены",
+    "noProductsDescription": "В данной категории пока нет товаров. Попробуйте изменить фильтры или загляните позже.",
+    "notFound": "Категория не найдена",
+    "notFoundDescription": "Запрашиваемая категория не существует или была удалена.",
+    "backToHome": "Вернуться на главную"
+  }
+} 

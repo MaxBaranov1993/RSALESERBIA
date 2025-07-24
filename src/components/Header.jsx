@@ -5,13 +5,17 @@ import ReactDOM from 'react-dom';
 import logo from '../assets/svg/logo.svg';
 import serbia from '../assets/svg/serbia.svg';
 import eng from '../assets/svg/eng.svg';
+import russia from '../assets/svg/russia.svg';
 import map from '../assets/svg/map.svg';
 import message from '../assets/svg/message.svg';
 import categories from './categoriesData';
 import CategoriesList from './CategoriesList';
+import { useLanguage } from '../context/LanguageContext';
+import LanguageSwitcher from './LanguageSwitcher';
 
 export default function Header() {
   const [showCategories, setShowCategories] = useState(false);
+  const { t } = useLanguage();
 
   return (
     <header className="shadow-md w-full">
@@ -20,16 +24,15 @@ export default function Header() {
         <div className="container mx-auto flex justify-between items-center px-4 py-2">
           <div className="flex items-center gap-2">
             <img src={map} alt="map" className="h-4 w-4" />
-            <span>Beograd</span>
+            <span>{t('header.location')}</span>
           </div>
           <nav className="flex gap-6">
-            <Link to="#" className="hover:underline">About</Link>
-            <Link to="#" className="hover:underline">News</Link>
-            <Link to="#" className="hover:underline">Advertising</Link>
+            <Link to="#" className="hover:underline">{t('header.about')}</Link>
+            <Link to="#" className="hover:underline">{t('header.news')}</Link>
+            <Link to="#" className="hover:underline">{t('header.advertising')}</Link>
           </nav>
           <div className="flex items-center gap-3">
-            <img src={serbia} alt="Serbian" className="w-6 h-4 rounded" />
-            <img src={eng} alt="English" className="w-6 h-4 rounded" />
+            <LanguageSwitcher />
           </div>
         </div>
       </div>
@@ -44,7 +47,7 @@ export default function Header() {
             <div className="relative w-full">
               <input
                 type="text"
-                placeholder="Search"
+                placeholder={t('header.search')}
                 className="w-full  px-2 py-2  rounded-lg bg-gray-100 text-gray-800 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-violet-600 border border-gray-200"
               />
              
@@ -58,7 +61,7 @@ export default function Header() {
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-7 h-7">
               <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118A7.5 7.5 0 0112 15.75a7.5 7.5 0 017.5 4.5" />
             </svg>
-            Войти
+            {t('header.login')}
           </Link>
         </div>
       </div>
