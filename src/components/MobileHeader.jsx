@@ -21,15 +21,6 @@ const MobileHeader = () => {
           <LanguageSwitcher />
         </div>
       </header>
-
-      {/* Поисковый инпут — отдельный блок ниже */}
-      <div className="pb-0.5">
-        <input
-          type="text"
-          placeholder={t('header.search')}
-          className="w-full px-4 py-2 rounded-lg bg-gray-200 text-gray-800 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-violet-600"
-        />
-      </div>
     </div>
   );
 };
