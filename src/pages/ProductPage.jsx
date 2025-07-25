@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import ProductDetail from '../components/ProductDetail';
 import { getProductById } from '../data/productsData';
+import { getProductWithSeller } from '../data/userProductsData';
 import { useLanguage } from '../context/LanguageContext';
 
 const ProductPage = () => {
@@ -17,8 +18,8 @@ const ProductPage = () => {
         setLoading(true);
         setError(null);
         
-        // Получаем товар по ID
-        const foundProduct = getProductById(parseInt(productId));
+        // Получаем товар по ID с информацией о продавце
+        const foundProduct = getProductWithSeller(parseInt(productId)) || getProductById(parseInt(productId));
         
         if (foundProduct) {
           setProduct(foundProduct);

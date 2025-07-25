@@ -1,47 +1,7 @@
-import React, { useState, useCallback, useMemo } from 'react';
+import React, { useState, useCallback } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
 import { useAuth } from '../context/AuthContext';
-import SuccessModal from '../components/SuccessModal';
-
-// Константы для валидации
-const VALIDATION_RULES = {
-  firstName: {
-    required: true,
-    message: 'Имя обязательно'
-  },
-  lastName: {
-    required: true,
-    message: 'Фамилия обязательна'
-  },
-  email: {
-    required: true,
-    pattern: /\S+@\S+\.\S+/,
-    message: 'Введите корректный email'
-  },
-
-  password: {
-    required: true,
-    minLength: 6,
-    message: 'Пароль должен содержать минимум 6 символов'
-  },
-  confirmPassword: {
-    required: true,
-    message: 'Подтвердите пароль'
-  }
-};
-
-// Начальное состояние формы
-const INITIAL_FORM_STATE = {
-  firstName: '',
-  lastName: '',
-  email: '',
-  phone: '',
-  city: '',
-  bio: '',
-  password: '',
-  confirmPassword: ''
-};
 
 // Стили для компонентов
 const STYLES = {
@@ -125,10 +85,10 @@ const FormHeader = React.memo(() => {
     <div className={STYLES.header.wrapper}>
       <div className="text-center">
         <h2 className={STYLES.header.title}>
-          {t('register.title')}
+          {t('login.title')}
         </h2>
         <p className={STYLES.header.subtitle}>
-          {t('register.subtitle')}
+          {t('login.subtitle')}
         </p>
       </div>
     </div>
@@ -137,18 +97,19 @@ const FormHeader = React.memo(() => {
 
 FormHeader.displayName = 'FormHeader';
 
-// Основной компонент регистрации
-const Register = () => {
-  const [formData, setFormData] = useState(INITIAL_FORM_STATE);
+// Основной компонент входа
+const Login = () => {
+  const [formData, setFormData] = useState({
+    email: '',
+    password: ''
+  });
   const [errors, setErrors] = useState({});
-  const [showSuccessModal, setShowSuccessModal] = useState(false);
-  const [registeredUser, setRegisteredUser] = useState(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { t } = useLanguage();
-  const { register } = useAuth();
+  const { login } = useAuth();
   const navigate = useNavigate();
 
-  // Мемоизированная функция обработки изменений
+  // Обработка изменений в форме
   const handleChange = useCallback((e) => {
     const { name, value } = e.target;
     setFormData(prev => ({
@@ -169,40 +130,19 @@ const Register = () => {
   const validateForm = useCallback(() => {
     const newErrors = {};
 
-    // Валидация имени
-    if (VALIDATION_RULES.firstName.required && !formData.firstName.trim()) {
-      newErrors.firstName = VALIDATION_RULES.firstName.message;
+    if (!formData.email.trim()) {
+      newErrors.email = t('login.validation.emailRequired');
+    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
+      newErrors.email = t('login.validation.emailInvalid');
     }
 
-    // Валидация фамилии
-    if (VALIDATION_RULES.lastName.required && !formData.lastName.trim()) {
-      newErrors.lastName = VALIDATION_RULES.lastName.message;
-    }
-
-    // Валидация email
-    if (VALIDATION_RULES.email.required && !formData.email.trim()) {
-      newErrors.email = 'Email обязателен';
-    } else if (formData.email && !VALIDATION_RULES.email.pattern.test(formData.email)) {
-      newErrors.email = VALIDATION_RULES.email.message;
-    }
-
-    // Валидация пароля
-    if (VALIDATION_RULES.password.required && !formData.password) {
-      newErrors.password = 'Пароль обязателен';
-    } else if (formData.password && formData.password.length < VALIDATION_RULES.password.minLength) {
-      newErrors.password = VALIDATION_RULES.password.message;
-    }
-
-    // Валидация подтверждения пароля
-    if (VALIDATION_RULES.confirmPassword.required && !formData.confirmPassword) {
-      newErrors.confirmPassword = VALIDATION_RULES.confirmPassword.message;
-    } else if (formData.password !== formData.confirmPassword) {
-      newErrors.confirmPassword = 'Пароли не совпадают';
+    if (!formData.password) {
+      newErrors.password = t('login.validation.passwordRequired');
     }
 
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
-  }, [formData]);
+  }, [formData, t]);
 
   // Обработка отправки формы
   const handleSubmit = useCallback(async (e) => {
@@ -210,74 +150,19 @@ const Register = () => {
     if (validateForm()) {
       setIsSubmitting(true);
       try {
-        const result = await register(formData);
+        const result = await login(formData.email, formData.password);
         if (result.success) {
-          setRegisteredUser(result.user);
-          setShowSuccessModal(true);
+          navigate('/');
         } else {
-          // Обработка ошибки регистрации
-          console.error('Ошибка регистрации:', result.error);
-          // Здесь можно добавить отображение ошибки пользователю
+          setErrors({ general: result.error });
         }
       } catch (error) {
-        console.error('Ошибка при регистрации:', error);
+        setErrors({ general: error.message });
       } finally {
         setIsSubmitting(false);
       }
     }
-  }, [formData, validateForm, register]);
-
-  // Мемоизированные поля формы
-  const formFields = useMemo(() => [
-    {
-      id: 'firstName',
-      name: 'firstName',
-      label: t('register.firstName'),
-      placeholder: t('register.firstName'),
-      value: formData.firstName,
-      error: errors.firstName,
-      required: true
-    },
-    {
-      id: 'lastName',
-      name: 'lastName',
-      label: t('register.lastName'),
-      placeholder: t('register.lastName'),
-      value: formData.lastName,
-      error: errors.lastName,
-      required: true
-    },
-    {
-      id: 'email',
-      name: 'email',
-      type: 'email',
-      label: t('register.email'),
-      placeholder: 'example@email.com',
-      value: formData.email,
-      error: errors.email,
-      required: true
-    },
-    {
-      id: 'password',
-      name: 'password',
-      type: 'password',
-      label: t('register.password'),
-      placeholder: t('register.validation.passwordMinLength'),
-      value: formData.password,
-      error: errors.password,
-      required: true
-    },
-    {
-      id: 'confirmPassword',
-      name: 'confirmPassword',
-      type: 'password',
-      label: t('register.confirmPassword'),
-      placeholder: t('register.confirmPassword'),
-      value: formData.confirmPassword,
-      error: errors.confirmPassword,
-      required: true
-    }
-  ], [formData, errors, t]);
+  }, [formData, validateForm, login, navigate]);
 
   return (
     <div className={`${STYLES.container} py-8`}>
@@ -287,27 +172,40 @@ const Register = () => {
       <div className={STYLES.form.wrapper}>
         <div className={STYLES.form.container}>
           <form className={STYLES.form.field} onSubmit={handleSubmit}>
-            {/* Имя и Фамилия */}
-            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-              {formFields.slice(0, 2).map(field => (
-                <FormField
-                  key={field.id}
-                  {...field}
-                  onChange={handleChange}
-                />
-              ))}
-            </div>
+            {/* Email */}
+            <FormField
+              id="email"
+              name="email"
+              type="email"
+              label={t('login.email')}
+              placeholder="example@email.com"
+              value={formData.email}
+              onChange={handleChange}
+              error={errors.email}
+              required={true}
+            />
 
-            {/* Остальные поля */}
-            {formFields.slice(2).map(field => (
-              <FormField
-                key={field.id}
-                {...field}
-                onChange={handleChange}
-              />
-            ))}
+            {/* Пароль */}
+            <FormField
+              id="password"
+              name="password"
+              type="password"
+              label={t('login.password')}
+              placeholder={t('login.passwordPlaceholder')}
+              value={formData.password}
+              onChange={handleChange}
+              error={errors.password}
+              required={true}
+            />
 
-            {/* Кнопка регистрации */}
+            {/* Общая ошибка */}
+            {errors.general && (
+              <div className="bg-red-50 border border-red-200 rounded-xl p-4">
+                <p className="text-sm text-red-600">{errors.general}</p>
+              </div>
+            )}
+
+            {/* Кнопка входа */}
             <div>
               <button
                 type="submit"
@@ -323,35 +221,28 @@ const Register = () => {
                     {t('common.loading')}
                   </div>
                 ) : (
-                  t('register.submit')
+                  t('login.submit')
                 )}
               </button>
             </div>
 
-            {/* Ссылка на вход */}
+            {/* Ссылка на регистрацию */}
             <div className="text-center">
               <p className="text-sm text-gray-600">
-                {t('register.alreadyHaveAccount')}{' '}
+                {t('login.noAccount')}{' '}
                 <Link 
-                  to="/login" 
+                  to="/register" 
                   className={STYLES.link}
                 >
-                  {t('register.loginLink')}
+                  {t('login.registerLink')}
                 </Link>
               </p>
             </div>
           </form>
         </div>
       </div>
-
-      {/* Модальное окно успешной регистрации */}
-      <SuccessModal
-        isOpen={showSuccessModal}
-        onClose={() => setShowSuccessModal(false)}
-        userData={registeredUser}
-      />
     </div>
   );
 };
 
-export default Register; 
+export default Login; 

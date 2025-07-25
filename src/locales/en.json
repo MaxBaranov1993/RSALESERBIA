@@ -91,6 +91,29 @@
       "passwordMinLength": "Password must be at least 6 characters",
       "confirmPasswordRequired": "Password confirmation is required",
       "passwordsNotMatch": "Passwords do not match"
+    },
+    "success": {
+      "title": "Registration Successful!",
+      "message": "Your account has been successfully created and you are automatically logged in. You will be redirected to your profile.",
+      "continue": "Go to Profile",
+      "goToProfile": "Go to Profile",
+      "welcomeMessage": "Welcome to our community!",
+      "autoRedirect": "Auto redirect in {seconds} sec"
+    }
+  },
+  "login": {
+    "title": "Login",
+    "subtitle": "Sign in to your account",
+    "email": "Email",
+    "password": "Password",
+    "passwordPlaceholder": "Enter password",
+    "submit": "Sign In",
+    "noAccount": "Don't have an account?",
+    "registerLink": "Register",
+    "validation": {
+      "emailRequired": "Email is required",
+      "emailInvalid": "Please enter a valid email",
+      "passwordRequired": "Password is required"
     }
   },
   "mobile": {
@@ -137,5 +160,23 @@
     "notFound": "Category not found",
     "notFoundDescription": "The requested category does not exist or has been removed.",
     "backToHome": "Back to Home"
+  },
+  "userProfile": {
+    "title": "User Profile",
+    "userProfile": "User Profile",
+    "backToHome": "Back to Home",
+    "loading": "Loading...",
+    "userNotFound": "User not found",
+    "verified": "Verified",
+    "username": "Username",
+    "location": "Location",
+    "rating": "Rating",
+    "reviews": "reviews",
+    "memberSince": "Member since",
+    "bio": "About",
+    "products": "Products",
+    "favorites": "Favorites",
+    "userProducts": "User Products",
+    "noProductsYet": "User has no products yet"
   }
 } 

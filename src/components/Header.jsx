@@ -12,6 +12,7 @@ import categories from './categoriesData';
 import CategoriesList from './CategoriesList';
 import { useLanguage } from '../context/LanguageContext';
 import LanguageSwitcher from './LanguageSwitcher';
+import UserAvatar from './UserAvatar';
 
 export default function Header() {
   const [showCategories, setShowCategories] = useState(false);
@@ -30,6 +31,7 @@ export default function Header() {
             <Link to="#" className="hover:underline">{t('header.about')}</Link>
             <Link to="#" className="hover:underline">{t('header.news')}</Link>
             <Link to="#" className="hover:underline">{t('header.advertising')}</Link>
+            <Link to="/users" className="hover:underline">Пользователи</Link>
           </nav>
           <div className="flex items-center gap-3">
             <LanguageSwitcher />
@@ -57,12 +59,7 @@ export default function Header() {
             <img src={message} alt="messages" className="h-7 w-7" />
             {/* Можно добавить badge */}
           </button>
-          <Link to="/login" className="ml-2 flex items-center gap-2 text-gray-700 hover:text-blue-600 font-medium">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-7 h-7">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118A7.5 7.5 0 0112 15.75a7.5 7.5 0 017.5 4.5" />
-            </svg>
-            {t('header.login')}
-          </Link>
+          <UserAvatar />
         </div>
       </div>
       {/* Выпадающее меню категорий через портал */}

@@ -85,7 +85,18 @@ export default function ProductCard({ product }) {
         </div>
         
         <div className="text-sm text-gray-600 mb-3 truncate">
-          {t('product.seller')}: {product.sellerName || product.seller}
+          {t('product.seller')}: 
+          {product.sellerId ? (
+            <Link 
+              to={`/user/${product.sellerId}`} 
+              className="text-blue-600 hover:text-blue-800 hover:underline"
+              onClick={(e) => e.stopPropagation()}
+            >
+              {product.sellerName || product.seller}
+            </Link>
+          ) : (
+            product.sellerName || product.seller
+          )}
         </div>
         
         <button className="w-full bg-violet-600 hover:bg-violet-700 text-white px-4 py-2 rounded-lg transition-all duration-200 font-medium">

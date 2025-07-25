@@ -91,6 +91,29 @@
       "passwordMinLength": "Пароль должен содержать минимум 6 символов",
       "confirmPasswordRequired": "Подтверждение пароля обязательно",
       "passwordsNotMatch": "Пароли не совпадают"
+    },
+    "success": {
+      "title": "Регистрация успешна!",
+      "message": "Ваш аккаунт был успешно создан и вы автоматически авторизованы. Вы будете перенаправлены в личный кабинет.",
+      "continue": "Перейти в профиль",
+      "goToProfile": "Перейти в профиль",
+      "welcomeMessage": "Добро пожаловать в наше сообщество!",
+      "autoRedirect": "Автоматический переход через {seconds} сек"
+    }
+  },
+  "login": {
+    "title": "Вход",
+    "subtitle": "Войдите в свой аккаунт",
+    "email": "Email",
+    "password": "Пароль",
+    "passwordPlaceholder": "Введите пароль",
+    "submit": "Войти",
+    "noAccount": "Нет аккаунта?",
+    "registerLink": "Зарегистрироваться",
+    "validation": {
+      "emailRequired": "Email обязателен",
+      "emailInvalid": "Введите корректный email",
+      "passwordRequired": "Пароль обязателен"
     }
   },
   "mobile": {
@@ -137,5 +160,23 @@
     "notFound": "Категория не найдена",
     "notFoundDescription": "Запрашиваемая категория не существует или была удалена.",
     "backToHome": "Вернуться на главную"
+  },
+  "userProfile": {
+    "title": "Профиль пользователя",
+    "userProfile": "Профиль пользователя",
+    "backToHome": "Вернуться на главную",
+    "loading": "Загрузка...",
+    "userNotFound": "Пользователь не найден",
+    "verified": "Верифицирован",
+    "username": "Имя пользователя",
+    "location": "Местоположение",
+    "rating": "Рейтинг",
+    "reviews": "отзывов",
+    "memberSince": "Участник с",
+    "bio": "О себе",
+    "products": "Товаров",
+    "favorites": "Избранное",
+    "userProducts": "Товары пользователя",
+    "noProductsYet": "У пользователя пока нет товаров"
   }
 } 

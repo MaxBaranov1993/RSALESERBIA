@@ -3,14 +3,18 @@ import Header from './components/Header';
 import Home from './pages/Home';
 import Profile from './pages/Profile';
 import Register from './pages/Register';
+import Login from './pages/Login';
 import Favorites from './pages/Favorites';
 import CategoryPage from './pages/CategoryPage';
 import ProductPage from './pages/ProductPage';
+import UserProfile from './pages/UserProfile';
+import UsersList from './pages/UsersList';
 import MobileHeader from './components/MobileHeader';
 import MobileBottomMenu from './components/MobileBottomMenu';
 import Breadcrumbs from './components/Breadcrumbs';
 import { FavoritesProvider } from './context/FavoritesContext';
 import { LanguageProvider } from './context/LanguageContext';
+import { AuthProvider } from './context/AuthContext';
 
 function ResponsiveHeader() {
   return (
@@ -28,25 +32,30 @@ function ResponsiveHeader() {
 export default function App() {
   return (
     <LanguageProvider>
-      <FavoritesProvider>
-        <Router>
-          <div className="min-h-screen bg-gray-100">
-            <ResponsiveHeader />
-            <Breadcrumbs />
-            <main className="py-8">
-              <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/profile" element={<Profile />} />
-                <Route path="/register" element={<Register />} />
-                <Route path="/favorites" element={<Favorites />} />
-                <Route path="/category/:categorySlug" element={<CategoryPage />} />
-                <Route path="/product/:productId" element={<ProductPage />} />
-              </Routes>
-            </main>
-            <MobileBottomMenu />
-          </div>
-        </Router>
-      </FavoritesProvider>
+      <AuthProvider>
+        <FavoritesProvider>
+          <Router>
+            <div className="min-h-screen bg-gray-100">
+              <ResponsiveHeader />
+              <Breadcrumbs />
+              <main className="py-8">
+                <Routes>
+                  <Route path="/" element={<Home />} />
+                  <Route path="/profile" element={<Profile />} />
+                  <Route path="/register" element={<Register />} />
+                  <Route path="/login" element={<Login />} />
+                  <Route path="/favorites" element={<Favorites />} />
+                  <Route path="/category/:categorySlug" element={<CategoryPage />} />
+                  <Route path="/product/:productId" element={<ProductPage />} />
+                  <Route path="/user/:userId" element={<UserProfile />} />
+                  <Route path="/users" element={<UsersList />} />
+                </Routes>
+              </main>
+              <MobileBottomMenu />
+            </div>
+          </Router>
+        </FavoritesProvider>
+      </AuthProvider>
     </LanguageProvider>
   );
 }

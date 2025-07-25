@@ -142,14 +142,23 @@ const ProductDetail = ({ product }) => {
                 {product.sellerName?.charAt(0) || 'П'}
               </span>
             </div>
-                         <div>
-               <div className="font-medium text-gray-900">
-                 {product.sellerName || t('product.sellerUnknown')}
-               </div>
-               <div className="text-sm text-gray-500">
-                 {product.city || t('product.locationUnknown')}
-               </div>
-             </div>
+            <div className="flex-1">
+              <div className="font-medium text-gray-900">
+                {product.sellerId ? (
+                  <Link 
+                    to={`/user/${product.sellerId}`} 
+                    className="text-blue-600 hover:text-blue-800 hover:underline"
+                  >
+                    {product.sellerName || t('product.sellerUnknown')}
+                  </Link>
+                ) : (
+                  product.sellerName || t('product.sellerUnknown')
+                )}
+              </div>
+              <div className="text-sm text-gray-500">
+                {product.city || t('product.locationUnknown')}
+              </div>
+            </div>
           </div>
 
           {/* Состояние */}

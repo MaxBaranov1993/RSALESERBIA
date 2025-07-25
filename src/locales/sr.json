@@ -91,6 +91,29 @@
       "passwordMinLength": "Лозинка мора садржати најмање 6 карактера",
       "confirmPasswordRequired": "Потврда лозинке је обавезна",
       "passwordsNotMatch": "Лозинке се не поклапају"
+    },
+    "success": {
+      "title": "Регистрација успешна!",
+      "message": "Ваш налог је успешно креиран и аутоматски сте пријављени. Бићете преусмерени у лични кабинет.",
+      "continue": "Иди на профил",
+      "goToProfile": "Иди на профил",
+      "welcomeMessage": "Добро пожаловали у нашу заједницу!",
+      "autoRedirect": "Аутоматско преусмеравање за {seconds} сек"
+    }
+  },
+  "login": {
+    "title": "Пријава",
+    "subtitle": "Пријавите се на свој налог",
+    "email": "Имејл",
+    "password": "Лозинка",
+    "passwordPlaceholder": "Унесите лозинку",
+    "submit": "Пријави се",
+    "noAccount": "Немате налог?",
+    "registerLink": "Региструј се",
+    "validation": {
+      "emailRequired": "Имејл је обавезан",
+      "emailInvalid": "Унесите важећи имејл",
+      "passwordRequired": "Лозинка је обавезна"
     }
   },
   "mobile": {
@@ -137,5 +160,23 @@
     "notFound": "Категорија није пронађена",
     "notFoundDescription": "Тражена категорија не постоји или је уклоњена.",
     "backToHome": "Назад на почетну"
+  },
+  "userProfile": {
+    "title": "Профил корисника",
+    "userProfile": "Профил корисника",
+    "backToHome": "Назад на почетну",
+    "loading": "Учитавање...",
+    "userNotFound": "Корисник није пронађен",
+    "verified": "Верификован",
+    "username": "Корисничко име",
+    "location": "Локација",
+    "rating": "Оцена",
+    "reviews": "рецензија",
+    "memberSince": "Члан од",
+    "bio": "О себи",
+    "products": "Производа",
+    "favorites": "Омиљено",
+    "userProducts": "Производи корисника",
+    "noProductsYet": "Корисник још нема производа"
   }
 } 
