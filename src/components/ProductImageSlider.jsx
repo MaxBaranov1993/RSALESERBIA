@@ -106,7 +106,8 @@ const ProductImageSlider = ({ images, title, className = "" }) => {
       {/* Основное изображение справа */}
       <div className="flex-1 relative">
         <div 
-          className="w-full h-4/5 overflow-hidden rounded-lg relative"
+          className="w-full h-full
+       overflow-hidden rounded-lg relative"
           ref={sliderRef}
           onTouchStart={onTouchStart}
           onTouchMove={onTouchMove}

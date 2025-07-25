@@ -1,5 +1,5 @@
-[33m5cb3e0d[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m)[m feat: complete marketplace with auth, registration, and deployment setup
-[33m8842ecb[m[33m ([m[1;31morigin/main[m[33m)[m feat: убрать количество товаров из CategoriesBar и CategoriesList, обновить хлебные крошки для товаров
-[33m3ea29a9[m Merge: Add complete marketplace application with favorites system
-[33m6b7276b[m Initial commit: Marketplace app with favorites system
-[33m33055aa[m Initial commit
+[33mecdaaa0[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m)[m feat: optimize ProductImageSlider with senior-level positioning and mobile swipe support
+[33md5516e6[m[33m ([m[1;31morigin/main[m[33m)[m fix: resolve require() errors and optimize Vite configuration
+[33mae1c003[m fix: resolve Vite build issues and MIME type errors
+[33m35510f3[m feat: migrate to Vite for faster builds and development
+[33m5cb3e0d[m feat: complete marketplace with auth, registration, and deployment setup

@@ -116,17 +116,17 @@ const Breadcrumbs = () => {
   const breadcrumbs = generateBreadcrumbs();
 
   return (
-    <nav className="py-4 sm:py-6 md:py-8 bg-transparent">
+         <nav className="py-2 sm:py-3 md:py-4 bg-transparent">
       <div className="container mx-auto px-4 sm:px-6">
-        <ol className="flex items-center space-x-2 sm:space-x-3 md:space-x-4 text-sm sm:text-base">
+                 <ol className="flex items-center space-x-2 sm:space-x-3 md:space-x-4 text-xs sm:text-sm">
           {breadcrumbs.map((breadcrumb, index) => (
             <li key={breadcrumb.path} className="flex items-center">
               {index > 0 && (
-                <svg 
-                  className="w-4 h-4 sm:w-5 sm:h-5 text-gray-400 mx-2 sm:mx-3 md:mx-4" 
-                  fill="currentColor" 
-                  viewBox="0 0 20 20"
-                >
+                                 <svg 
+                   className="w-2 h-2 sm:w-3 sm:h-3 text-gray-400 mx-2 sm:mx-3 md:mx-4" 
+                   fill="currentColor" 
+                   viewBox="0 0 20 20"
+                 >
                   <path 
                     fillRule="evenodd" 
                     d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" 
@@ -136,7 +136,7 @@ const Breadcrumbs = () => {
               )}
               
               {breadcrumb.isActive ? (
-                <span className="text-gray-800 font-bold text-base sm:text-lg">
+                                 <span className="text-gray-800 font-bold text-xs sm:text-sm">
                   {breadcrumb.name}
                 </span>
               ) : (

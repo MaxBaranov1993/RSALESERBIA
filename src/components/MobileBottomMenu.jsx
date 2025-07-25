@@ -11,16 +11,16 @@ import { useAuth } from '../context/AuthContext';
 
 // Константы для стилей
 const STYLES = {
-  base: "flex flex-col items-center justify-center gap-1 sm:gap-2 p-3 sm:p-4 rounded-xl sm:rounded-2xl transition-all duration-300",
+  base: "flex flex-col items-center justify-center gap-1 sm:gap-2 p-3 sm:p-4 rounded-xl sm:rounded-2xl transition-all duration-300 flex-1",
   regular: "text-gray-600 hover:text-violet-600 hover:bg-violet-50",
-  special: "bg-violet-600 text-white hover:bg-violet-700 shadow-lg",
+  special: "bg-orange-500 text-white hover:bg-orange-600 shadow-lg",
   icon: {
     regular: "w-6 h-6 sm:w-7 sm:h-7",
     special: "w-8 h-8 sm:w-9 sm:h-9"
   },
   filter: {
     regular: "filter brightness-0 invert-[0.6]",
-    special: ""
+    special: "filter brightness-0 invert-0"
   }
 };
 
@@ -124,7 +124,7 @@ const MobileBottomMenu = React.memo(() => {
 
   return (
     <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 shadow-2xl md:hidden pb-safe">
-      <div className="flex items-center justify-between text-gray-600 py-3 sm:py-4 px-4 sm:px-6 max-w-sm mx-auto">
+      <div className="flex items-center justify-between text-gray-600 py-3 sm:py-4 px-4 sm:px-6 max-w-sm mx-auto gap-2">
         {MENU_ITEMS.map((item, index) => (
           <MenuItem 
             key={`${item.label}-${index}`}

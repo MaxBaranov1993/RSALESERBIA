@@ -64,40 +64,63 @@ const ProductDetail = ({ product }) => {
 
   return (
     <div className="bg-white rounded-lg shadow-lg overflow-hidden">
-      {/* Основной контент */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 p-6">
-        
-        {/* Галерея фото - левая колонка */}
-        <div className="h-[calc(100vh-200px)] min-h-[400px] max-h-[480px]">
-          <ProductImageSlider 
-            images={galleryImages}
-            title={product.title}
-            className="h-full"
-          />
-        </div>
+             {/* Основной контент */}
+       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 p-6">
+         
+         {/* Название товара - только на мобильных */}
+         <div className="lg:hidden mb-4">
+           <div className="flex items-start justify-between">
+             <h1 className="text-2xl font-bold text-gray-900 pr-4">
+               {product.title}
+             </h1>
+             <button
+               onClick={handleFavoriteToggle}
+               className={`p-2 rounded-full transition-colors ${
+                 isInFavorites 
+                   ? 'bg-violet-100 text-violet-600' 
+                   : 'bg-gray-100 text-gray-400 hover:bg-violet-100 hover:text-violet-600'
+               }`}
+             >
+               <img 
+                 src={Favorite} 
+                 alt="Favorite" 
+                 className="w-6 h-6"
+               />
+             </button>
+           </div>
+         </div>
+         
+         {/* Галерея фото - левая колонка */}
+         <div className="h-[calc(100vh-200px)] min-h-[400px] max-h-[600px]">
+           <ProductImageSlider 
+             images={galleryImages}
+             title={product.title}
+             className="h-full"
+           />
+         </div>
 
-        {/* Информация о товаре - правая колонка */}
-        <div className="h-4/5 space-y-4 flex flex-col justify-between">
-          {/* Заголовок и кнопка избранного */}
-          <div className="flex items-start justify-between">
-            <h1 className="text-2xl font-bold text-gray-900 pr-4">
-              {product.title}
-            </h1>
-            <button
-              onClick={handleFavoriteToggle}
-              className={`p-2 rounded-full transition-colors ${
-                isInFavorites 
-                  ? 'bg-violet-100 text-violet-600' 
-                  : 'bg-gray-100 text-gray-400 hover:bg-violet-100 hover:text-violet-600'
-              }`}
-            >
-              <img 
-                src={Favorite} 
-                alt="Favorite" 
-                className="w-6 h-6"
-              />
-            </button>
-          </div>
+         {/* Информация о товаре - правая колонка */}
+         <div className="h-4/5 flex flex-col">
+           {/* Заголовок и кнопка избранного - только на десктопе */}
+           <div className="hidden lg:flex items-start justify-between">
+             <h1 className="text-2xl font-bold text-gray-900 pr-4">
+               {product.title}
+             </h1>
+             <button
+               onClick={handleFavoriteToggle}
+               className={`p-2 rounded-full transition-colors ${
+                 isInFavorites 
+                   ? 'bg-violet-100 text-violet-600' 
+                   : 'bg-gray-100 text-gray-400 hover:bg-violet-100 hover:text-violet-600'
+               }`}
+             >
+               <img 
+                 src={Favorite} 
+                 alt="Favorite" 
+                 className="w-6 h-6"
+               />
+             </button>
+           </div>
 
           {/* Цена */}
           <div className="space-y-3">
@@ -147,60 +170,63 @@ const ProductDetail = ({ product }) => {
             </span>
           </div>
 
-          {/* Дополнительная информация */}
-          <div className="space-y-3">
-            {product.category && (
-              <div className="space-y-2">
+          {/* Основная информация */}
+          <div className="space-y-4 flex-1">
+            {/* Дополнительная информация */}
+            <div className="space-y-3">
+              {product.category && (
+                <div className="space-y-2">
+                  <div className="flex items-center space-x-2">
+                    <span className="text-sm font-medium text-gray-700">
+                      {t('product.category')}:
+                    </span>
+                  </div>
+                  <Link 
+                    to={`/category/${product.category}`}
+                    className="inline-flex items-center space-x-2 text-sm bg-violet-50 text-violet-700 hover:bg-violet-100 hover:text-violet-800 px-3 py-2 rounded-lg transition-colors cursor-pointer border border-violet-200 group"
+                    title={`${t('product.categoryLink')} ${t(`categories.${product.category}`)}`}
+                  >
+                    {getCategoryIcon(product.category) && (
+                      <img 
+                        src={getCategoryIcon(product.category)} 
+                        alt={t(`categories.${product.category}`)}
+                        className="w-4 h-4 group-hover:scale-110 transition-transform"
+                      />
+                    )}
+                    <span className="font-medium">{t(`categories.${product.category}`)}</span>
+                    <svg className="w-3 h-3 text-violet-500 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                    </svg>
+                  </Link>
+                </div>
+              )}
+              
+              {product.views && (
                 <div className="flex items-center space-x-2">
                   <span className="text-sm font-medium text-gray-700">
-                    {t('product.category')}:
+                    {t('product.views')}:
+                  </span>
+                  <span className="text-sm text-gray-600">
+                    {product.views}
                   </span>
                 </div>
-                <Link 
-                  to={`/category/${product.category}`}
-                  className="inline-flex items-center space-x-2 text-sm bg-violet-50 text-violet-700 hover:bg-violet-100 hover:text-violet-800 px-3 py-2 rounded-lg transition-colors cursor-pointer border border-violet-200 group"
-                  title={`${t('product.categoryLink')} ${t(`categories.${product.category}`)}`}
-                >
-                  {getCategoryIcon(product.category) && (
-                    <img 
-                      src={getCategoryIcon(product.category)} 
-                      alt={t(`categories.${product.category}`)}
-                      className="w-4 h-4 group-hover:scale-110 transition-transform"
-                    />
-                  )}
-                  <span className="font-medium">{t(`categories.${product.category}`)}</span>
-                  <svg className="w-3 h-3 text-violet-500 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                  </svg>
-                </Link>
-              </div>
-            )}
-            
-            {product.views && (
-              <div className="flex items-center space-x-2">
-                <span className="text-sm font-medium text-gray-700">
-                  {t('product.views')}:
-                </span>
-                <span className="text-sm text-gray-600">
-                  {product.views}
-                </span>
-              </div>
-            )}
+              )}
 
-            {product.date && (
-              <div className="flex items-center space-x-2">
-                <span className="text-sm font-medium text-gray-700">
-                  {t('product.date')}:
-                </span>
-                <span className="text-sm text-gray-600">
-                  {new Date(product.date).toLocaleDateString()}
-                </span>
-              </div>
-            )}
+              {product.date && (
+                <div className="flex items-center space-x-2">
+                  <span className="text-sm font-medium text-gray-700">
+                    {t('product.date')}:
+                  </span>
+                  <span className="text-sm text-gray-600">
+                    {new Date(product.date).toLocaleDateString()}
+                  </span>
+                </div>
+              )}
+            </div>
           </div>
 
-                     {/* Кнопки действий */}
-           <div className="flex space-x-4 pt-4">
+          {/* Кнопки действий - выровнены по нижней границе */}
+          <div className="flex space-x-4 mt-auto pt-4">
             <button className="flex-1 bg-violet-600 text-white py-3 px-6 rounded-lg font-medium hover:bg-violet-700 transition-colors">
               {t('product.contact')}
             </button>
