@@ -1,0 +1,5 @@
+[33m5cb3e0d[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m)[m feat: complete marketplace with auth, registration, and deployment setup
+[33m8842ecb[m[33m ([m[1;31morigin/main[m[33m)[m feat: убрать количество товаров из CategoriesBar и CategoriesList, обновить хлебные крошки для товаров
+[33m3ea29a9[m Merge: Add complete marketplace application with favorites system
+[33m6b7276b[m Initial commit: Marketplace app with favorites system
+[33m33055aa[m Initial commit

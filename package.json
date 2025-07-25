@@ -16,12 +16,14 @@
   },
   "homepage": "https://maxbaranov1993.github.io/RSALESERBIA",
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "dev": "vite",
+    "start": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "deploy": "gh-pages -d dist"
   },
   "eslintConfig": {
     "extends": [
@@ -43,9 +45,11 @@
   },
   "devDependencies": {
     "@tailwindcss/postcss7-compat": "^2.2.17",
+    "@vitejs/plugin-react": "^4.7.0",
     "autoprefixer": "^10.4.0",
     "gh-pages": "^6.3.0",
     "postcss": "^8.3.11",
-    "tailwindcss": "^2.2.19"
+    "tailwindcss": "^2.2.19",
+    "vite": "^6.3.5"
   }
 }
