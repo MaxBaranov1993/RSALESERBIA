@@ -5,7 +5,7 @@ import { useAuth } from '../context/AuthContext';
 
 // Стили для компонентов
 const STYLES = {
-  container: "min-h-screen flex flex-col justify-center py-12 sm:px-6 lg:px-8 relative overflow-hidden",
+  container: "min-h-screen flex flex-col justify-center py-16 sm:px-6 lg:px-8 relative overflow-hidden",
   background: {
     wrapper: "absolute inset-0 overflow-hidden",
     element1: "absolute -top-40 -right-40 w-80 h-80 bg-blue-400/20 rounded-full blur-3xl",
@@ -14,23 +14,23 @@ const STYLES = {
   },
   header: {
     wrapper: "sm:mx-auto sm:w-full sm:max-w-md relative z-10",
-    title: "text-3xl font-bold text-gray-900 mb-2",
-    subtitle: "text-gray-600"
+    title: "text-4xl font-bold text-gray-900 mb-3",
+    subtitle: "text-gray-600 text-lg"
   },
   form: {
-    wrapper: "mt-8 sm:mx-auto sm:w-full sm:max-w-md relative z-10",
-    container: "bg-white/80 backdrop-blur-xl py-8 px-4 shadow-2xl rounded-2xl sm:px-10 border border-white/20",
-    field: "space-y-6"
+    wrapper: "mt-10 sm:mx-auto sm:w-full sm:max-w-md relative z-10",
+    container: "bg-white/90 backdrop-blur-xl py-10 px-6 shadow-2xl rounded-3xl sm:px-12 border border-white/30",
+    field: "space-y-8"
   },
   input: {
-    base: "w-full px-4 py-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-violet-600 transition-all duration-200 bg-white/50 backdrop-blur-sm",
+    base: "w-full px-5 py-4 border rounded-2xl focus:outline-none focus:ring-2 focus:ring-violet-600 transition-all duration-200 bg-white/70 backdrop-blur-sm text-lg",
     error: "border-red-500",
     normal: "border-gray-200"
   },
   button: {
-    submit: "w-full bg-violet-600 hover:bg-violet-700 text-white font-semibold py-3 px-4 rounded-xl transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-violet-500 focus:ring-offset-2 shadow-lg hover:shadow-xl transform hover:scale-[1.02]"
+    submit: "w-full bg-violet-600 hover:bg-violet-700 text-white font-bold py-4 px-6 rounded-2xl transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-violet-500 focus:ring-offset-2 shadow-xl hover:shadow-2xl transform hover:scale-[1.02] text-lg"
   },
-  link: "font-medium text-orange-600 hover:text-orange-500 transition"
+  link: "font-semibold text-violet-600 hover:text-violet-500 transition-colors duration-200"
 };
 
 // Компонент для поля ввода
@@ -46,7 +46,7 @@ const FormField = React.memo(({
   required = false 
 }) => (
   <div>
-    <label htmlFor={id} className="block text-sm font-medium text-gray-700 mb-2">
+    <label htmlFor={id} className="block text-base font-semibold text-gray-700 mb-3">
       {label}
     </label>
     <input
@@ -60,7 +60,7 @@ const FormField = React.memo(({
       placeholder={placeholder}
     />
     {error && (
-      <p className="mt-1 text-sm text-red-600">{error}</p>
+      <p className="mt-2 text-sm text-red-600 font-medium">{error}</p>
     )}
   </div>
 ));

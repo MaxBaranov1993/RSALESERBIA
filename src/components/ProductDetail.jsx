@@ -1,17 +1,18 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
 import { useFavorites } from '../context/FavoritesContext';
 import Favorite from '../assets/svg/Favorite.svg';
 import categories from './categoriesData';
+import ProductImageSlider from './ProductImageSlider';
 
 const ProductDetail = ({ product }) => {
   const { t } = useLanguage();
   const { addToFavorites, removeFromFavorites, isFavorite } = useFavorites();
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
 
-  // Получаем фото для галереи
-  const getGalleryImages = () => {
+  // Мемоизированные данные
+  const galleryImages = useMemo(() => {
     if (product.photos && product.photos.length > 1) {
       return product.photos;
     }
@@ -19,20 +20,21 @@ const ProductDetail = ({ product }) => {
     // Если фото одно, используем его как основное
     const baseImage = product.photo || product.photos?.[0];
     return [baseImage];
-  };
+  }, [product.photos, product.photo]);
 
-  const galleryImages = getGalleryImages();
-  const isInFavorites = isFavorite(product.id);
+  const isInFavorites = useMemo(() => isFavorite(product.id), [isFavorite, product.id]);
 
-  const handleFavoriteToggle = () => {
+  // Мемоизированная функция переключения избранного
+  const handleFavoriteToggle = useCallback(() => {
     if (isInFavorites) {
       removeFromFavorites(product.id);
     } else {
       addToFavorites(product);
     }
-  };
+  }, [isInFavorites, removeFromFavorites, addToFavorites, product]);
 
-  const getConditionText = (condition) => {
+  // Мемоизированные функции для состояния товара
+  const getConditionText = useCallback((condition) => {
     const conditionMap = {
       'new': t('product.condition.new'),
       'excellent': t('product.condition.excellent'),
@@ -41,9 +43,9 @@ const ProductDetail = ({ product }) => {
       'service': t('product.condition.service')
     };
     return conditionMap[condition] || condition;
-  };
+  }, [t]);
 
-  const getConditionColor = (condition) => {
+  const getConditionColor = useCallback((condition) => {
     const colorMap = {
       'new': 'bg-green-100 text-green-800',
       'excellent': 'bg-blue-100 text-blue-800',
@@ -52,13 +54,13 @@ const ProductDetail = ({ product }) => {
       'service': 'bg-purple-100 text-purple-800'
     };
     return colorMap[condition] || 'bg-gray-100 text-gray-800';
-  };
+  }, []);
 
-  // Получаем иконку категории
-  const getCategoryIcon = (categoryKey) => {
+  // Мемоизированная функция получения иконки категории
+  const getCategoryIcon = useCallback((categoryKey) => {
     const category = categories.find(cat => cat.key === categoryKey);
     return category ? category.icon : null;
-  };
+  }, []);
 
   return (
     <div className="bg-white rounded-lg shadow-lg overflow-hidden">
@@ -66,42 +68,16 @@ const ProductDetail = ({ product }) => {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 p-6">
         
         {/* Галерея фото - левая колонка */}
-        <div className="space-y-4">
-          {/* Главное фото */}
-          <div className="aspect-square bg-gray-100 rounded-lg overflow-hidden">
-            <img
-              src={galleryImages[selectedImageIndex]}
-              alt={product.title}
-              className="w-full h-full object-cover"
-            />
-          </div>
-          
-          {/* Миниатюры */}
-          {galleryImages.length > 1 && (
-            <div className="grid grid-cols-4 gap-2">
-              {galleryImages.map((image, index) => (
-                <button
-                  key={index}
-                  onClick={() => setSelectedImageIndex(index)}
-                  className={`aspect-square bg-gray-100 rounded-lg overflow-hidden border-2 transition-all ${
-                    selectedImageIndex === index 
-                      ? 'border-violet-500' 
-                      : 'border-transparent hover:border-gray-300'
-                  }`}
-                >
-                  <img
-                    src={image}
-                    alt={`${product.title} ${index + 1}`}
-                    className="w-full h-full object-cover"
-                  />
-                </button>
-              ))}
-            </div>
-          )}
+        <div className="h-[calc(100vh-200px)] min-h-[400px] max-h-[480px]">
+          <ProductImageSlider 
+            images={galleryImages}
+            title={product.title}
+            className="h-full"
+          />
         </div>
 
         {/* Информация о товаре - правая колонка */}
-        <div className="space-y-6">
+        <div className="h-4/5 space-y-4 flex flex-col justify-between">
           {/* Заголовок и кнопка избранного */}
           <div className="flex items-start justify-between">
             <h1 className="text-2xl font-bold text-gray-900 pr-4">
@@ -124,7 +100,7 @@ const ProductDetail = ({ product }) => {
           </div>
 
           {/* Цена */}
-          <div className="space-y-2">
+          <div className="space-y-3">
             <div className="text-3xl font-bold text-gray-900">
               {product.price} {t('product.currency')}
             </div>
@@ -223,8 +199,8 @@ const ProductDetail = ({ product }) => {
             )}
           </div>
 
-          {/* Кнопки действий */}
-          <div className="flex space-x-4 pt-4">
+                     {/* Кнопки действий */}
+           <div className="flex space-x-4 pt-4">
             <button className="flex-1 bg-violet-600 text-white py-3 px-6 rounded-lg font-medium hover:bg-violet-700 transition-colors">
               {t('product.contact')}
             </button>
@@ -236,9 +212,9 @@ const ProductDetail = ({ product }) => {
       </div>
 
       {/* Описание - снизу по центру */}
-      <div className="border-t border-gray-200 p-6">
+      <div className="border-t border-gray-200 p-8">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-xl font-bold text-gray-900 mb-4">
+          <h2 className="text-xl font-bold text-gray-900 mb-6">
             {t('product.description')}
           </h2>
           <div className="prose prose-gray max-w-none">

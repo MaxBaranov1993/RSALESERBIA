@@ -5,11 +5,11 @@ import { useLanguage } from '../context/LanguageContext';
 
 // Константы для стилей
 const STYLES = {
-  container: "w-full flex items-center justify-start py-1",
-  scrollContainer: "flex gap-2 min-w-0 overflow-x-scroll overscroll-x-contain md:select-none",
-  categoryCard: "flex items-center flex-shrink-0 h-16 bg-white border border-gray-200 rounded-xl shadow-sm px-4 py-2 hover:shadow-md transition cursor-pointer",
-  categoryIcon: "h-10 w-10 object-contain mr-3 flex-shrink-0",
-  categoryText: "text-sm font-medium text-gray-600 text-center w-full whitespace-normal break-words"
+  container: "w-full flex items-center justify-start py-2 sm:py-3 md:py-4",
+  scrollContainer: "flex gap-2 sm:gap-3 md:gap-4 min-w-0 overflow-x-scroll overscroll-x-contain md:select-none",
+  categoryCard: "flex items-center flex-shrink-0 h-16 sm:h-18 md:h-20 bg-white border border-gray-200 rounded-xl sm:rounded-2xl shadow-sm px-3 sm:px-4 md:px-6 py-2 sm:py-3 hover:shadow-lg hover:border-violet-200 transition-all duration-200 cursor-pointer",
+  categoryIcon: "h-8 w-8 sm:h-10 sm:w-10 md:h-12 md:w-12 object-contain mr-2 sm:mr-3 md:mr-4 flex-shrink-0",
+  categoryText: "text-xs sm:text-sm font-semibold text-gray-700 text-center w-full whitespace-normal break-words"
 };
 
 // Константы для скролла

@@ -35,10 +35,10 @@ export default function App() {
       <AuthProvider>
         <FavoritesProvider>
           <Router>
-            <div className="min-h-screen bg-gray-100">
+            <div className="min-h-screen bg-gray-100 flex flex-col">
               <ResponsiveHeader />
               <Breadcrumbs />
-              <main className="py-8">
+              <main className="flex-1 py-2 md:py-2 lg:py-2">
                 <Routes>
                   <Route path="/" element={<Home />} />
                   <Route path="/profile" element={<Profile />} />

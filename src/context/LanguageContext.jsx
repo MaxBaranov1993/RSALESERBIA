@@ -39,6 +39,11 @@ export const LanguageProvider = ({ children }) => {
   };
 
   const t = (key, params = {}) => {
+    // Проверяем, что key не null или undefined
+    if (!key || typeof key !== 'string') {
+      return key || '';
+    }
+    
     const keys = key.split('.');
     let value = translations;
     
