@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
 import { useAuth } from '../context/AuthContext';
 import ImageUpload from '../components/ImageUpload';
+import LocationMap from '../components/LocationMap';
 import { addNewProduct } from '../data/productsData';
 
 function AddProduct() {
@@ -235,6 +236,18 @@ function AddProduct() {
               Изображения
             </h2>
             <ImageUpload images={images} onImagesChange={setImages} />
+          </div>
+
+          {/* Карта */}
+          <div className="bg-white rounded-lg shadow-sm border p-6">
+            <h2 className="text-lg font-semibold text-gray-900 mb-4">
+              Местоположение
+            </h2>
+            <LocationMap 
+              city={formData.city}
+              country="Сербия"
+              height="300px"
+            />
           </div>
 
           {/* Кнопки */}

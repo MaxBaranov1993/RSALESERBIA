@@ -5,6 +5,7 @@ import { useFavorites } from '../context/FavoritesContext';
 import Favorite from '../assets/svg/Favorite.svg';
 import categories from './categoriesData';
 import ProductImageSlider from './ProductImageSlider';
+import LocationMap from './LocationMap';
 
 const ProductDetail = ({ product }) => {
   const { t } = useLanguage();
@@ -248,6 +249,18 @@ const ProductDetail = ({ product }) => {
               {product.description || t('product.noDescription')}
             </p>
           </div>
+        </div>
+      </div>
+
+      {/* Карта местоположения */}
+      <div className="border-t border-gray-200 p-8">
+        <div className="max-w-4xl mx-auto">
+          <LocationMap 
+            city={product.city}
+            country="Сербия"
+            height="400px"
+            className="mb-4"
+          />
         </div>
       </div>
     </div>

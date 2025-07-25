@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { useLanguage } from '../context/LanguageContext';
 import ImageUpload from '../components/ImageUpload';
+import LocationMap from '../components/LocationMap';
 import { addNewProduct } from '../data/productsData';
 
 // Константы
@@ -466,6 +467,18 @@ const RegisterWithProduct = () => {
                   images={images}
                   onImagesChange={setImages}
                   maxImages={5}
+                />
+              </div>
+
+              {/* Карта местоположения */}
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Местоположение
+                </label>
+                <LocationMap 
+                  city={registerData.city}
+                  country="Сербия"
+                  height="300px"
                 />
               </div>
             </FormSection>
