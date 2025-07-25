@@ -6,7 +6,7 @@ import electronics from '../assets/svg/categoryComputer.svg';
 import sport from '../assets/svg/categoryClothes.svg';
 import home from '../assets/svg/categoryGoods.svg';
 import furniture from '../assets/svg/categoryFurniture.svg';
-import { getCategoriesStats } from '../data/productsData.js';
+import { getCategoryStats } from '../data/productsData.js';
 
 // Базовые данные категорий
 const baseCategories = [
@@ -23,7 +23,7 @@ const baseCategories = [
 
 // Функция для получения категорий с количеством товаров
 export const getCategoriesWithStats = () => {
-  const stats = getCategoriesStats();
+  const stats = getCategoryStats();
   
   return baseCategories.map(category => ({
     ...category,

@@ -767,33 +767,161 @@ export const productsData = [
   }
 ];
 
+// Функция для загрузки товаров из localStorage
+export const loadProductsFromStorage = () => {
+  try {
+    const savedProducts = localStorage.getItem('userProducts');
+    if (savedProducts) {
+      const parsedProducts = JSON.parse(savedProducts);
+      // Добавляем загруженные товары в основной массив
+      productsData.unshift(...parsedProducts);
+    }
+  } catch (error) {
+    console.error('Ошибка загрузки товаров из localStorage:', error);
+  }
+};
+
+// Функция для сохранения товаров в localStorage
+const saveProductsToStorage = (products) => {
+  try {
+    localStorage.setItem('userProducts', JSON.stringify(products));
+  } catch (error) {
+    console.error('Ошибка сохранения товаров в localStorage:', error);
+  }
+};
+
+// Функция для добавления нового товара/услуги
+export const addNewProduct = (productData, images, currentUser = null) => {
+  // Генерируем новый ID (максимальный ID + 1)
+  const maxId = Math.max(...productsData.map(product => product.id));
+  const newId = maxId + 1;
+  
+  // Получаем текущую дату
+  const currentDate = new Date().toISOString().split('T')[0];
+  
+  // Определяем имя продавца
+  const sellerName = currentUser?.name || currentUser?.username || "Текущий пользователь";
+  
+  // Обрабатываем изображения - используем сохраненные URL из tempimage
+  const processedImages = images.length > 0 
+    ? images.map(img => {
+        // Если изображение было сохранено в tempimage, используем его URL
+        if (img.savedId) {
+          return img.preview; // Это URL из tempimage
+        }
+        // Иначе используем обычный preview или URL
+        return img.preview || img.url || img;
+      })
+    : ["https://images.unsplash.com/photo-1592750475338-74b7b21085ab?w=400&h=300&fit=crop"];
+  
+  // Создаем новый товар
+  const newProduct = {
+    id: newId,
+    title: productData.title,
+    price: parseFloat(productData.price),
+    city: productData.city,
+    sellerName: sellerName,
+    photo: processedImages[0],
+    photos: processedImages,
+    category: productData.category,
+    description: productData.description,
+    condition: productData.condition,
+    originalPrice: productData.originalPrice ? parseFloat(productData.originalPrice) : null,
+    views: 0,
+    favorites: 0,
+    date: currentDate,
+    sold: false, // Новые товары не проданные
+    soldDate: null, // Дата продажи пока не установлена
+    isService: productData.category === 'services' || productData.condition === 'service',
+    // Добавляем информацию о сохраненных изображениях
+    savedImages: images.filter(img => img.savedId).map(img => ({
+      id: img.savedId,
+      originalName: img.originalName,
+      size: img.size
+    }))
+  };
+  
+  // Добавляем новый товар в начало массива (чтобы он был первым)
+  productsData.unshift(newProduct);
+  
+  // Сохраняем в localStorage
+  const userProducts = productsData.filter(product => 
+    product.sellerName === sellerName
+  );
+  saveProductsToStorage(userProducts);
+  
+  console.log('Новый товар добавлен:', newProduct);
+  console.log('Сохраненные изображения:', newProduct.savedImages);
+  
+  return newProduct;
+};
+
+// Функция для обновления товара (продажа, удаление)
+export const updateProduct = (productId, updates) => {
+  const productIndex = productsData.findIndex(p => p.id === productId);
+  if (productIndex !== -1) {
+    productsData[productIndex] = { ...productsData[productIndex], ...updates };
+    
+    // Сохраняем обновленные товары пользователя
+    const sellerName = productsData[productIndex].sellerName;
+    const userProducts = productsData.filter(product => 
+      product.sellerName === sellerName
+    );
+    saveProductsToStorage(userProducts);
+    
+    console.log('Товар обновлен:', productsData[productIndex]);
+  }
+};
+
+// Функция для удаления товара
+export const deleteProduct = (productId) => {
+  const productIndex = productsData.findIndex(p => p.id === productId);
+  if (productIndex !== -1) {
+    const sellerName = productsData[productIndex].sellerName;
+    productsData.splice(productIndex, 1);
+    
+    // Сохраняем обновленные товары пользователя
+    const userProducts = productsData.filter(product => 
+      product.sellerName === sellerName
+    );
+    saveProductsToStorage(userProducts);
+    
+    console.log('Товар удален:', productId);
+  }
+};
+
 // Функция для получения случайных товаров
 export const getRandomProducts = (count = 6) => {
   const shuffled = [...productsData].sort(() => 0.5 - Math.random());
   return shuffled.slice(0, count);
 };
 
+// Функция для получения только товаров (не услуг)
+export const getRandomProductsOnly = (count = 6) => {
+  const productsOnly = productsData.filter(product => !product.isService);
+  const shuffled = [...productsOnly].sort(() => 0.5 - Math.random());
+  return shuffled.slice(0, count);
+};
+
+// Функция для получения случайных услуг
+export const getRandomServices = (count = 6) => {
+  const services = productsData.filter(product => product.isService);
+  const shuffled = [...services].sort(() => 0.5 - Math.random());
+  return shuffled.slice(0, count);
+};
+
 // Функция для получения товаров по категории
 export const getProductsByCategory = (category) => {
-  // Маппинг слаг-ключей на названия категорий
-  const categoryMapping = {
-    'electronics': 'electronics',
-    'clothes': 'clothes', 
-    'computers': 'computers',
-    'estate': 'estate',
-    'furniture': 'furniture',
-    'goods': 'goods',
-    'kids': 'kids',
-    'services': 'services',
-    'cars': 'cars'
-  };
+  console.log('Поиск товаров для категории:', category);
+  console.log('Все доступные товары:', productsData);
   
-  const mappedCategory = categoryMapping[category];
-  if (!mappedCategory) {
-    return [];
-  }
+  const filteredProducts = productsData.filter(product => {
+    console.log(`Проверяем товар ${product.id}: category=${product.category}, isService=${product.isService}`);
+    return product.category === category;
+  });
   
-  return productsData.filter(product => product.category === mappedCategory);
+  console.log('Найденные товары для категории', category, ':', filteredProducts);
+  return filteredProducts;
 };
 
 // Функция для получения услуг
@@ -803,55 +931,60 @@ export const getServices = () => {
 
 // Функция для получения товара по ID
 export const getProductById = (id) => {
-  return productsData.find(product => product.id === id);
+  return productsData.find(product => product.id === parseInt(id));
 };
 
 // Функция для поиска товаров
 export const searchProducts = (query) => {
-  const lowercaseQuery = query.toLowerCase();
+  if (!query || query.trim() === '') {
+    return [];
+  }
+  
+  const searchTerm = query.toLowerCase().trim();
+  
   return productsData.filter(product => 
-    product.title.toLowerCase().includes(lowercaseQuery) ||
-    product.description.toLowerCase().includes(lowercaseQuery) ||
-    product.category.toLowerCase().includes(lowercaseQuery)
+    product.title.toLowerCase().includes(searchTerm) ||
+    product.description.toLowerCase().includes(searchTerm) ||
+    product.city.toLowerCase().includes(searchTerm) ||
+    product.sellerName.toLowerCase().includes(searchTerm)
   );
 };
 
-// Функция для получения статистики категорий
-export const getCategoriesStats = () => {
+// Функция для получения статистики по категориям
+export const getCategoryStats = () => {
   const stats = {};
   
   productsData.forEach(product => {
-    if (!stats[product.category]) {
-      stats[product.category] = 0;
+    const category = product.category;
+    if (!stats[category]) {
+      stats[category] = 0;
     }
-    stats[product.category]++;
+    stats[category]++;
   });
   
+  console.log('Статистика по категориям:', stats);
   return stats;
 };
 
 // Функция для получения категорий с количеством товаров
 export const getCategoriesWithCount = () => {
-  const stats = getCategoriesStats();
-  return Object.keys(stats).map(categoryKey => ({
-    key: categoryKey,
-    count: stats[categoryKey]
-  }));
+  const stats = getCategoryStats();
+  return Object.entries(stats).map(([category, count]) => ({ category, count }));
 };
 
-// Функция для отладки - проверка товаров в категории
+// Функция для отладки категории
 export const debugCategory = (category) => {
   const products = getProductsByCategory(category);
-  console.log(`Товары в категории "${category}":`, products.length);
-  products.forEach(product => {
-    console.log(`- ${product.title} (ID: ${product.id})`);
-  });
+  console.log(`Товары в категории ${category}:`, products);
   return products;
 };
 
-// Функция для проверки всех категорий
+// Функция для отладки всех категорий
 export const debugAllCategories = () => {
-  const stats = getCategoriesStats();
-  console.log('Статистика по категориям:', stats);
-  return stats;
-}; 
+  const categories = [...new Set(productsData.map(product => product.category))];
+  console.log('Все категории:', categories);
+  return categories;
+};
+
+// Загружаем товары при инициализации (после всех определений)
+loadProductsFromStorage(); 

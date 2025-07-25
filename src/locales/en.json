@@ -24,6 +24,9 @@
   "home": {
     "title": "Home",
     "featuredProducts": "Featured Products",
+    "recommendedProducts": "Recommended products for you",
+    "recommendedServices": "Recommended services for you",
+    "showMore": "Show More",
     "viewAll": "View All"
   },
   "product": {
@@ -65,6 +68,14 @@
     "emptyDescription": "Add items to favorites to find them quickly later",
     "clearAll": "Clear All",
     "itemsCount": "items in favorites"
+  },
+  "recommendations": {
+    "title": "Your Recommendations",
+    "subtitle": "Personalized products selected especially for you"
+  },
+  "serviceRecommendations": {
+    "title": "Your Service Recommendations",
+    "subtitle": "Personalized services selected especially for you"
   },
   "profile": {
     "title": "Profile",

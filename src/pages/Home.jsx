@@ -1,25 +1,80 @@
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import ProductCard from '../components/ProductCard';
 import CategoriesBar from '../components/CategoriesBar';
-import { getRandomProducts } from '../data/productsData';
+import { getRandomProductsOnly, getRandomServices } from '../data/productsData';
+import { useLanguage } from '../context/LanguageContext';
 
-export default function Home() {
-  const [products, setProducts] = useState([]);
+function Home() {
+  const [recommendedProducts, setRecommendedProducts] = useState([]);
+  const [recommendedServices, setRecommendedServices] = useState([]);
+  const { t } = useLanguage();
   
   useEffect(() => {
-    // Получаем случайные товары при загрузке компонента
-    const randomProducts = getRandomProducts(8);
-    setProducts(randomProducts);
+    // Получаем рекомендации товаров (15 карточек = 3 ряда по 5)
+    const products = getRandomProductsOnly(15);
+    setRecommendedProducts(products);
+    
+    // Получаем рекомендации услуг (15 карточек = 3 ряда по 5)
+    const services = getRandomServices(15);
+    setRecommendedServices(services);
   }, []);
   
   return (
     <div className="container mx-auto px-4 sm:px-6 lg:px-8">
       <CategoriesBar />
-      <div className="mt-6 sm:mt-8 lg:mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
-        {products.map(product => (
-          <ProductCard key={product.id} product={product} />
-        ))}
+      
+      {/* Рекомендации товаров */}
+      <div className="mt-8 sm:mt-5 lg:mt-5">
+        <div className="mb-8">
+          <h1 className="text-3xl font-bold text-gray-900 mb-2">
+            {t('home.recommendedProducts')}
+          </h1>
+          <p className="text-gray-600">
+            {t('recommendations.subtitle')}
+          </p>
+        </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4 sm:gap-6 lg:gap-8">
+          {recommendedProducts.map(product => (
+            <ProductCard key={product.id} product={product} />
+          ))}
+        </div>
+        <div className="text-center mt-8">
+          <Link 
+            to="/recommendations" 
+            className="inline-flex items-center px-6 py-3 bg-violet-600 hover:bg-violet-700 text-white font-semibold rounded-xl transition-all duration-200 shadow-lg hover:shadow-xl"
+          >
+            {t('home.showMore')}
+          </Link>
+        </div>
+      </div>
+      
+      {/* Рекомендации услуг */}
+      <div className="mt-5 sm:mt-5 lg:mt-5">
+        <div className="mb-8">
+          <h1 className="text-3xl font-bold text-gray-900 mb-2">
+            {t('home.recommendedServices')}
+          </h1>
+          <p className="text-gray-600">
+            {t('recommendations.subtitle')}
+          </p>
+        </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4 sm:gap-6 lg:gap-8">
+          {recommendedServices.map(product => (
+            <ProductCard key={product.id} product={product} />
+          ))}
+        </div>
+        <div className="text-center mt-8">
+          <Link 
+            to="/service-recommendations" 
+            className="inline-flex items-center px-6 py-3 bg-violet-600 hover:bg-violet-700 text-white font-semibold rounded-xl transition-all duration-200 shadow-lg hover:shadow-xl"
+          >
+            {t('home.showMore')}
+          </Link>
+        </div>
       </div>
     </div>
   );
 }
+
+export default Home;

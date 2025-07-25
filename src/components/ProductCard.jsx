@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { useFavorites } from '../context/FavoritesContext';
 import { useLanguage } from '../context/LanguageContext';
 import ImageSlider from './ImageSlider';
+import eyeIcon from '../assets/svg/eye.svg';
 
 export default function ProductCard({ product }) {
   const { addToFavorites, removeFromFavorites, isFavorite } = useFavorites();
@@ -13,6 +14,26 @@ export default function ProductCard({ product }) {
       return `€${(price / 1000).toFixed(1)}k`;
     }
     return `€${price}`;
+  };
+
+  // Генерируем инициалы для аватара продавца
+  const getSellerInitials = (sellerName) => {
+    if (!sellerName) return 'U';
+    const names = sellerName.split(' ');
+    if (names.length >= 2) {
+      return `${names[0].charAt(0)}${names[1].charAt(0)}`.toUpperCase();
+    }
+    return sellerName.charAt(0).toUpperCase();
+  };
+
+  // Генерируем цвет для аватара продавца
+  const getSellerAvatarColor = (sellerName) => {
+    const colors = [
+      'bg-red-500', 'bg-blue-500', 'bg-green-500', 'bg-yellow-500',
+      'bg-purple-500', 'bg-pink-500', 'bg-indigo-500', 'bg-gray-500'
+    ];
+    const index = (sellerName?.length || 0) % colors.length;
+    return colors[index];
   };
 
   const handleFavoriteClick = (e) => {
@@ -27,6 +48,7 @@ export default function ProductCard({ product }) {
   };
 
   const isProductFavorite = isFavorite(product.id);
+  const sellerName = product.sellerName || product.seller;
 
   return (
     <Link to={`/product/${product.id}`} className="block">
@@ -79,29 +101,34 @@ export default function ProductCard({ product }) {
         <div className="flex justify-between items-center mb-4">
           <span className="font-bold text-2xl text-violet-600">{formatPrice(product.price)}</span>
           <div className="flex items-center space-x-3 text-xs text-gray-500">
-            <span className="flex items-center gap-1">👁 {product.views} {t('product.views')}</span>
-            <span className="flex items-center gap-1">❤ {product.favorites} {t('product.favorites')}</span>
+            <span className="flex items-center gap-1 text-orange-500">
+              <img src={eyeIcon} alt="views" className="w-4 h-4" />
+              {product.views} {t('product.views')}
+            </span>
           </div>
         </div>
         
         <div className="text-sm text-gray-600 mb-4 truncate">
-          {t('product.seller')}: 
           {product.sellerId ? (
             <Link 
               to={`/user/${product.sellerId}`} 
-              className="text-blue-600 hover:text-blue-800 hover:underline font-medium"
+              className="text-blue-600 hover:text-blue-800 hover:underline font-medium flex items-center gap-2"
               onClick={(e) => e.stopPropagation()}
             >
-              {product.sellerName || product.seller}
+              <div className={`w-6 h-6 rounded-full flex items-center justify-center text-white text-xs font-semibold ${getSellerAvatarColor(sellerName)}`}>
+                {getSellerInitials(sellerName)}
+              </div>
+              {sellerName}
             </Link>
           ) : (
-            product.sellerName || product.seller
+            <div className="flex items-center gap-2">
+              <div className={`w-6 h-6 rounded-full flex items-center justify-center text-white text-xs font-semibold ${getSellerAvatarColor(sellerName)}`}>
+                {getSellerInitials(sellerName)}
+              </div>
+              {sellerName}
+            </div>
           )}
         </div>
-        
-        <button className="w-full bg-violet-600 hover:bg-violet-700 text-white px-6 py-3 rounded-xl transition-all duration-200 font-semibold shadow-lg hover:shadow-xl">
-          {product.isService ? t('product.order') : t('product.addToCart')}
-        </button>
       </div>
     </div>
     </Link>

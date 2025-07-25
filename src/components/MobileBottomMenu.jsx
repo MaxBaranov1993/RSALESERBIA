@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Searchicon from '../assets/svg/Searchicon.svg';
 import Favorite from '../assets/svg/Favorite.svg';
 import addIcon from '../assets/svg/add.svg';
@@ -96,6 +96,7 @@ IconElement.displayName = 'IconElement';
 const MenuItem = React.memo(({ icon, label, href, isSpecial = false, isFavorite = false, isProfile = false }) => {
   const { getFavoritesCount } = useFavorites();
   const { user } = useAuth();
+  const navigate = useNavigate();
   const favoritesCount = getFavoritesCount();
   
   const buttonClasses = `${STYLES.base} ${isSpecial ? STYLES.special : STYLES.regular}`;
@@ -116,8 +117,13 @@ const MenuItem = React.memo(({ icon, label, href, isSpecial = false, isFavorite 
 
   const handleClick = () => {
     if (isSpecial) {
-      // Здесь можно добавить логику для кнопки "add"
-      // Например: открытие модального окна для добавления товара
+      // Если пользователь авторизован - переход на страницу добавления товара
+      // Если не авторизован - переход на страницу регистрации с добавлением товара
+      if (user) {
+        navigate('/add-product');
+      } else {
+        navigate('/register-with-product');
+      }
     }
   };
 

@@ -24,6 +24,9 @@
   "home": {
     "title": "Почетна",
     "featuredProducts": "Истакнути производи",
+    "recommendedProducts": "Препоручени производи за вас",
+    "recommendedServices": "Препоручене услуге за вас",
+    "showMore": "Прикажи још",
     "viewAll": "Погледај све"
   },
   "product": {
@@ -65,6 +68,14 @@
     "emptyDescription": "Додајте производе у омиљено да их касније брзо пронађете",
     "clearAll": "Очисти све",
     "itemsCount": "производа у омиљеном"
+  },
+  "recommendations": {
+    "title": "Ваше препоруке",
+    "subtitle": "Персонализовани производи изабрани посебно за вас"
+  },
+  "serviceRecommendations": {
+    "title": "Ваше препоруке услуга",
+    "subtitle": "Персонализоване услуге изабране посебно за вас"
   },
   "profile": {
     "title": "Профил",

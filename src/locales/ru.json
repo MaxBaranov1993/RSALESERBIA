@@ -24,6 +24,9 @@
   "home": {
     "title": "Главная",
     "featuredProducts": "Рекомендуемые товары",
+    "recommendedProducts": "Рекомендации товаров для вас",
+    "recommendedServices": "Рекомендации услуг для вас",
+    "showMore": "Показать еще",
     "viewAll": "Посмотреть все"
   },
   "product": {
@@ -66,11 +69,92 @@
     "clearAll": "Очистить все",
     "itemsCount": "товаров в избранном"
   },
+  "recommendations": {
+    "title": "Ваши рекомендации",
+    "subtitle": "Персонализированные товары, подобранные специально для вас"
+  },
+  "serviceRecommendations": {
+    "title": "Ваши рекомендации услуг",
+    "subtitle": "Персонализированные услуги, подобранные специально для вас"
+  },
   "profile": {
     "title": "Профиль",
+    "subtitle": "Управляйте своими товарами и услугами",
     "personalInfo": "Личная информация",
     "settings": "Настройки",
-    "logout": "Выйти"
+    "logout": "Выйти",
+    "addItem": "Добавить",
+    "myProducts": "Мои товары",
+    "noProducts": "У вас пока нет товаров",
+    "addFirstProduct": "Добавьте свой первый товар или услугу",
+    "notAuthorized": "Необходимо авторизоваться",
+    "activeProducts": "Активные товары",
+    "soldProducts": "Проданные товары",
+    "noActiveProducts": "У вас пока нет активных товаров",
+    "noSoldProducts": "У вас пока нет проданных товаров",
+    "sellFirstProduct": "Продайте свой первый товар",
+    "markAsSold": "Отметить как проданный",
+    "delete": "Удалить",
+    "sold": "Продано",
+    "activeProductsDescription": "Ваши активные объявления, которые видны покупателям",
+    "soldProductsDescription": "История ваших проданных товаров и услуг"
+  },
+  "addItem": {
+    "title": "Добавить товар или услугу",
+    "subtitle": "Выберите, что вы хотите добавить",
+    "addProduct": "Добавить товар",
+    "addProductDescription": "Продайте свои товары быстро и безопасно",
+    "addService": "Добавить услугу",
+    "addServiceDescription": "Предложите свои услуги клиентам"
+  },
+  "addProduct": {
+    "title": "Добавить товар",
+    "subtitle": "Заполните информацию о вашем товаре",
+    "basicInfo": "Основная информация",
+    "title": "Название товара",
+    "titlePlaceholder": "Введите название товара",
+    "price": "Цена",
+    "originalPrice": "Исходная цена",
+    "city": "Город",
+    "cityPlaceholder": "Введите город",
+    "category": "Категория",
+    "selectCategory": "Выберите категорию",
+    "condition": "Состояние",
+    "description": "Описание",
+    "descriptionPlaceholder": "Опишите ваш товар подробно",
+    "images": "Изображения",
+    "submit": "Добавить товар"
+  },
+  "addService": {
+    "title": "Добавить услугу",
+    "subtitle": "Заполните информацию о вашей услуге",
+    "basicInfo": "Основная информация",
+    "title": "Название услуги",
+    "titlePlaceholder": "Введите название услуги",
+    "price": "Цена",
+    "originalPrice": "Исходная цена",
+    "city": "Город",
+    "cityPlaceholder": "Введите город",
+    "category": "Категория",
+    "selectCategory": "Выберите категорию",
+    "description": "Описание",
+    "descriptionPlaceholder": "Опишите вашу услугу подробно",
+    "images": "Изображения",
+    "submit": "Добавить услугу",
+    "repair": "Ремонт",
+    "cleaning": "Уборка",
+    "transport": "Транспорт",
+    "education": "Образование",
+    "beauty": "Красота",
+    "health": "Здоровье",
+    "other": "Другое"
+  },
+  "addItem": {
+    "images": "Изображения",
+    "uploadImages": "Загрузить изображения",
+    "or": "или",
+    "dragAndDrop": "перетащите файлы сюда",
+    "imageFormats": "PNG, JPG, GIF до 10MB"
   },
   "register": {
     "title": "Регистрация",
@@ -132,7 +216,13 @@
     "save": "Сохранить",
     "delete": "Удалить",
     "edit": "Редактировать",
-    "close": "Закрыть"
+    "close": "Закрыть",
+    "submitting": "Отправка..."
+  },
+  "notification": {
+    "productAdded": "Товар успешно добавлен!",
+    "serviceAdded": "Услуга успешно добавлена!",
+    "viewInProfile": "Просмотрите в своем профиле"
   },
   "breadcrumbs": {
     "home": "Главная",

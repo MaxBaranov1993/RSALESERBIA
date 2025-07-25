@@ -42,10 +42,10 @@ const CategoryPage = () => {
 
   if (loading) {
     return (
-      <div className="container mx-auto px-4">
-        <div className="text-center py-8">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-violet-600 mx-auto"></div>
-          <p className="mt-4 text-gray-600">{t('common.loading')}</p>
+          <p className="mt-4 text-gray-600">Загрузка...</p>
         </div>
       </div>
     );

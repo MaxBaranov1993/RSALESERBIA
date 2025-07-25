@@ -23,7 +23,7 @@ const MobileHeader = () => {
       </header>
 
       {/* Поисковый инпут — отдельный блок ниже */}
-      <div className=" pt-5">
+      <div className="pb-0.5">
         <input
           type="text"
           placeholder={t('header.search')}
