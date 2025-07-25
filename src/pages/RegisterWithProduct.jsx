@@ -353,7 +353,7 @@ const RegisterWithProduct = () => {
   ], []);
 
   return (
-    <div className="min-h-screen bg-gray-50 py-8">
+    <div className="min-h-screen bg-gray-50 py-8 pb-20">
       <div className="max-w-2xl mx-auto px-4">
         <div className="bg-white rounded-xl shadow-lg overflow-hidden">
           {/* Заголовок */}
@@ -478,11 +478,11 @@ const RegisterWithProduct = () => {
             )}
 
             {/* Кнопки */}
-            <div className="flex flex-col sm:flex-row gap-3 pt-4">
+            <div className="flex flex-col space-y-3 pt-4">
               <button
                 type="submit"
                 disabled={loading}
-                className="flex-1 bg-violet-600 text-white py-3 px-6 rounded-lg font-medium hover:bg-violet-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full bg-violet-600 text-white py-3 px-6 rounded-lg font-medium hover:bg-violet-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {loading ? 'Обработка...' : 'Зарегистрироваться и добавить объявление'}
               </button>
@@ -490,7 +490,7 @@ const RegisterWithProduct = () => {
               <button
                 type="button"
                 onClick={handleGoToLogin}
-                className="flex-1 bg-gray-200 text-gray-700 py-3 px-6 rounded-lg font-medium hover:bg-gray-300 transition-colors"
+                className="w-full bg-gray-200 text-gray-700 py-3 px-6 rounded-lg font-medium hover:bg-gray-300 transition-colors"
               >
                 Уже есть аккаунт? Войти
               </button>
