@@ -67,13 +67,14 @@ export default function ProductCard({ product }) {
             onClick={handleFavoriteClick}
             className={`absolute top-3 right-3 p-2.5 rounded-full transition-all duration-200 z-10 shadow-lg ${
               isProductFavorite 
-                ? 'bg-red-500 hover:bg-red-600' 
+                ? 'bg-orange-500 hover:bg-orange-600' 
                 : 'bg-white/90 hover:bg-white'
             }`}
+            title={isProductFavorite ? 'Удалить из избранного' : 'Добавить в избранное'}
           >
             <svg 
               className={`w-5 h-5 transition-all duration-200 ${
-                isProductFavorite ? 'text-white fill-current' : 'text-gray-600'
+                isProductFavorite ? 'text-white scale-110' : 'text-gray-600 scale-100'
               }`} 
               fill={isProductFavorite ? 'currentColor' : 'none'} 
               stroke="currentColor" 

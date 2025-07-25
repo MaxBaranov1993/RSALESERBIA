@@ -2,7 +2,6 @@ import React, { useState, useMemo, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
 import { useFavorites } from '../context/FavoritesContext';
-import Favorite from '../assets/svg/Favorite.svg';
 import categories from './categoriesData';
 import ProductImageSlider from './ProductImageSlider';
 import LocationMap from './LocationMap';
@@ -76,17 +75,28 @@ const ProductDetail = ({ product }) => {
              </h1>
              <button
                onClick={handleFavoriteToggle}
-               className={`p-2 rounded-full transition-colors ${
+               className={`p-2 rounded-full transition-all duration-200 ${
                  isInFavorites 
-                   ? 'bg-violet-100 text-violet-600' 
-                   : 'bg-gray-100 text-gray-400 hover:bg-violet-100 hover:text-violet-600'
+                   ? 'bg-orange-100 text-orange-600 shadow-md' 
+                   : 'bg-gray-100 text-gray-400 hover:bg-orange-100 hover:text-orange-600 hover:shadow-md'
                }`}
+               title={isInFavorites ? 'Удалить из избранного' : 'Добавить в избранное'}
              >
-               <img 
-                 src={Favorite} 
-                 alt="Favorite" 
-                 className="w-6 h-6"
-               />
+               <svg 
+                 className={`w-6 h-6 transition-all duration-200 ${
+                   isInFavorites ? 'scale-110 text-orange-600' : 'scale-100 text-gray-400'
+                 }`}
+                 fill={isInFavorites ? 'currentColor' : 'none'}
+                 stroke="currentColor"
+                 viewBox="0 0 24 24"
+               >
+                 <path 
+                   strokeLinecap="round" 
+                   strokeLinejoin="round" 
+                   strokeWidth={isInFavorites ? 0 : 2} 
+                   d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" 
+                 />
+               </svg>
              </button>
            </div>
          </div>
@@ -109,17 +119,28 @@ const ProductDetail = ({ product }) => {
              </h1>
              <button
                onClick={handleFavoriteToggle}
-               className={`p-2 rounded-full transition-colors ${
+               className={`p-2 rounded-full transition-all duration-200 ${
                  isInFavorites 
-                   ? 'bg-violet-100 text-violet-600' 
-                   : 'bg-gray-100 text-gray-400 hover:bg-violet-100 hover:text-violet-600'
+                   ? 'bg-orange-100 text-orange-600 shadow-md' 
+                   : 'bg-gray-100 text-gray-400 hover:bg-orange-100 hover:text-orange-600 hover:shadow-md'
                }`}
+               title={isInFavorites ? 'Удалить из избранного' : 'Добавить в избранное'}
              >
-               <img 
-                 src={Favorite} 
-                 alt="Favorite" 
-                 className="w-6 h-6"
-               />
+               <svg 
+                 className={`w-6 h-6 transition-all duration-200 ${
+                   isInFavorites ? 'scale-110 text-orange-600' : 'scale-100 text-gray-400'
+                 }`}
+                 fill={isInFavorites ? 'currentColor' : 'none'}
+                 stroke="currentColor"
+                 viewBox="0 0 24 24"
+               >
+                 <path 
+                   strokeLinecap="round" 
+                   strokeLinejoin="round" 
+                   strokeWidth={isInFavorites ? 0 : 2} 
+                   d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" 
+                 />
+               </svg>
              </button>
            </div>
 
