@@ -1,10 +1,10 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { useLanguage } from '../context/LanguageContext';
+import { productsData, updateProduct, deleteProduct } from '../data/productsData';
 import ProductCard from './ProductCard';
 import AvatarUpload from './AvatarUpload';
-import { productsData } from '../data/productsData';
-import { updateProduct, deleteProduct } from '../data/productsData';
+import LocationMap from './LocationMap';
 
 export default function UserProfile() {
   const { user, logout, updateUserProfile } = useAuth();
@@ -21,6 +21,8 @@ export default function UserProfile() {
     phone: '',
     bio: '',
     city: '',
+    street: '',
+    houseNumber: '',
     country: ''
   });
   const [newPassword, setNewPassword] = useState({
@@ -55,6 +57,8 @@ export default function UserProfile() {
         phone: user.phone || '',
         bio: user.bio || '',
         city: user.location?.city || '',
+        street: user.location?.street || '',
+        houseNumber: user.location?.houseNumber || '',
         country: user.location?.country || ''
       });
     }
@@ -123,6 +127,8 @@ export default function UserProfile() {
         bio: profileData.bio,
         location: {
           city: profileData.city,
+          street: profileData.street,
+          houseNumber: profileData.houseNumber,
           country: profileData.country,
           coordinates: user.location?.coordinates || { lat: 0, lng: 0 }
         }
@@ -508,6 +514,32 @@ export default function UserProfile() {
                       </div>
                       <div>
                         <label className="block text-sm font-medium text-gray-700 mb-1">
+                          Улица
+                        </label>
+                        <input
+                          type="text"
+                          name="street"
+                          value={profileData.street}
+                          onChange={handleProfileChange}
+                          disabled={!isEditing}
+                          className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-violet-500 focus:border-transparent disabled:bg-gray-100"
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-sm font-medium text-gray-700 mb-1">
+                          Номер дома
+                        </label>
+                        <input
+                          type="text"
+                          name="houseNumber"
+                          value={profileData.houseNumber}
+                          onChange={handleProfileChange}
+                          disabled={!isEditing}
+                          className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-violet-500 focus:border-transparent disabled:bg-gray-100"
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-sm font-medium text-gray-700 mb-1">
                           Страна
                         </label>
                         <input
@@ -553,6 +585,8 @@ export default function UserProfile() {
                             phone: user.phone || '',
                             bio: user.bio || '',
                             city: user.location?.city || '',
+                            street: user.location?.street || '',
+                            houseNumber: user.location?.houseNumber || '',
                             country: user.location?.country || ''
                           });
                         }}
@@ -634,6 +668,20 @@ export default function UserProfile() {
                     </button>
                   </div>
                 </div>
+              </div>
+
+              {/* Карта местоположения */}
+              <div className="bg-gray-50 rounded-lg p-6">
+                <h4 className="text-lg font-semibold text-gray-900 mb-4">
+                  Местоположение
+                </h4>
+                <LocationMap 
+                  street={profileData.street}
+                  houseNumber={profileData.houseNumber}
+                  city={profileData.city}
+                  country={profileData.country}
+                  height="300px"
+                />
               </div>
             </div>
           </div>

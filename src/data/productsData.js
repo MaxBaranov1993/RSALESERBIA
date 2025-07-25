@@ -5,6 +5,8 @@ export const productsData = [
     title: "iPhone 14 Pro 128GB",
     price: 899,
     city: "Белград",
+    street: "Кнез Михаилова",
+    houseNumber: "15",
     sellerName: "Александр Петров",
     photo: "https://images.unsplash.com/photo-1592750475338-74b7b21085ab?w=400&h=300&fit=crop",
     photos: [
@@ -25,6 +27,8 @@ export const productsData = [
     title: "MacBook Air M2 13\"",
     price: 1299,
     city: "Нови Сад",
+    street: "Дунавска",
+    houseNumber: "8",
     sellerName: "Мария Иванова",
     photo: "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=400&h=300&fit=crop",
     photos: [
@@ -45,6 +49,8 @@ export const productsData = [
     title: "Samsung Galaxy S23",
     price: 699,
     city: "Белград",
+    street: "Теразије",
+    houseNumber: "22",
     sellerName: "Дмитрий Сидоров",
     photo: "https://images.unsplash.com/photo-1592750475338-74b7b21085ab?w=400&h=300&fit=crop",
     photos: [
@@ -820,6 +826,8 @@ export const addNewProduct = (productData, images, currentUser = null) => {
     title: productData.title,
     price: parseFloat(productData.price),
     city: productData.city,
+    street: productData.street,
+    houseNumber: productData.houseNumber,
     sellerName: sellerName,
     photo: processedImages[0],
     photos: processedImages,

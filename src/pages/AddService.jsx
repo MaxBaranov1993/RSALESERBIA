@@ -37,7 +37,9 @@ function AddService() {
     city: '',
     category: 'services',
     condition: 'service',
-    originalPrice: ''
+    originalPrice: '',
+    street: '',
+    houseNumber: ''
   });
   
   const [images, setImages] = useState([]);
@@ -169,6 +171,34 @@ function AddService() {
 
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Улица
+                </label>
+                <input
+                  type="text"
+                  name="street"
+                  value={formData.street}
+                  onChange={handleInputChange}
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-violet-500 focus:border-violet-500"
+                  placeholder="Введите улицу"
+                />
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Номер дома
+                </label>
+                <input
+                  type="text"
+                  name="houseNumber"
+                  value={formData.houseNumber}
+                  onChange={handleInputChange}
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-violet-500 focus:border-violet-500"
+                  placeholder="Введите номер дома"
+                />
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
                   Категория *
                 </label>
                 <select
@@ -218,6 +248,8 @@ function AddService() {
               Местоположение
             </h2>
             <LocationMap 
+              street={formData.street}
+              houseNumber={formData.houseNumber}
               city={formData.city}
               country="Сербия"
               height="300px"

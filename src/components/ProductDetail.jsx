@@ -256,6 +256,8 @@ const ProductDetail = ({ product }) => {
       <div className="border-t border-gray-200 p-8">
         <div className="max-w-4xl mx-auto">
           <LocationMap 
+            street={product.street}
+            houseNumber={product.houseNumber}
             city={product.city}
             country="Сербия"
             height="400px"

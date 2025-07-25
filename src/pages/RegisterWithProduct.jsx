@@ -159,7 +159,16 @@ const RegisterWithProduct = () => {
   const { t } = useLanguage();
   
   const [registerData, setRegisterData] = useState(INITIAL_REGISTER_DATA);
-  const [productData, setProductData] = useState(INITIAL_PRODUCT_DATA);
+  const [productData, setProductData] = useState({
+    title: '',
+    description: '',
+    price: '',
+    category: '',
+    condition: 'new',
+    city: '',
+    street: '',
+    houseNumber: ''
+  });
   const [images, setImages] = useState([]);
   const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState({});
@@ -224,7 +233,9 @@ const RegisterWithProduct = () => {
       newErrors.price = 'Введите корректную цену';
     }
     if (!productData.category) newErrors.category = 'Выберите категорию';
-    if (!productData.location.trim()) newErrors.location = 'Укажите местоположение';
+    if (!productData.city.trim()) newErrors.city = 'Укажите город';
+    if (!productData.street.trim()) newErrors.street = 'Укажите улицу';
+    if (!productData.houseNumber.trim()) newErrors.houseNumber = 'Укажите номер дома';
 
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
@@ -346,9 +357,21 @@ const RegisterWithProduct = () => {
       required: true
     },
     {
-      name: 'location',
-      label: 'Местоположение',
-      placeholder: 'Город или район',
+      name: 'city',
+      label: 'Город',
+      placeholder: 'Введите город',
+      required: true
+    },
+    {
+      name: 'street',
+      label: 'Улица',
+      placeholder: 'Введите улицу',
+      required: true
+    },
+    {
+      name: 'houseNumber',
+      label: 'Номер дома',
+      placeholder: 'Введите номер дома',
       required: true
     }
   ], []);
@@ -476,7 +499,9 @@ const RegisterWithProduct = () => {
                   Местоположение
                 </label>
                 <LocationMap 
-                  city={registerData.city}
+                  street={productData.street}
+                  houseNumber={productData.houseNumber}
+                  city={productData.city}
                   country="Сербия"
                   height="300px"
                 />

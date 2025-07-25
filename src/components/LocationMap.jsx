@@ -1,19 +1,19 @@
 import { useEffect, useRef, useState } from 'react';
 
-const LocationMap = ({ address, city, country = "Сербия", height = "300px", className = "" }) => {
+const LocationMap = ({ address, street, houseNumber, city, country = "Сербия", height = "300px", className = "" }) => {
   const mapRef = useRef(null);
   const mapInstanceRef = useRef(null);
   const [mapLoaded, setMapLoaded] = useState(false);
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    if (!address && !city) {
+    if (!address && !street && !city) {
       setError('Адрес не указан');
       return;
     }
 
     // Создаем полный адрес для геокодирования
-    const fullAddress = `${address || ''} ${city}, ${country}`.trim();
+    const fullAddress = `${street || ''} ${houseNumber || ''} ${city}, ${country}`.trim();
     
     // Функция для геокодирования адреса
     const geocodeAddress = async (address) => {
@@ -76,10 +76,13 @@ const LocationMap = ({ address, city, country = "Сербия", height = "300px"
         // Добавляем маркер
         const marker = L.marker([coordinates.lat, coordinates.lon]).addTo(map);
         
+        // Создаем полный адрес для отображения
+        const displayAddress = `${street || ''} ${houseNumber || ''} ${city}`.trim();
+        
         // Добавляем всплывающее окно с адресом
         marker.bindPopup(`
           <div class="text-center">
-            <strong>${address || city}</strong><br>
+            <strong>${displayAddress}</strong><br>
             <small>${coordinates.display_name}</small>
           </div>
         `);
@@ -137,7 +140,7 @@ const LocationMap = ({ address, city, country = "Сербия", height = "300px"
         mapInstanceRef.current = null;
       }
     };
-  }, [address, city, country]);
+  }, [address, street, houseNumber, city, country]);
 
   if (error) {
     return (
@@ -153,6 +156,9 @@ const LocationMap = ({ address, city, country = "Сербия", height = "300px"
     );
   }
 
+  // Создаем полный адрес для отображения
+  const displayAddress = `${street || ''} ${houseNumber || ''} ${city}`.trim();
+
   return (
     <div className={`relative ${className}`}>
       {/* Заголовок карты */}
@@ -161,7 +167,7 @@ const LocationMap = ({ address, city, country = "Сербия", height = "300px"
           Местоположение
         </h3>
         <p className="text-sm text-gray-600">
-          {address && `${address}, `}{city}, {country}
+          {displayAddress}, {country}
         </p>
       </div>
 
