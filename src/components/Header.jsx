@@ -75,7 +75,7 @@ export default function Header() {
       </div>
       {/* Выпадающее меню категорий через портал */}
       {showCategories && typeof window !== 'undefined' && ReactDOM.createPortal(
-        <div className="fixed inset-0 z-50 flex items-start justify-center bg-black bg-opacity-40 backdrop-blur-sm" onClick={() => setShowCategories(false)}>
+        <div className="fixed inset-0 z-40 flex items-start justify-center bg-black bg-opacity-40 backdrop-blur-sm" onClick={() => setShowCategories(false)}>
           <div
             className="bg-white rounded-2xl shadow-2xl border border-gray-200 mt-28 max-w-5xl w-full mx-4 relative"
             onClick={e => e.stopPropagation()}

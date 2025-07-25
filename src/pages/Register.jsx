@@ -45,7 +45,7 @@ const INITIAL_FORM_STATE = {
 
 // Стили для компонентов
 const STYLES = {
-  container: "min-h-screen flex flex-col justify-center py-16 sm:px-6 lg:px-8 relative overflow-hidden",
+  container: "min-h-screen flex flex-col justify-center py-16 sm:px-6 lg:px-8 relative overflow-hidden pb-20 md:pb-16",
   background: {
     wrapper: "absolute inset-0 overflow-hidden",
     element1: "absolute -top-40 -right-40 w-80 h-80 bg-blue-400/20 rounded-full blur-3xl",
