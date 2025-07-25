@@ -210,9 +210,25 @@ export default function UserProfile() {
             <h2 className="text-3xl font-bold mb-2">
               {user.name || user.username}
             </h2>
-            <p className="text-violet-100 text-lg mb-6">
+            <p className="text-violet-100 text-lg mb-4">
               {user.email}
             </p>
+            
+            {/* Адрес пользователя */}
+            {user.location && (
+              <div className="mb-6">
+                <div className="text-violet-100 text-sm">
+                  {user.location.street && user.location.houseNumber ? (
+                    <div>
+                      <div className="font-medium">{user.location.street}, {user.location.houseNumber}</div>
+                      <div className="text-violet-200">{user.location.city}, {user.location.country}</div>
+                    </div>
+                  ) : (
+                    <div className="font-medium">{user.location.city}, {user.location.country}</div>
+                  )}
+                </div>
+              </div>
+            )}
             
             {/* Статистика */}
             <div className="flex flex-wrap gap-6">

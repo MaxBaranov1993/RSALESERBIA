@@ -156,7 +156,14 @@ const ProductDetail = ({ product }) => {
                 )}
               </div>
               <div className="text-sm text-gray-500">
-                {product.city || t('product.locationUnknown')}
+                {product.street && product.houseNumber ? (
+                  <div>
+                    <div>{product.street}, {product.houseNumber}</div>
+                    <div>{product.city || t('product.locationUnknown')}</div>
+                  </div>
+                ) : (
+                  product.city || t('product.locationUnknown')
+                )}
               </div>
             </div>
           </div>

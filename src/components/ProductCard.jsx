@@ -94,7 +94,16 @@ export default function ProductCard({ product }) {
         <p className="text-gray-600 text-sm mb-4 line-clamp-2 leading-relaxed">{product.description}</p>
         
         <div className="flex items-center justify-between mb-4">
-          <span className="text-sm text-gray-500 font-medium">{product.city}</span>
+          <div className="text-sm text-gray-500">
+            {product.street && product.houseNumber ? (
+              <div>
+                <div className="font-medium">{product.street}, {product.houseNumber}</div>
+                <div className="text-xs text-gray-400">{product.city}</div>
+              </div>
+            ) : (
+              <span className="font-medium">{product.city}</span>
+            )}
+          </div>
           <span className="text-xs text-gray-400 bg-gray-100 px-2 py-1 rounded-full">{product.condition}</span>
         </div>
         

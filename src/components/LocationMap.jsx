@@ -64,7 +64,7 @@ const LocationMap = ({ address, street, houseNumber, city, country = "Серби
         }
         
         // Создаем карту
-        const map = L.map(mapRef.current).setView([coordinates.lat, coordinates.lon], 15);
+        const map = L.map(mapRef.current).setView([coordinates.lat, coordinates.lon], 16);
         mapInstanceRef.current = map;
         
         // Добавляем слой OpenStreetMap
@@ -76,14 +76,28 @@ const LocationMap = ({ address, street, houseNumber, city, country = "Серби
         // Добавляем маркер
         const marker = L.marker([coordinates.lat, coordinates.lon]).addTo(map);
         
-        // Создаем полный адрес для отображения
-        const displayAddress = `${street || ''} ${houseNumber || ''} ${city}`.trim();
+        // Создаем детальный адрес для отображения
+        const detailedAddress = [];
+        if (street) detailedAddress.push(street);
+        if (houseNumber) detailedAddress.push(houseNumber);
+        if (city) detailedAddress.push(city);
+        if (country) detailedAddress.push(country);
         
-        // Добавляем всплывающее окно с адресом
+        const displayAddress = detailedAddress.join(', ');
+        
+        // Добавляем всплывающее окно с точным адресом
         marker.bindPopup(`
-          <div class="text-center">
-            <strong>${displayAddress}</strong><br>
-            <small>${coordinates.display_name}</small>
+          <div class="text-center p-2">
+            <div class="font-semibold text-gray-900 mb-1">Точный адрес:</div>
+            <div class="text-sm text-gray-700">
+              ${street ? `<strong>Улица:</strong> ${street}<br>` : ''}
+              ${houseNumber ? `<strong>Дом:</strong> ${houseNumber}<br>` : ''}
+              ${city ? `<strong>Город:</strong> ${city}<br>` : ''}
+              ${country ? `<strong>Страна:</strong> ${country}` : ''}
+            </div>
+            <div class="text-xs text-gray-500 mt-2 border-t pt-2">
+              ${coordinates.display_name}
+            </div>
           </div>
         `);
         
@@ -156,19 +170,48 @@ const LocationMap = ({ address, street, houseNumber, city, country = "Серби
     );
   }
 
-  // Создаем полный адрес для отображения
-  const displayAddress = `${street || ''} ${houseNumber || ''} ${city}`.trim();
+  // Создаем детальный адрес для отображения в заголовке
+  const detailedAddress = [];
+  if (street) detailedAddress.push(street);
+  if (houseNumber) detailedAddress.push(houseNumber);
+  if (city) detailedAddress.push(city);
+  if (country) detailedAddress.push(country);
+  
+  const displayAddress = detailedAddress.join(', ');
 
   return (
     <div className={`relative ${className}`}>
-      {/* Заголовок карты */}
+      {/* Заголовок карты с точным адресом */}
       <div className="mb-3">
         <h3 className="text-lg font-semibold text-gray-900 mb-1">
-          Местоположение
+          Точное местоположение
         </h3>
-        <p className="text-sm text-gray-600">
-          {displayAddress}, {country}
-        </p>
+        <div className="text-sm text-gray-600 space-y-1">
+          {street && (
+            <div className="flex items-center">
+              <span className="font-medium text-gray-700 w-16">Улица:</span>
+              <span>{street}</span>
+            </div>
+          )}
+          {houseNumber && (
+            <div className="flex items-center">
+              <span className="font-medium text-gray-700 w-16">Дом:</span>
+              <span>{houseNumber}</span>
+            </div>
+          )}
+          {city && (
+            <div className="flex items-center">
+              <span className="font-medium text-gray-700 w-16">Город:</span>
+              <span>{city}</span>
+            </div>
+          )}
+          {country && (
+            <div className="flex items-center">
+              <span className="font-medium text-gray-700 w-16">Страна:</span>
+              <span>{country}</span>
+            </div>
+          )}
+        </div>
       </div>
 
       {/* Контейнер карты */}
