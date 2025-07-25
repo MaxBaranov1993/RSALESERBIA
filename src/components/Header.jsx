@@ -57,10 +57,12 @@ export default function Header() {
     setShowSuggestions(false);
   }, [navigate, saveToRecentSearches]);
 
-  // Обработка отправки формы
+  // Обработка отправки формы (для мобильных устройств)
   const handleSubmit = useCallback((e) => {
     e.preventDefault();
-    handleSearch(searchQuery);
+    if (searchQuery.trim()) {
+      handleSearch(searchQuery);
+    }
   }, [searchQuery, handleSearch]);
 
   // Обработка клика по недавнему поиску
@@ -89,6 +91,28 @@ export default function Header() {
       }
     }
   }, [searchQuery, handleSearch]);
+
+  // Обработка изменения ввода (для мобильных устройств)
+  const handleInputChange = useCallback((e) => {
+    const value = e.target.value;
+    setSearchQuery(value);
+    
+    // На мобильных устройствах Enter может не срабатывать, поэтому добавляем обработку через изменение
+    if (value.includes('\n')) {
+      e.preventDefault();
+      const cleanValue = value.replace('\n', '').trim();
+      if (cleanValue) {
+        setSearchQuery(cleanValue);
+        handleSearch(cleanValue);
+      }
+    }
+  }, [handleSearch]);
+
+  // Обработка input события (для мобильных устройств)
+  const handleInput = useCallback((e) => {
+    const value = e.target.value;
+    setSearchQuery(value);
+  }, []);
 
   // Автоматический показ предложений при вводе (с задержкой)
   useEffect(() => {
@@ -148,10 +172,19 @@ export default function Header() {
                 ref={searchInputRef}
                 type="text"
                 value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
+                onChange={handleInputChange}
+                onInput={handleInput}
                 onFocus={() => setIsSearchFocused(true)}
                 onBlur={() => setIsSearchFocused(false)}
                 onKeyDown={handleKeyDown}
+                onKeyPress={(e) => {
+                  if (e.key === 'Enter') {
+                    e.preventDefault();
+                    if (searchQuery.trim()) {
+                      handleSearch(searchQuery);
+                    }
+                  }
+                }}
                 placeholder={t('header.search')}
                 className={`flex-1 px-3 sm:px-4 py-2 sm:py-3 rounded-l-lg sm:rounded-l-xl bg-gray-50 text-gray-800 placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-violet-600 focus:bg-white border border-r-0 border-gray-200 transition-all duration-200 text-sm sm:text-base ${isSearchFocused ? 'ring-2 ring-violet-600' : ''}`}
               />
