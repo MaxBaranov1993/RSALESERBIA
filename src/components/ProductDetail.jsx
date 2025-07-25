@@ -5,6 +5,8 @@ import { useFavorites } from '../context/FavoritesContext';
 import categories from './categoriesData';
 import ProductImageSlider from './ProductImageSlider';
 import LocationMap from './LocationMap';
+import favoriteWhite from '../assets/svg/favorite-white.svg';
+import favoriteOrange from '../assets/svg/favorite-orange.svg';
 
 const ProductDetail = ({ product }) => {
   const { t } = useLanguage();
@@ -82,21 +84,13 @@ const ProductDetail = ({ product }) => {
                }`}
                title={isInFavorites ? 'Удалить из избранного' : 'Добавить в избранное'}
              >
-               <svg 
+               <img 
+                 src={isInFavorites ? favoriteOrange : favoriteWhite} 
+                 alt={isInFavorites ? 'Удалить из избранного' : 'Добавить в избранное'}
                  className={`w-6 h-6 transition-all duration-200 ${
-                   isInFavorites ? 'scale-110 text-orange-600' : 'scale-100 text-gray-400'
+                   isInFavorites ? 'scale-110' : 'scale-100'
                  }`}
-                 fill={isInFavorites ? 'currentColor' : 'none'}
-                 stroke="currentColor"
-                 viewBox="0 0 24 24"
-               >
-                 <path 
-                   strokeLinecap="round" 
-                   strokeLinejoin="round" 
-                   strokeWidth={isInFavorites ? 0 : 2} 
-                   d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" 
-                 />
-               </svg>
+               />
              </button>
            </div>
          </div>
@@ -126,21 +120,13 @@ const ProductDetail = ({ product }) => {
                }`}
                title={isInFavorites ? 'Удалить из избранного' : 'Добавить в избранное'}
              >
-               <svg 
+               <img 
+                 src={isInFavorites ? favoriteOrange : favoriteWhite} 
+                 alt={isInFavorites ? 'Удалить из избранного' : 'Добавить в избранное'}
                  className={`w-6 h-6 transition-all duration-200 ${
-                   isInFavorites ? 'scale-110 text-orange-600' : 'scale-100 text-gray-400'
+                   isInFavorites ? 'scale-110' : 'scale-100'
                  }`}
-                 fill={isInFavorites ? 'currentColor' : 'none'}
-                 stroke="currentColor"
-                 viewBox="0 0 24 24"
-               >
-                 <path 
-                   strokeLinecap="round" 
-                   strokeLinejoin="round" 
-                   strokeWidth={isInFavorites ? 0 : 2} 
-                   d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" 
-                 />
-               </svg>
+               />
              </button>
            </div>
 

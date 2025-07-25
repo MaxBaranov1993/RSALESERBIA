@@ -4,6 +4,8 @@ import { useFavorites } from '../context/FavoritesContext';
 import { useLanguage } from '../context/LanguageContext';
 import ImageSlider from './ImageSlider';
 import eyeIcon from '../assets/svg/eye.svg';
+import favoriteWhite from '../assets/svg/favorite-white.svg';
+import favoriteOrange from '../assets/svg/favorite-orange.svg';
 
 export default function ProductCard({ product }) {
   const { addToFavorites, removeFromFavorites, isFavorite } = useFavorites();
@@ -72,21 +74,13 @@ export default function ProductCard({ product }) {
             }`}
             title={isProductFavorite ? 'Удалить из избранного' : 'Добавить в избранное'}
           >
-            <svg 
+            <img 
+              src={isProductFavorite ? favoriteOrange : favoriteWhite} 
+              alt={isProductFavorite ? 'Удалить из избранного' : 'Добавить в избранное'}
               className={`w-5 h-5 transition-all duration-200 ${
-                isProductFavorite ? 'text-white scale-110' : 'text-gray-600 scale-100'
+                isProductFavorite ? 'scale-110' : 'scale-100'
               }`} 
-              fill={isProductFavorite ? 'currentColor' : 'none'} 
-              stroke="currentColor" 
-              viewBox="0 0 24 24"
-            >
-              <path 
-                strokeLinecap="round" 
-                strokeLinejoin="round" 
-                strokeWidth={isProductFavorite ? 0 : 2} 
-                d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" 
-              />
-            </svg>
+            />
           </button>
         </div>
       
