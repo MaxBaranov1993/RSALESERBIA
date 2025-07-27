@@ -307,7 +307,7 @@ export default function UserProfile() {
             </div>
             
             {userProducts.length > 0 ? (
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-6">
+              <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-6">
                 {userProducts.map(product => (
                   <div key={product.id} className="relative group">
                     <ProductCard product={product} />
@@ -368,7 +368,7 @@ export default function UserProfile() {
             </div>
             
             {soldProducts.length > 0 ? (
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-6">
+              <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-6">
                 {soldProducts.map(product => (
                   <div key={product.id} className="relative group">
                     <div className="relative">
