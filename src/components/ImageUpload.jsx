@@ -169,7 +169,7 @@ function ImageUpload({ images, onImagesChange }) {
   return (
     <div className="space-y-4">
       <label className="block text-sm font-medium text-gray-700 mb-2">
-        Изображения ({images.length})
+        {t('addItem.images')} ({images.length})
       </label>
       
       {/* Drag & Drop Zone */}
@@ -194,19 +194,19 @@ function ImageUpload({ images, onImagesChange }) {
               disabled={isUploading}
               className="text-violet-600 hover:text-violet-500 font-medium disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              {isUploading ? 'Загрузка...' : 'Загрузить изображения'}
+              {isUploading ? t('common.loading') : t('addItem.uploadImages')}
             </button>
-            <span className="mx-2">или</span>
-            <span>перетащите файлы сюда</span>
+            <span className="mx-2">{t('addItem.or')}</span>
+            <span>{t('addItem.dragAndDrop')}</span>
           </div>
           <p className="text-xs text-gray-500">
-            PNG, JPG, GIF, WebP до 10MB
+            {t('addItem.imageFormats')}
           </p>
           {isUploading && (
             <div className="flex items-center justify-center space-x-2">
               <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-violet-600"></div>
               <span className="text-xs text-violet-600">
-                Сохранение изображений... ({uploadProgress.current}/{uploadProgress.total})
+                {t('common.submitting')} ({uploadProgress.current}/{uploadProgress.total})
               </span>
             </div>
           )}

@@ -8,21 +8,21 @@ import { addNewProduct } from '../data/productsData';
 
 // Константы
 const CATEGORIES = [
-  { value: 'estate', label: 'Недвижимость' },
-  { value: 'cars', label: 'Автомобили' },
-  { value: 'electronics', label: 'Электроника' },
-  { value: 'computers', label: 'Компьютеры' },
-  { value: 'clothes', label: 'Одежда' },
-  { value: 'goods', label: 'Товары' },
-  { value: 'furniture', label: 'Мебель' },
-  { value: 'kids', label: 'Детские товары' },
-  { value: 'services', label: 'Услуги' }
+  { value: 'estate', label: 'categories.estate' },
+  { value: 'cars', label: 'categories.cars' },
+  { value: 'electronics', label: 'categories.electronics' },
+  { value: 'computers', label: 'categories.computers' },
+  { value: 'clothes', label: 'categories.clothes' },
+  { value: 'goods', label: 'categories.goods' },
+  { value: 'furniture', label: 'categories.furniture' },
+  { value: 'kids', label: 'categories.kids' },
+  { value: 'services', label: 'categories.services' }
 ];
 
 const CONDITIONS = [
-  { value: 'new', label: 'Новое' },
-  { value: 'used', label: 'Б/у' },
-  { value: 'service', label: 'Услуга' }
+  { value: 'new', label: 'product.condition.new' },
+  { value: 'used', label: 'product.condition.good' },
+  { value: 'service', label: 'product.condition.service' }
 ];
 
 const INITIAL_REGISTER_DATA = {
@@ -86,31 +86,35 @@ const FormSelect = ({
   error, 
   required = false,
   placeholder = "Выберите..." 
-}) => (
-  <div>
-    <label className="block text-sm font-medium text-gray-700 mb-1">
-      {label} {required && '*'}
-    </label>
-    <select
-      name={name}
-      value={value}
-      onChange={onChange}
-      className={`w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-violet-500 focus:border-transparent ${
-        error ? 'border-red-500' : 'border-gray-300'
-      }`}
-    >
-      <option value="">{placeholder}</option>
-      {options.map(option => (
-        <option key={option.value} value={option.value}>
-          {option.label}
-        </option>
-      ))}
-    </select>
-    {error && (
-      <p className="text-red-500 text-sm mt-1">{error}</p>
-    )}
-  </div>
-);
+}) => {
+  const { t } = useLanguage();
+  
+  return (
+    <div>
+      <label className="block text-sm font-medium text-gray-700 mb-1">
+        {label} {required && '*'}
+      </label>
+      <select
+        name={name}
+        value={value}
+        onChange={onChange}
+        className={`w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-violet-500 focus:border-transparent ${
+          error ? 'border-red-500' : 'border-gray-300'
+        }`}
+      >
+        <option value="">{placeholder}</option>
+        {options.map(option => (
+          <option key={option.value} value={option.value}>
+            {t(option.label)}
+          </option>
+        ))}
+      </select>
+      {error && (
+        <p className="text-red-500 text-sm mt-1">{error}</p>
+      )}
+    </div>
+  );
+};
 
 // Компонент текстовой области
 const FormTextarea = ({ 
@@ -207,39 +211,39 @@ const RegisterWithProduct = () => {
     const newErrors = {};
 
     // Валидация регистрации
-    if (!registerData.firstName.trim()) newErrors.firstName = 'Имя обязательно';
-    if (!registerData.lastName.trim()) newErrors.lastName = 'Фамилия обязательна';
+    if (!registerData.firstName.trim()) newErrors.firstName = t('register.validation.firstNameRequired');
+    if (!registerData.lastName.trim()) newErrors.lastName = t('register.validation.lastNameRequired');
     if (!registerData.email.trim()) {
-      newErrors.email = 'Email обязателен';
+      newErrors.email = t('register.validation.emailRequired');
     } else if (!/\S+@\S+\.\S+/.test(registerData.email)) {
-      newErrors.email = 'Неверный формат email';
+      newErrors.email = t('register.validation.emailInvalid');
     }
     if (!registerData.password) {
-      newErrors.password = 'Пароль обязателен';
+      newErrors.password = t('register.validation.passwordRequired');
     } else if (registerData.password.length < 6) {
-      newErrors.password = 'Пароль должен быть не менее 6 символов';
+      newErrors.password = t('register.validation.passwordMinLength');
     }
     if (registerData.password !== registerData.confirmPassword) {
-      newErrors.confirmPassword = 'Пароли не совпадают';
+      newErrors.confirmPassword = t('register.validation.passwordsNotMatch');
     }
-    if (!registerData.phone.trim()) newErrors.phone = 'Телефон обязателен';
+    if (!registerData.phone.trim()) newErrors.phone = t('register.validation.phoneRequired');
 
     // Валидация товара
-    if (!productData.title.trim()) newErrors.title = 'Название товара обязательно';
-    if (!productData.description.trim()) newErrors.description = 'Описание обязательно';
+    if (!productData.title.trim()) newErrors.title = t('addProduct.titleRequired');
+    if (!productData.description.trim()) newErrors.description = t('addProduct.descriptionRequired');
     if (!productData.price) {
-      newErrors.price = 'Цена обязательна';
+      newErrors.price = t('addProduct.priceRequired');
     } else if (isNaN(productData.price) || parseFloat(productData.price) <= 0) {
-      newErrors.price = 'Введите корректную цену';
+      newErrors.price = t('addProduct.priceInvalid');
     }
-    if (!productData.category) newErrors.category = 'Выберите категорию';
-    if (!productData.city.trim()) newErrors.city = 'Укажите город';
-    if (!productData.street.trim()) newErrors.street = 'Укажите улицу';
-    if (!productData.houseNumber.trim()) newErrors.houseNumber = 'Укажите номер дома';
+    if (!productData.category) newErrors.category = t('addProduct.categoryRequired');
+    if (!productData.city.trim()) newErrors.city = t('addProduct.cityRequired');
+    if (!productData.street.trim()) newErrors.street = t('addProduct.streetRequired');
+    if (!productData.houseNumber.trim()) newErrors.houseNumber = t('addProduct.houseNumberRequired');
 
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
-  }, [registerData, productData]);
+  }, [registerData, productData, t]);
 
   // Обработка отправки формы
   const handleSubmit = useCallback(async (e) => {
@@ -299,57 +303,57 @@ const RegisterWithProduct = () => {
   const registerFields = useMemo(() => [
     {
       name: 'firstName',
-      label: 'Имя',
-      placeholder: 'Введите имя',
+      label: t('register.firstName'),
+      placeholder: t('register.firstName'),
       required: true
     },
     {
       name: 'lastName',
-      label: 'Фамилия',
-      placeholder: 'Введите фамилию',
+      label: t('register.lastName'),
+      placeholder: t('register.lastName'),
       required: true
     },
     {
       name: 'email',
-      label: 'Email',
+      label: t('register.email'),
       type: 'email',
       placeholder: 'example@email.com',
       required: true
     },
     {
       name: 'phone',
-      label: 'Телефон',
+      label: t('register.phone'),
       type: 'tel',
       placeholder: '+7 (999) 123-45-67',
       required: true
     },
     {
       name: 'password',
-      label: 'Пароль',
+      label: t('register.password'),
       type: 'password',
-      placeholder: 'Минимум 6 символов',
+      placeholder: t('register.validation.passwordMinLength'),
       required: true
     },
     {
       name: 'confirmPassword',
-      label: 'Подтвердите пароль',
+      label: t('register.confirmPassword'),
       type: 'password',
-      placeholder: 'Повторите пароль',
+      placeholder: t('register.confirmPassword'),
       required: true
     }
-  ], []);
+  ], [t]);
 
   // Мемоизированные поля товара
   const productFields = useMemo(() => [
     {
       name: 'title',
-      label: 'Название',
-      placeholder: 'Краткое название товара или услуги',
+      label: t('addProduct.title'),
+      placeholder: t('addProduct.titlePlaceholder'),
       required: true
     },
     {
       name: 'price',
-      label: 'Цена',
+      label: t('addProduct.price'),
       type: 'number',
       placeholder: '0.00',
       min: '0',
@@ -358,23 +362,23 @@ const RegisterWithProduct = () => {
     },
     {
       name: 'city',
-      label: 'Город',
-      placeholder: 'Введите город',
+      label: t('addProduct.city'),
+      placeholder: t('addProduct.cityPlaceholder'),
       required: true
     },
     {
       name: 'street',
-      label: 'Улица',
-      placeholder: 'Введите улицу',
+      label: t('addProduct.street'),
+      placeholder: t('addProduct.streetPlaceholder'),
       required: true
     },
     {
       name: 'houseNumber',
-      label: 'Номер дома',
-      placeholder: 'Введите номер дома',
+      label: t('addProduct.houseNumber'),
+      placeholder: t('addProduct.houseNumberPlaceholder'),
       required: true
     }
-  ], []);
+  ], [t]);
 
   return (
     <div className="min-h-screen bg-gray-50 py-8 pb-20">
@@ -429,7 +433,7 @@ const RegisterWithProduct = () => {
             </FormSection>
 
             {/* Секция товара */}
-            <FormSection title="Информация о товаре/услуге">
+            <FormSection title={t('addProduct.basicInfo')}>
               {productFields.slice(0, 1).map(field => (
                 <FormField
                   key={field.name}
@@ -442,11 +446,11 @@ const RegisterWithProduct = () => {
 
               <FormTextarea
                 name="description"
-                label="Описание"
+                label={t('addProduct.description')}
                 value={productData.description}
                 onChange={handleProductChange}
                 error={errors.description}
-                placeholder="Подробное описание товара или услуги"
+                placeholder={t('addProduct.descriptionPlaceholder')}
                 required
               />
 
@@ -465,7 +469,7 @@ const RegisterWithProduct = () => {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <FormSelect
                   name="category"
-                  label="Категория"
+                  label={t('addProduct.category')}
                   value={productData.category}
                   onChange={handleProductChange}
                   options={CATEGORIES}
@@ -475,7 +479,7 @@ const RegisterWithProduct = () => {
 
                 <FormSelect
                   name="condition"
-                  label="Состояние"
+                  label={t('addProduct.condition')}
                   value={productData.condition}
                   onChange={handleProductChange}
                   options={CONDITIONS}
@@ -484,7 +488,7 @@ const RegisterWithProduct = () => {
 
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Фотографии товара
+                  {t('addProduct.images')}
                 </label>
                 <ImageUpload
                   images={images}
@@ -496,7 +500,7 @@ const RegisterWithProduct = () => {
               {/* Карта местоположения */}
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Местоположение
+                  {t('addProduct.location')}
                 </label>
                 <LocationMap 
                   street={productData.street}

@@ -21,7 +21,7 @@ function AddItem() {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-violet-600 mx-auto"></div>
-          <p className="mt-4 text-gray-600">Загрузка...</p>
+          <p className="mt-4 text-gray-600">{t('common.loading')}</p>
         </div>
       </div>
     );
@@ -32,10 +32,10 @@ function AddItem() {
       <div className="max-w-2xl mx-auto">
         <div className="mb-8">
           <h1 className="text-3xl font-bold text-gray-900 mb-2">
-            Добавить товар или услугу
+            {t('addItem.title')}
           </h1>
           <p className="text-gray-600">
-            Выберите, что вы хотите добавить
+            {t('addItem.subtitle')}
           </p>
         </div>
 
@@ -52,10 +52,10 @@ function AddItem() {
                 </svg>
               </div>
               <h3 className="text-xl font-semibold text-gray-900 mb-2">
-                Добавить товар
+                {t('addItem.addProduct')}
               </h3>
               <p className="text-gray-600 text-sm">
-                Продайте свои товары быстро и безопасно
+                {t('addItem.addProductDescription')}
               </p>
             </div>
           </Link>
@@ -72,10 +72,10 @@ function AddItem() {
                 </svg>
               </div>
               <h3 className="text-xl font-semibold text-gray-900 mb-2">
-                Добавить услугу
+                {t('addItem.addService')}
               </h3>
               <p className="text-gray-600 text-sm">
-                Предложите свои услуги клиентам
+                {t('addItem.addServiceDescription')}
               </p>
             </div>
           </Link>

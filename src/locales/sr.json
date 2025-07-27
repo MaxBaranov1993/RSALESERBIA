@@ -6,7 +6,8 @@
     "advertising": "Оглашавање",
     "search": "Претрага",
     "find": "Пронађи",
-    "login": "Пријава"
+    "login": "Пријава",
+    "users": "Корисници"
   },
   "categories": {
     "title": "Категорије",
@@ -81,7 +82,9 @@
     "title": "Профил",
     "personalInfo": "Лични подаци",
     "settings": "Подешавања",
-    "logout": "Одјава"
+    "logout": "Одјава",
+    "delete": "Обриши",
+    "markAsSold": "Означи као продато"
   },
   "register": {
     "title": "Регистрација",
@@ -143,7 +146,8 @@
     "save": "Сачувај",
     "delete": "Обриши",
     "edit": "Уреди",
-    "close": "Затвори"
+    "close": "Затвори",
+    "noPhoto": "Нема слике"
   },
   "breadcrumbs": {
     "home": "Почетна",
@@ -190,5 +194,23 @@
     "favorites": "Омиљено",
     "userProducts": "Производи корисника",
     "noProductsYet": "Корисник још нема производа"
+  },
+  "searchResults": {
+    "title": "Резултати претраге",
+    "foundResults": "Пронађено {count} огласа за \"{query}\"",
+    "filters": "Филтри",
+    "clear": "Очисти",
+    "category": "Категорија",
+    "allCategories": "Све категорије",
+    "condition": "Стање",
+    "anyCondition": "Било које стање",
+    "price": "Цена (€)",
+    "from": "Од",
+    "to": "До",
+    "location": "Локација",
+    "allLocations": "Све локације"
+  },
+  "usersList": {
+    "title": "Сви корисници"
   }
 } 

@@ -6,7 +6,8 @@
     "advertising": "Advertising",
     "search": "Search",
     "find": "Find",
-    "login": "Login"
+    "login": "Login",
+    "users": "Users"
   },
   "categories": {
     "title": "Categories",
@@ -81,7 +82,9 @@
     "title": "Profile",
     "personalInfo": "Personal Information",
     "settings": "Settings",
-    "logout": "Logout"
+    "logout": "Logout",
+    "delete": "Delete",
+    "markAsSold": "Mark as Sold"
   },
   "register": {
     "title": "Registration",
@@ -143,7 +146,8 @@
     "save": "Save",
     "delete": "Delete",
     "edit": "Edit",
-    "close": "Close"
+    "close": "Close",
+    "noPhoto": "No photo"
   },
   "breadcrumbs": {
     "home": "Home",
@@ -190,5 +194,23 @@
     "favorites": "Favorites",
     "userProducts": "User Products",
     "noProductsYet": "User has no products yet"
+  },
+  "searchResults": {
+    "title": "Search Results",
+    "foundResults": "Found {count} listings for \"{query}\"",
+    "filters": "Filters",
+    "clear": "Clear",
+    "category": "Category",
+    "allCategories": "All Categories",
+    "condition": "Condition",
+    "anyCondition": "Any Condition",
+    "price": "Price (€)",
+    "from": "From",
+    "to": "To",
+    "location": "Location",
+    "allLocations": "All Locations"
+  },
+  "usersList": {
+    "title": "All Users"
   }
 } 

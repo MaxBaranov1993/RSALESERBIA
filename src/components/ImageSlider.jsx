@@ -1,6 +1,8 @@
 import React, { useState, useRef, useEffect } from 'react';
+import { useLanguage } from '../context/LanguageContext';
 
 const ImageSlider = ({ images, title, className = "" }) => {
+  const { t } = useLanguage();
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isDragging, setIsDragging] = useState(false);
   const [startX, setStartX] = useState(0);
@@ -11,7 +13,7 @@ const ImageSlider = ({ images, title, className = "" }) => {
   if (!images || images.length === 0) {
     return (
       <div className={`w-full aspect-square sm:h-44 md:h-48 lg:h-56 bg-gray-200 rounded-t-lg flex items-center justify-center ${className}`}>
-        <span className="text-gray-400 text-xs sm:text-sm">Нет фото</span>
+        <span className="text-gray-400 text-xs sm:text-sm">{t('common.noPhoto')}</span>
       </div>
     );
   }

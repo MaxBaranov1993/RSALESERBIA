@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useMemo } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { useLanguage } from '../context/LanguageContext';
 import { productsData, updateProduct, deleteProduct } from '../data/productsData';
@@ -7,6 +8,7 @@ import AvatarUpload from './AvatarUpload';
 import LocationMap from './LocationMap';
 
 export default function UserProfile() {
+  const navigate = useNavigate();
   const { user, logout, updateUserProfile } = useAuth();
   const { t } = useLanguage();
   const [activeTab, setActiveTab] = useState('active');
@@ -113,6 +115,10 @@ export default function UserProfile() {
 
   const handleAvatarChange = (file) => {
     setAvatarFile(file);
+  };
+
+  const handleAddProduct = () => {
+    navigate('/add');
   };
 
   const handleSaveProfile = async () => {
@@ -306,36 +312,28 @@ export default function UserProfile() {
               </p>
             </div>
             
-            {userProducts.length > 0 ? (
-              <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-6">
-                {userProducts.map(product => (
-                  <div key={product.id} className="relative group">
-                    <ProductCard product={product} />
-                    <div className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
-                      <div className="flex space-x-2">
-                        <button
-                          onClick={() => handleMarkAsSold(product.id)}
-                          className="bg-green-500 text-white p-2.5 rounded-full hover:bg-green-600 transition-colors shadow-lg"
-                          title="Отметить как проданный"
-                        >
-                          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                          </svg>
+                         {userProducts.length > 0 ? (
+               <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-6">
+                 {userProducts.map(product => (
+                   <div key={product.id} className="space-y-3">
+                     <ProductCard product={product} />
+                     <div className="flex space-x-2">
+                       <button
+                         onClick={() => handleMarkAsSold(product.id)}
+                         className="flex-1 bg-green-500 text-white py-2 px-3 rounded-lg hover:bg-green-600 transition-colors text-sm font-medium"
+                                               >
+                          {t('profile.markAsSold')}
                         </button>
-                        <button
-                          onClick={() => handleDelete(product.id)}
-                          className="bg-red-500 text-white p-2.5 rounded-full hover:bg-red-600 transition-colors shadow-lg"
-                          title="Удалить"
-                        >
-                          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-                          </svg>
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
+                       <button
+                         onClick={() => handleDelete(product.id)}
+                         className="flex-1 bg-red-500 text-white py-2 px-3 rounded-lg hover:bg-red-600 transition-colors text-sm font-medium"
+                       >
+                         {t('profile.delete')}
+                       </button>
+                     </div>
+                   </div>
+                 ))}
+               </div>
             ) : (
               <div className="text-center py-16">
                 <div className="w-24 h-24 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-6">
@@ -344,13 +342,16 @@ export default function UserProfile() {
                   </svg>
                 </div>
                 <h4 className="text-xl font-semibold text-gray-900 mb-3">
-                  У вас пока нет активных товаров
+                  {t('profile.noActiveProducts')}
                 </h4>
                 <p className="text-gray-600 text-lg mb-6">
-                  Добавьте свой первый товар или услугу
+                  {t('profile.addFirstProduct')}
                 </p>
-                <button className="bg-violet-600 text-white px-6 py-3 rounded-lg hover:bg-violet-700 transition-colors font-medium">
-                  Добавить товар
+                <button 
+                  onClick={handleAddProduct}
+                  className="bg-violet-600 text-white px-6 py-3 rounded-lg hover:bg-violet-700 transition-colors font-medium"
+                >
+                  {t('addItem.addProduct')}
                 </button>
               </div>
             )}
@@ -360,39 +361,34 @@ export default function UserProfile() {
             {/* Заголовок секции */}
             <div className="mb-8">
               <h3 className="text-2xl font-bold text-gray-900 mb-3">
-                Проданные товары
+                {t('profile.soldProducts')}
               </h3>
               <p className="text-gray-600 text-lg">
-                История ваших проданных товаров и услуг
+                {t('profile.soldProductsDescription')}
               </p>
             </div>
             
-            {soldProducts.length > 0 ? (
-              <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-6">
-                {soldProducts.map(product => (
-                  <div key={product.id} className="relative group">
-                    <div className="relative">
-                      <ProductCard product={product} />
-                      <div className="absolute inset-0 bg-green-500/20 rounded-lg flex items-center justify-center">
-                        <span className="bg-green-500 text-white px-4 py-2 rounded-full text-sm font-medium shadow-lg">
-                          Продано
-                        </span>
-                      </div>
-                    </div>
-                    <div className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
-                      <button
-                        onClick={() => handleDelete(product.id)}
-                        className="bg-red-500 text-white p-2.5 rounded-full hover:bg-red-600 transition-colors shadow-lg"
-                        title="Удалить"
-                      >
-                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-                        </svg>
-                      </button>
-                    </div>
-                  </div>
-                ))}
-              </div>
+                         {soldProducts.length > 0 ? (
+               <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-6">
+                 {soldProducts.map(product => (
+                   <div key={product.id} className="space-y-3">
+                     <div className="relative">
+                       <ProductCard product={product} />
+                       <div className="absolute inset-0 bg-green-500/20 rounded-lg flex items-center justify-center">
+                         <span className="bg-green-500 text-white px-4 py-2 rounded-full text-sm font-medium shadow-lg">
+                           {t('profile.sold')}
+                         </span>
+                       </div>
+                     </div>
+                                            <button
+                         onClick={() => handleDelete(product.id)}
+                         className="w-full bg-red-500 text-white py-2 px-3 rounded-lg hover:bg-red-600 transition-colors text-sm font-medium"
+                       >
+                         {t('profile.delete')}
+                       </button>
+                   </div>
+                 ))}
+               </div>
             ) : (
               <div className="text-center py-16">
                 <div className="w-24 h-24 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-6">
@@ -401,10 +397,10 @@ export default function UserProfile() {
                   </svg>
                 </div>
                 <h4 className="text-xl font-semibold text-gray-900 mb-3">
-                  У вас пока нет проданных товаров
+                  {t('profile.noSoldProducts')}
                 </h4>
                 <p className="text-gray-600 text-lg">
-                  Продайте свой первый товар
+                  {t('profile.sellFirstProduct')}
                 </p>
               </div>
             )}
@@ -414,10 +410,10 @@ export default function UserProfile() {
           <div>
             <div className="mb-8">
               <h3 className="text-2xl font-bold text-gray-900 mb-3">
-                Настройки профиля
+                {t('profile.settings')}
               </h3>
               <p className="text-gray-600 text-lg">
-                Управляйте своими личными данными и настройками
+                {t('profile.subtitle')}
               </p>
             </div>
 

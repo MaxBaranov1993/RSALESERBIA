@@ -84,7 +84,7 @@ const ProductPage = () => {
           <div className="flex items-center justify-center min-h-64">
             <div className="text-center">
               <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-violet-600 mx-auto mb-4"></div>
-              <p className="text-gray-600">{t('product.loading') || 'Загрузка...'}</p>
+              <p className="text-gray-600">{t('product.loading')}</p>
             </div>
           </div>
         </div>
@@ -96,9 +96,9 @@ const ProductPage = () => {
   const errorState = useMemo(() => (
     <StatusMessage
       icon="😕"
-      title={t('product.errorTitle') || 'Ошибка загрузки'}
-      message={error ? t(error) : t('product.error') || 'Произошла ошибка при загрузке товара'}
-      buttonText={t('product.goBack') || 'Вернуться назад'}
+      title={t('product.errorTitle')}
+      message={error ? t(error) : t('product.error')}
+      buttonText={t('product.goBack')}
       onButtonClick={handleGoBack}
     />
   ), [error, t, handleGoBack]);
@@ -107,9 +107,9 @@ const ProductPage = () => {
   const notFoundState = useMemo(() => (
     <StatusMessage
       icon="🔍"
-      title={t('product.notFoundTitle') || 'Товар не найден'}
-      message={t('product.notFound') || 'Запрашиваемый товар не найден'}
-      buttonText={t('product.goBack') || 'Вернуться назад'}
+      title={t('product.notFoundTitle')}
+      message={t('product.notFound')}
+      buttonText={t('product.goBack')}
       onButtonClick={handleGoBack}
     />
   ), [t, handleGoBack]);

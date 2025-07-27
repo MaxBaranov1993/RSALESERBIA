@@ -21,7 +21,7 @@ const UsersList = () => {
               ← {t('userProfile.backToHome')}
             </Link>
             <h1 className="text-xl font-semibold text-gray-900">
-              Все пользователи
+              {t('usersList.title')}
             </h1>
             <div></div>
           </div>

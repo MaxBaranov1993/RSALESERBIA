@@ -113,7 +113,7 @@ export default function SearchResults() {
         {/* Заголовок */}
         <div className="mb-8">
           <h1 className="text-3xl font-bold text-gray-900 mb-4">
-            Результаты поиска
+            {t('searchResults.title')}
           </h1>
         </div>
 
@@ -121,8 +121,7 @@ export default function SearchResults() {
         {query && (
           <div className="mb-6">
             <p className="text-gray-600">
-              Найдено {results.length} {results.length === 1 ? 'объявление' : 
-                results.length < 5 ? 'объявления' : 'объявлений'} по запросу "{query}"
+              {t('searchResults.foundResults', { count: results.length, query: query })}
             </p>
           </div>
         )}
@@ -132,12 +131,12 @@ export default function SearchResults() {
           <div className="lg:col-span-1">
             <div className="bg-white rounded-lg shadow-sm border p-6 sticky top-4">
               <div className="flex items-center justify-between mb-4">
-                <h3 className="text-lg font-semibold text-gray-900">Фильтры</h3>
+                <h3 className="text-lg font-semibold text-gray-900">{t('searchResults.filters')}</h3>
                 <button
                   onClick={clearFilters}
                   className="text-sm text-violet-600 hover:text-violet-700"
                 >
-                  Очистить
+                  {t('searchResults.clear')}
                 </button>
               </div>
 
@@ -145,14 +144,14 @@ export default function SearchResults() {
                 {/* Категория */}
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Категория
+                    {t('searchResults.category')}
                   </label>
                   <select
                     value={filters.category}
                     onChange={(e) => handleFilterChange('category', e.target.value)}
                     className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-violet-500 focus:border-violet-500"
                   >
-                    <option value="">Все категории</option>
+                    <option value="">{t('searchResults.allCategories')}</option>
                     {categories.map(category => (
                       <option key={category.value} value={category.value}>
                         {category.label}
@@ -164,36 +163,36 @@ export default function SearchResults() {
                 {/* Состояние */}
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Состояние
+                    {t('searchResults.condition')}
                   </label>
                   <select
                     value={filters.condition}
                     onChange={(e) => handleFilterChange('condition', e.target.value)}
                     className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-violet-500 focus:border-violet-500"
                   >
-                    <option value="">Любое состояние</option>
-                    <option value="new">Новое</option>
-                    <option value="used">Б/у</option>
-                    <option value="service">Услуга</option>
+                    <option value="">{t('searchResults.anyCondition')}</option>
+                    <option value="new">{t('product.condition.new')}</option>
+                    <option value="used">{t('product.condition.good')}</option>
+                    <option value="service">{t('product.condition.service')}</option>
                   </select>
                 </div>
 
                 {/* Цена */}
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Цена (€)
+                    {t('searchResults.price')}
                   </label>
                   <div className="grid grid-cols-2 gap-2">
                     <input
                       type="number"
-                      placeholder="От"
+                      placeholder={t('searchResults.from')}
                       value={filters.priceMin}
                       onChange={(e) => handleFilterChange('priceMin', e.target.value)}
                       className="px-3 py-2 border border-gray-300 rounded-md focus:ring-violet-500 focus:border-violet-500"
                     />
                     <input
                       type="number"
-                      placeholder="До"
+                      placeholder={t('searchResults.to')}
                       value={filters.priceMax}
                       onChange={(e) => handleFilterChange('priceMax', e.target.value)}
                       className="px-3 py-2 border border-gray-300 rounded-md focus:ring-violet-500 focus:border-violet-500"

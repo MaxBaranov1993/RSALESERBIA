@@ -6,7 +6,8 @@
     "advertising": "Реклама",
     "search": "Поиск",
     "find": "Найти",
-    "login": "Войти"
+    "login": "Войти",
+    "users": "Пользователи"
   },
   "categories": {
     "title": "Категории",
@@ -113,16 +114,29 @@
     "basicInfo": "Основная информация",
     "title": "Название товара",
     "titlePlaceholder": "Введите название товара",
+    "titleRequired": "Название товара обязательно",
     "price": "Цена",
+    "priceRequired": "Цена обязательна",
+    "priceInvalid": "Введите корректную цену",
     "originalPrice": "Исходная цена",
     "city": "Город",
     "cityPlaceholder": "Введите город",
+    "cityRequired": "Укажите город",
+    "street": "Улица",
+    "streetPlaceholder": "Введите улицу",
+    "streetRequired": "Укажите улицу",
+    "houseNumber": "Номер дома",
+    "houseNumberPlaceholder": "Введите номер дома",
+    "houseNumberRequired": "Укажите номер дома",
     "category": "Категория",
+    "categoryRequired": "Выберите категорию",
     "selectCategory": "Выберите категорию",
     "condition": "Состояние",
     "description": "Описание",
+    "descriptionRequired": "Описание обязательно",
     "descriptionPlaceholder": "Опишите ваш товар подробно",
     "images": "Изображения",
+    "location": "Местоположение",
     "submit": "Добавить товар"
   },
   "addService": {
@@ -175,7 +189,8 @@
       "passwordRequired": "Пароль обязателен",
       "passwordMinLength": "Пароль должен содержать минимум 6 символов",
       "confirmPasswordRequired": "Подтверждение пароля обязательно",
-      "passwordsNotMatch": "Пароли не совпадают"
+      "passwordsNotMatch": "Пароли не совпадают",
+      "phoneRequired": "Телефон обязателен"
     },
     "success": {
       "title": "Регистрация успешна!",
@@ -217,7 +232,8 @@
     "delete": "Удалить",
     "edit": "Редактировать",
     "close": "Закрыть",
-    "submitting": "Отправка..."
+    "submitting": "Отправка...",
+    "noPhoto": "Нет фото"
   },
   "notification": {
     "productAdded": "Товар успешно добавлен!",
@@ -269,5 +285,23 @@
     "favorites": "Избранное",
     "userProducts": "Товары пользователя",
     "noProductsYet": "У пользователя пока нет товаров"
+  },
+  "searchResults": {
+    "title": "Результаты поиска",
+    "foundResults": "Найдено {count} объявлений по запросу \"{query}\"",
+    "filters": "Фильтры",
+    "clear": "Очистить",
+    "category": "Категория",
+    "allCategories": "Все категории",
+    "condition": "Состояние",
+    "anyCondition": "Любое состояние",
+    "price": "Цена (€)",
+    "from": "От",
+    "to": "До",
+    "location": "Местоположение",
+    "allLocations": "Все местоположения"
+  },
+  "usersList": {
+    "title": "Все пользователи"
   }
 } 

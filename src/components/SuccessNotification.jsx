@@ -28,12 +28,12 @@ function SuccessNotification({ isVisible, onClose, productType }) {
           <div className="ml-3">
             <p className="text-sm font-medium">
               {productType === 'service' 
-                ? 'Услуга успешно добавлена!' 
-                : 'Товар успешно добавлен!'
+                ? t('notification.serviceAdded')
+                : t('notification.productAdded')
               }
             </p>
             <p className="text-xs opacity-90 mt-1">
-              Просмотрите в своем профиле
+              {t('notification.viewInProfile')}
             </p>
           </div>
           <div className="ml-auto pl-3">
