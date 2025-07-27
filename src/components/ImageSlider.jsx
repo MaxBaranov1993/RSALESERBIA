@@ -1,12 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 
 const ImageSlider = ({ images, title, className = "" }) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [isDragging, setIsDragging] = useState(false);
+  const [startX, setStartX] = useState(0);
+  const [currentX, setCurrentX] = useState(0);
+  const sliderRef = useRef(null);
 
   // Если изображений нет, возвращаем пустой div
   if (!images || images.length === 0) {
     return (
-      <div className={`w-full h-40 sm:h-44 md:h-48 lg:h-56 bg-gray-200 rounded-t-lg flex items-center justify-center ${className}`}>
+      <div className={`w-full aspect-square sm:h-44 md:h-48 lg:h-56 bg-gray-200 rounded-t-lg flex items-center justify-center ${className}`}>
         <span className="text-gray-400 text-xs sm:text-sm">Нет фото</span>
       </div>
     );
@@ -19,7 +23,7 @@ const ImageSlider = ({ images, title, className = "" }) => {
         <img 
           src={images[0]} 
           alt={title} 
-          className="w-full h-40 sm:h-44 md:h-48 lg:h-56 object-cover rounded-t-lg"
+          className="w-full aspect-square sm:h-44 md:h-48 lg:h-56 object-cover rounded-t-lg"
         />
       </div>
     );
@@ -47,31 +51,124 @@ const ImageSlider = ({ images, title, className = "" }) => {
     setCurrentImageIndex(index);
   };
 
+  // Обработчики для свайпа
+  const handleTouchStart = (e) => {
+    setIsDragging(true);
+    setStartX(e.touches[0].clientX);
+    setCurrentX(e.touches[0].clientX);
+  };
+
+  const handleTouchMove = (e) => {
+    if (!isDragging) return;
+    e.preventDefault();
+    setCurrentX(e.touches[0].clientX);
+  };
+
+  const handleTouchEnd = () => {
+    if (!isDragging) return;
+    
+    const diff = startX - currentX;
+    const threshold = 50; // Минимальное расстояние для свайпа
+    
+    if (Math.abs(diff) > threshold) {
+      if (diff > 0) {
+        // Свайп влево - следующее изображение
+        nextImage({ preventDefault: () => {}, stopPropagation: () => {} });
+      } else {
+        // Свайп вправо - предыдущее изображение
+        prevImage({ preventDefault: () => {}, stopPropagation: () => {} });
+      }
+    }
+    
+    setIsDragging(false);
+    setStartX(0);
+    setCurrentX(0);
+  };
+
+  // Обработчики для мыши
+  const handleMouseDown = (e) => {
+    setIsDragging(true);
+    setStartX(e.clientX);
+    setCurrentX(e.clientX);
+  };
+
+  const handleMouseMove = (e) => {
+    if (!isDragging) return;
+    setCurrentX(e.clientX);
+  };
+
+  const handleMouseUp = () => {
+    if (!isDragging) return;
+    
+    const diff = startX - currentX;
+    const threshold = 50;
+    
+    if (Math.abs(diff) > threshold) {
+      if (diff > 0) {
+        nextImage({ preventDefault: () => {}, stopPropagation: () => {} });
+      } else {
+        prevImage({ preventDefault: () => {}, stopPropagation: () => {} });
+      }
+    }
+    
+    setIsDragging(false);
+    setStartX(0);
+    setCurrentX(0);
+  };
+
+  // Добавляем обработчики событий мыши
+  useEffect(() => {
+    const slider = sliderRef.current;
+    if (!slider) return;
+
+    slider.addEventListener('mousedown', handleMouseDown);
+    document.addEventListener('mousemove', handleMouseMove);
+    document.addEventListener('mouseup', handleMouseUp);
+
+    return () => {
+      slider.removeEventListener('mousedown', handleMouseDown);
+      document.removeEventListener('mousemove', handleMouseMove);
+      document.removeEventListener('mouseup', handleMouseUp);
+    };
+  }, [isDragging, startX, currentX]);
+
   return (
-    <div className={`relative group ${className}`} onClick={(e) => e.stopPropagation()}>
+    <div 
+      ref={sliderRef}
+      className={`relative group ${className}`} 
+      onClick={(e) => e.stopPropagation()}
+      onTouchStart={handleTouchStart}
+      onTouchMove={handleTouchMove}
+      onTouchEnd={handleTouchEnd}
+      style={{ touchAction: 'pan-y pinch-zoom' }}
+    >
       {/* Основное изображение */}
-      <div className="w-full h-40 sm:h-44 md:h-48 lg:h-56 overflow-hidden rounded-t-lg">
+      <div className="w-full aspect-square sm:h-44 md:h-48 lg:h-56 overflow-hidden rounded-t-lg">
         <img 
           src={images[currentImageIndex]} 
           alt={`${title} - фото ${currentImageIndex + 1}`} 
           className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+          style={{ 
+            transform: isDragging ? `translateX(${currentX - startX}px)` : 'translateX(0)',
+            transition: isDragging ? 'none' : 'transform 0.3s ease'
+          }}
         />
       </div>
 
       {/* Индикаторы */}
       {images.length > 1 && (
         <div className="absolute bottom-1 sm:bottom-2 left-1/2 transform -translate-x-1/2 flex space-x-1">
-                     {images.map((_, index) => (
-             <button
-               key={index}
-               onClick={(e) => goToImage(e, index)}
-               className={`w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full transition-all duration-200 ${
-                 index === currentImageIndex 
-                   ? 'bg-white shadow-lg' 
-                   : 'bg-white/50 hover:bg-white/75'
-               }`}
-             />
-           ))}
+          {images.map((_, index) => (
+            <button
+              key={index}
+              onClick={(e) => goToImage(e, index)}
+              className={`w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full transition-all duration-200 ${
+                index === currentImageIndex 
+                  ? 'bg-white shadow-lg' 
+                  : 'bg-white/50 hover:bg-white/75'
+              }`}
+            />
+          ))}
         </div>
       )}
 
