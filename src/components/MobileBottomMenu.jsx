@@ -5,6 +5,7 @@ import Favorite from '../assets/svg/Favorite.svg';
 import addIcon from '../assets/svg/add.svg';
 import messageIcon from '../assets/svg/message.svg';
 import personalIcon from '../assets/svg/personal.svg';
+import mapIcon from '../assets/svg/map.svg';
 
 import { useFavorites } from '../context/FavoritesContext';
 import { useLanguage } from '../context/LanguageContext';
@@ -153,7 +154,7 @@ const MobileBottomMenu = React.memo(() => {
   const menuItems = useMemo(() => [
     { icon: Searchicon, label: t('mobile.search') },
     { icon: Favorite, label: t('mobile.favorites'), href: "/favorites", isFavorite: true },
-
+    { icon: mapIcon, label: t('mobile.map'), href: "/map" },
     { icon: addIcon, label: t('mobile.add'), isSpecial: true },
     { icon: personalIcon, label: t('mobile.profile'), href: user ? "/profile" : "/login", isProfile: true }
   ], [t, user]);

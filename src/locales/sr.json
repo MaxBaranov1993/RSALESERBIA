@@ -4,6 +4,7 @@
     "about": "О нама",
     "news": "Вести",
     "advertising": "Оглашавање",
+    "map": "Мапа",
     "search": "Претрага",
     "find": "Пронађи",
     "login": "Пријава",
@@ -233,6 +234,28 @@
   "cities": {
     "belgrade": "Београд",
     "noviSad": "Нови Сад",
-    "zemun": "Земун"
+    "zemun": "Земун",
+    "all": "Сви градови",
+    "nis": "Ниш",
+    "kragujevac": "Крагујевац"
+  },
+  "map": {
+    "title": "Мапа огласа",
+    "subtitle": "Пронађите производе и услуге на мапи",
+    "allProducts": "Сви огласи на мапи",
+    "productsCount": "Приказано {count} огласа",
+    "filterByCategory": "Филтер по категорији",
+    "filterByCity": "Филтер по граду",
+    "showingProducts": "Приказано {count} од {total} огласа",
+    "clearFilters": "Очисти филтре",
+    "nearbyProducts": "Оближњи огласи"
+  },
+  "mobile": {
+    "search": "Претрага",
+    "favorites": "Омиљено",
+    "map": "Мапа",
+    "add": "Додај",
+    "messages": "Поруке",
+    "profile": "Профил"
   }
 } 

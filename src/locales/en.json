@@ -4,6 +4,7 @@
     "about": "About",
     "news": "News",
     "advertising": "Advertising",
+    "map": "Map",
     "search": "Search",
     "find": "Find",
     "login": "Login",
@@ -233,6 +234,28 @@
   "cities": {
     "belgrade": "Belgrade",
     "noviSad": "Novi Sad",
-    "zemun": "Zemun"
+    "zemun": "Zemun",
+    "all": "All Cities",
+    "nis": "Nis",
+    "kragujevac": "Kragujevac"
+  },
+  "map": {
+    "title": "Listings Map",
+    "subtitle": "Find products and services on the map",
+    "allProducts": "All listings on the map",
+    "productsCount": "Showing {count} listings",
+    "filterByCategory": "Filter by category",
+    "filterByCity": "Filter by city",
+    "showingProducts": "Showing {count} of {total} listings",
+    "clearFilters": "Clear filters",
+    "nearbyProducts": "Nearby listings"
+  },
+  "mobile": {
+    "search": "Search",
+    "favorites": "Favorites",
+    "map": "Map",
+    "add": "Add",
+    "messages": "Messages",
+    "profile": "Profile"
   }
 } 

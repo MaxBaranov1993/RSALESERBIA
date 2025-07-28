@@ -1077,5 +1077,10 @@ export const debugAllCategories = () => {
   return categories;
 };
 
+// Функция для получения всех продуктов
+export const getAllProducts = () => {
+  return productsData;
+};
+
 // Загружаем товары при инициализации (после всех определений)
 loadProductsFromStorage(); 

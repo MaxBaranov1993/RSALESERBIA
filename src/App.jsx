@@ -16,6 +16,7 @@ import AddProduct from './pages/AddProduct';
 import AddService from './pages/AddService';
 import RegisterWithProduct from './pages/RegisterWithProduct';
 import SearchResults from './pages/SearchResults';
+import MapPage from './pages/MapPage';
 
 import MobileHeader from './components/MobileHeader';
 import MobileBottomMenu from './components/MobileBottomMenu';
@@ -64,6 +65,7 @@ export default function App() {
                   <Route path="/product/:productId" element={<ProductPage />} />
                   <Route path="/user/:userId" element={<UserProfile />} />
                   <Route path="/users" element={<UsersList />} />
+                  <Route path="/map" element={<MapPage />} />
 
                 </Routes>
               </main>

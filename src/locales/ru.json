@@ -4,6 +4,7 @@
     "about": "О нас",
     "news": "Новости",
     "advertising": "Реклама",
+    "map": "Карта",
     "search": "Поиск",
     "find": "Найти",
     "login": "Войти",
@@ -309,6 +310,28 @@
   "cities": {
     "belgrade": "Белград",
     "noviSad": "Нови Сад",
-    "zemun": "Земун"
+    "zemun": "Земун",
+    "all": "Все города",
+    "nis": "Ниш",
+    "kragujevac": "Крагуевац"
+  },
+  "map": {
+    "title": "Карта объявлений",
+    "subtitle": "Найдите товары и услуги на карте",
+    "allProducts": "Все объявления на карте",
+    "productsCount": "Показано {count} объявлений",
+    "filterByCategory": "Фильтр по категории",
+    "filterByCity": "Фильтр по городу",
+    "showingProducts": "Показано {count} из {total} объявлений",
+    "clearFilters": "Очистить фильтры",
+    "nearbyProducts": "Ближайшие объявления"
+  },
+  "mobile": {
+    "search": "Поиск",
+    "favorites": "Избранное",
+    "map": "Карта",
+    "add": "Добавить",
+    "messages": "Сообщения",
+    "profile": "Профиль"
   }
 } 

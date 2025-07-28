@@ -20,15 +20,16 @@ const ProductMap = ({ product }) => {
           address = translateCity(product.city, t);
         }
 
-        // Геокодирование через planplus.rs API
-        const geocodingUrl = `https://api.planplus.rs/geocoding/v1/search?q=${encodeURIComponent(address)}&api_key=C2E8EA00-5C3C-4915-A6C6-EA31A5DAD880`;
+        // Используем OpenStreetMap Nominatim для геокодирования (бесплатный сервис)
+        const geocodingUrl = `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(address)}&format=json&limit=1`;
         
         const response = await fetch(geocodingUrl);
         const data = await response.json();
 
-        if (data.features && data.features.length > 0) {
-          const coordinates = data.features[0].geometry.coordinates;
-          const [lng, lat] = coordinates;
+        if (data && data.length > 0) {
+          const location = data[0];
+          const lat = parseFloat(location.lat);
+          const lng = parseFloat(location.lon);
 
           // Создаем карту с помощью Leaflet
           const L = window.L;
@@ -46,10 +47,10 @@ const ProductMap = ({ product }) => {
           // Создаем новую карту
           const map = L.map(mapRef.current).setView([lat, lng], 15);
 
-          // Добавляем тайлы от planplus.rs
-          L.tileLayer('https://tiles.planplus.rs/tiles/{z}/{x}/{y}.png', {
-            attribution: '© PlanPlus.rs',
-            apiKey: 'C2E8EA00-5C3C-4915-A6C6-EA31A5DAD880'
+          // Добавляем тайлы от OpenStreetMap (бесплатные)
+          L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '© OpenStreetMap contributors',
+            maxZoom: 19
           }).addTo(map);
 
           // Добавляем маркер
@@ -66,9 +67,78 @@ const ProductMap = ({ product }) => {
           marker.bindPopup(popupContent);
 
           setMapLoaded(true);
+        } else {
+          // Если геокодирование не удалось, показываем карту с центром города
+          const cityCoordinates = {
+            'belgrade': [44.7866, 20.4489],
+            'noviSad': [45.2551, 19.8452],
+            'nis': [43.3247, 21.9033],
+            'kragujevac': [44.0128, 20.9114],
+            'zemun': [44.8453, 20.4016]
+          };
+
+          const cityKey = product.city?.toLowerCase();
+          const coordinates = cityCoordinates[cityKey] || [44.7866, 20.4489]; // По умолчанию Белград
+
+          const L = window.L;
+          if (!L) {
+            console.error('Leaflet not loaded');
+            return;
+          }
+
+          const map = L.map(mapRef.current).setView(coordinates, 12);
+          
+          L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '© OpenStreetMap contributors',
+            maxZoom: 19
+          }).addTo(map);
+
+          const marker = L.marker(coordinates).addTo(map);
+          const popupContent = `
+            <div class="p-3">
+              <h3 class="font-semibold text-gray-900 mb-2">${product.title}</h3>
+              <p class="text-sm text-gray-600">${translateCity(product.city, t)}</p>
+            </div>
+          `;
+          
+          marker.bindPopup(popupContent);
+          setMapLoaded(true);
         }
       } catch (error) {
         console.error('Error loading map:', error);
+        
+        // Fallback - показываем карту с центром города
+        const cityCoordinates = {
+          'belgrade': [44.7866, 20.4489],
+          'noviSad': [45.2551, 19.8452],
+          'nis': [43.3247, 21.9033],
+          'kragujevac': [44.0128, 20.9114],
+          'zemun': [44.8453, 20.4016]
+        };
+
+        const cityKey = product.city?.toLowerCase();
+        const coordinates = cityCoordinates[cityKey] || [44.7866, 20.4489];
+
+        const L = window.L;
+        if (L) {
+          const map = L.map(mapRef.current).setView(coordinates, 12);
+          
+          L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '© OpenStreetMap contributors',
+            maxZoom: 19
+          }).addTo(map);
+
+          const marker = L.marker(coordinates).addTo(map);
+          const popupContent = `
+            <div class="p-3">
+              <h3 class="font-semibold text-gray-900 mb-2">${product.title}</h3>
+              <p class="text-sm text-gray-600">${translateCity(product.city, t)}</p>
+            </div>
+          `;
+          
+          marker.bindPopup(popupContent);
+          setMapLoaded(true);
+        }
       }
     };
 

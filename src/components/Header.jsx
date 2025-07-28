@@ -148,7 +148,7 @@ export default function Header() {
             <Link to="#" className="hover:text-gray-900 transition-colors duration-200">{t('header.about')}</Link>
             <Link to="#" className="hover:text-gray-900 transition-colors duration-200">{t('header.news')}</Link>
             <Link to="#" className="hover:text-gray-900 transition-colors duration-200">{t('header.advertising')}</Link>
-
+            <Link to="/map" className="hover:text-gray-900 transition-colors duration-200">{t('header.map')}</Link>
             <Link to="/users" className="hover:text-gray-900 transition-colors duration-200">{t('header.users')}</Link>
           </nav>
           <div className="flex items-center gap-2 sm:gap-4">
