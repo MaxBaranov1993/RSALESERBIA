@@ -61,7 +61,10 @@
     "error": "An error occurred while loading the product",
     "goBack": "Go Back",
     "sellerUnknown": "Unknown seller",
-    "locationUnknown": "Location not specified"
+    "locationUnknown": "Location not specified",
+    "location": "Location",
+    "street": "Street",
+    "houseNumber": "House"
   },
   "favorites": {
     "title": "Favorites",
@@ -84,7 +87,21 @@
     "settings": "Settings",
     "logout": "Logout",
     "delete": "Delete",
-    "markAsSold": "Mark as Sold"
+    "markAsSold": "Mark as Sold",
+    "addItem": "Add"
+  },
+  "addItem": {
+    "title": "Add Product or Service",
+    "subtitle": "Choose what you want to add",
+    "addProduct": "Add Product",
+    "addProductDescription": "Sell your products quickly and safely",
+    "addService": "Add Service",
+    "addServiceDescription": "Offer your services to clients",
+    "images": "Images",
+    "uploadImages": "Upload Images",
+    "or": "or",
+    "dragAndDrop": "drag files here",
+    "imageFormats": "PNG, JPG, GIF up to 10MB"
   },
   "register": {
     "title": "Registration",
@@ -212,5 +229,44 @@
   },
   "usersList": {
     "title": "All Users"
+  },
+  "cities": {
+    "belgrade": "Belgrade",
+    "noviSad": "Novi Sad",
+    "zemun": "Zemun"
+  },
+  "mapSearch": {
+    "title": "Map Search",
+    "subtitle": "Find products near you",
+    "productsFound": "products found",
+    "mapTitle": "Interactive Map",
+    "mapDescription": "Click on a marker to see product details",
+    "loadingMap": "Loading map...",
+    "mapInfo": "Map provided by",
+    "productsList": "Products List",
+    "productsDescription": "Select a product to view on the map",
+    "selectedProduct": "Selected Product",
+    "selectProduct": "Select a product on the map or in the list",
+    "showMore": "Show more",
+    "viewDetails": "View Details",
+    "viewFullPage": "Open Full Page",
+    "noProductsFound": "No products found",
+    "error": "Map loading error",
+    "filters": {
+      "category": "Category",
+      "city": "City",
+      "price": "Price",
+      "allCategories": "All Categories",
+      "allCities": "All Cities",
+      "allPrices": "All Prices",
+      "clear": "Clear Filters",
+      "services": "services",
+      "products": "products",
+      "more": "more",
+      "services": "Services",
+      "products": "Products",
+      "testMarkers": "Test markers"
+    },
+    "mapLegend": "Map Legend"
   }
 } 

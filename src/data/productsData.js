@@ -1,3 +1,60 @@
+// Реальные адреса из Белграда и Нови Сада
+const belgradeAddresses = [
+  { street: "Кнез Михаилова", houseNumber: "15" },
+  { street: "Теразије", houseNumber: "22" },
+  { street: "Скадарска", houseNumber: "8" },
+  { street: "Дорћол", houseNumber: "12" },
+  { street: "Новосадска", houseNumber: "45" },
+  { street: "Булевар ослобођења", houseNumber: "67" },
+  { street: "Булевар краља Александра", houseNumber: "89" },
+  { street: "Врачар", houseNumber: "34" },
+  { street: "Земун", houseNumber: "56" },
+  { street: "Нови Београд", houseNumber: "78" },
+  { street: "Савски венац", houseNumber: "23" },
+  { street: "Стари град", houseNumber: "11" },
+  { street: "Палилула", houseNumber: "90" },
+  { street: "Звездара", houseNumber: "44" },
+  { street: "Вождовац", houseNumber: "33" },
+  { street: "Раковица", houseNumber: "55" },
+  { street: "Чукарица", houseNumber: "77" },
+  { street: "Барајево", houseNumber: "99" },
+  { street: "Гроцка", houseNumber: "21" },
+  { street: "Обреновац", houseNumber: "43" }
+];
+
+const noviSadAddresses = [
+  { street: "Дунавска", houseNumber: "8" },
+  { street: "Змај Јовина", houseNumber: "16" },
+  { street: "Мише Димитријевића", houseNumber: "24" },
+  { street: "Булевар ослобођења", houseNumber: "32" },
+  { street: "Булевар Михајла Пупина", houseNumber: "40" },
+  { street: "Булевар Јаше Томића", houseNumber: "48" },
+  { street: "Булевар Десанке Максимовић", houseNumber: "56" },
+  { street: "Булевар Патријарха Павла", houseNumber: "64" },
+  { street: "Булевар Војводе Степе", houseNumber: "72" },
+  { street: "Булевар краља Петра I", houseNumber: "80" },
+  { street: "Булевар краља Александра", houseNumber: "88" },
+  { street: "Булевар Николе Тесле", houseNumber: "96" },
+  { street: "Булевар цара Лазара", houseNumber: "104" },
+  { street: "Булевар краља Милана", houseNumber: "112" },
+  { street: "Булевар краља Петра II", houseNumber: "120" },
+  { street: "Булевар краља Александра I", houseNumber: "128" },
+  { street: "Булевар краља Милана Обреновића", houseNumber: "136" },
+  { street: "Булевар краља Петра I Карађорђевића", houseNumber: "144" },
+  { street: "Булевар краља Александра I Карађорђевића", houseNumber: "152" },
+  { street: "Булевар краља Милана Обреновића", houseNumber: "160" }
+];
+
+// Функция для получения случайного адреса
+const getRandomAddress = (city) => {
+  if (city === "Белград" || city === "Belgrade") {
+    return belgradeAddresses[Math.floor(Math.random() * belgradeAddresses.length)];
+  } else if (city === "Нови Сад" || city === "Novi Sad") {
+    return noviSadAddresses[Math.floor(Math.random() * noviSadAddresses.length)];
+  }
+  return { street: "Главна", houseNumber: "1" };
+};
+
 export const productsData = [
   // Электроника
   {
@@ -27,8 +84,8 @@ export const productsData = [
     title: "MacBook Air M2 13\"",
     price: 1299,
     city: "Нови Сад",
-    street: "Дунавска",
-    houseNumber: "8",
+    street: "Змај Јовина",
+    houseNumber: "16",
     sellerName: "Мария Иванова",
     photo: "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=400&h=300&fit=crop",
     photos: [
@@ -49,8 +106,8 @@ export const productsData = [
     title: "Samsung Galaxy S23",
     price: 699,
     city: "Белград",
-    street: "Теразије",
-    houseNumber: "22",
+    street: "Скадарска",
+    houseNumber: "8",
     sellerName: "Дмитрий Сидоров",
     photo: "https://images.unsplash.com/photo-1592750475338-74b7b21085ab?w=400&h=300&fit=crop",
     photos: [
@@ -71,6 +128,8 @@ export const productsData = [
     title: "iPad Pro 12.9\" 2023",
     price: 1099,
     city: "Белград",
+    street: "Дорћол",
+    houseNumber: "12",
     sellerName: "Елена Козлова",
     photo: "https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?w=400&h=300&fit=crop",
     photos: [
@@ -91,6 +150,8 @@ export const productsData = [
     title: "Sony WH-1000XM5",
     price: 299,
     city: "Нови Сад",
+    street: "Мише Димитријевића",
+    houseNumber: "24",
     sellerName: "Андрей Соколов",
     photo: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400&h=300&fit=crop",
     photos: [
@@ -113,6 +174,8 @@ export const productsData = [
     title: "2-комнатная квартира в центре",
     price: 185000,
     city: "Белград",
+    street: "Новосадска",
+    houseNumber: "45",
     sellerName: "Агентство 'Дом'",
     photo: "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=400&h=300&fit=crop",
     photos: [
@@ -133,6 +196,8 @@ export const productsData = [
     title: "Дом с участком 200м²",
     price: 450000,
     city: "Земун",
+    street: "Земун",
+    houseNumber: "56",
     sellerName: "Петр Николаев",
     photo: "https://images.unsplash.com/photo-1570129477492-45c003edd2be?w=400&h=300&fit=crop",
     photos: [
@@ -155,6 +220,8 @@ export const productsData = [
     title: "Toyota Corolla 2020",
     price: 18500,
     city: "Белград",
+    street: "Булевар ослобођења",
+    houseNumber: "67",
     sellerName: "Михаил Козлов",
     photo: "https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?w=400&h=300&fit=crop",
     photos: [
@@ -175,6 +242,8 @@ export const productsData = [
     title: "BMW X5 2019",
     price: 45000,
     city: "Белград",
+    street: "Булевар краља Александра",
+    houseNumber: "89",
     sellerName: "Алексей Волков",
     photo: "https://images.unsplash.com/photo-1555215695-3004980ad54e?w=400&h=300&fit=crop",
     photos: [
@@ -195,6 +264,8 @@ export const productsData = [
     title: "Mercedes C-Class 2021",
     price: 32000,
     city: "Нови Сад",
+    street: "Булевар ослобођења",
+    houseNumber: "32",
     sellerName: "Дмитрий Соколов",
     photo: "https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?w=400&h=300&fit=crop",
     photos: [
@@ -215,6 +286,8 @@ export const productsData = [
     title: "Audi A4 2018",
     price: 22000,
     city: "Белград",
+    street: "Врачар",
+    houseNumber: "34",
     sellerName: "Игорь Петров",
     photo: "https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?w=400&h=300&fit=crop",
     photos: [
@@ -235,6 +308,8 @@ export const productsData = [
     title: "Volkswagen Golf 2020",
     price: 16500,
     city: "Нови Сад",
+    street: "Булевар Михајла Пупина",
+    houseNumber: "40",
     sellerName: "Мария Иванова",
     photo: "https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?w=400&h=300&fit=crop",
     photos: [
@@ -255,6 +330,8 @@ export const productsData = [
     title: "Skoda Octavia 2019",
     price: 14500,
     city: "Белград",
+    street: "Стари град",
+    houseNumber: "11",
     sellerName: "Андрей Медведев",
     photo: "https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?w=400&h=300&fit=crop",
     photos: [
@@ -275,6 +352,8 @@ export const productsData = [
     title: "Велосипед горный Trek",
     price: 450,
     city: "Нови Сад",
+    street: "Булевар Јаше Томића",
+    houseNumber: "48",
     sellerName: "Анна Смирнова",
     photo: "https://images.unsplash.com/photo-1571068316344-75bc76f77890?w=400&h=300&fit=crop",
     photos: [
@@ -297,6 +376,8 @@ export const productsData = [
     title: "Куртка зимняя North Face",
     price: 180,
     city: "Белград",
+    street: "Палилула",
+    houseNumber: "90",
     sellerName: "Елена Воробьева",
     photo: "https://images.unsplash.com/photo-1551028719-00167b16eac5?w=400&h=300&fit=crop",
     photos: [
@@ -317,6 +398,8 @@ export const productsData = [
     title: "Кроссовки Nike Air Max",
     price: 95,
     city: "Белград",
+    street: "Звездара",
+    houseNumber: "44",
     sellerName: "Сергей Морозов",
     photo: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=400&h=300&fit=crop",
     photos: [

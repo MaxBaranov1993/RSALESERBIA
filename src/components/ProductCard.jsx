@@ -6,6 +6,7 @@ import ImageSlider from './ImageSlider';
 import eyeIcon from '../assets/svg/eye.svg';
 import favoriteWhite from '../assets/svg/favorite-white.svg';
 import favoriteOrange from '../assets/svg/favorite-orange.svg';
+import { translateCity } from '../utils/cityTranslations';
 
 export default function ProductCard({ product }) {
   const { addToFavorites, removeFromFavorites, isFavorite } = useFavorites();
@@ -92,10 +93,10 @@ export default function ProductCard({ product }) {
               {product.street && product.houseNumber ? (
                 <div>
                   <div className="font-medium">{product.street}, {product.houseNumber}</div>
-                  <div className="text-xs text-gray-400">{product.city}</div>
+                  <div className="text-xs text-gray-400">{translateCity(product.city, t)}</div>
                 </div>
               ) : (
-                <span className="font-medium">{product.city}</span>
+                <span className="font-medium">{translateCity(product.city, t)}</span>
               )}
             </div>
           </div>

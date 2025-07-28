@@ -7,6 +7,7 @@ import ProductImageSlider from './ProductImageSlider';
 import LocationMap from './LocationMap';
 import favoriteGray from '../assets/svg/favorite-gray.svg';
 import favoriteOrange from '../assets/svg/favorite-orange.svg';
+import { translateCity } from '../utils/cityTranslations';
 
 const ProductDetail = ({ product }) => {
   const { t } = useLanguage();
@@ -182,7 +183,7 @@ const ProductDetail = ({ product }) => {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                     </svg>
-                    <span>{product.city || t('product.locationUnknown')}</span>
+                    <span>{translateCity(product.city, t) || t('product.locationUnknown')}</span>
                   </div>
                 )}
               </div>
@@ -302,7 +303,7 @@ const ProductDetail = ({ product }) => {
           <LocationMap 
             street={product.street}
             houseNumber={product.houseNumber}
-            city={product.city}
+                            city={translateCity(product.city, t)}
             country="Сербия"
             height="400px"
             className="mb-4"
