@@ -13,3 +13,28 @@
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
+
+/* ===== КАРТЫ ===== */
+
+/* Стили для Leaflet карт */
+.leaflet-container {
+  font-family: inherit;
+}
+
+.leaflet-popup-content-wrapper {
+  border-radius: 8px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.leaflet-popup-content {
+  margin: 0;
+  padding: 0;
+}
+
+.leaflet-popup-tip {
+  background: white;
+}
+
+.leaflet-control-attribution {
+  font-size: 10px;
+}

@@ -4,6 +4,7 @@ import { useLanguage } from '../context/LanguageContext';
 import { useFavorites } from '../context/FavoritesContext';
 import categories from './categoriesData';
 import ProductImageSlider from './ProductImageSlider';
+import ProductMap from './ProductMap';
 
 import favoriteGray from '../assets/svg/favorite-gray.svg';
 import favoriteOrange from '../assets/svg/favorite-orange.svg';
@@ -282,6 +283,13 @@ const ProductDetail = ({ product }) => {
           </div>
         </div>
       )}
+
+      {/* Карта - местоположение товара */}
+      <div className="border-t border-gray-200 p-8">
+        <div className="max-w-4xl mx-auto">
+          <ProductMap product={product} />
+        </div>
+      </div>
 
       {/* Описание - снизу по центру */}
       <div className="border-t border-gray-200 p-8">
