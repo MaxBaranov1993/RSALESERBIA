@@ -234,39 +234,5 @@
     "belgrade": "Београд",
     "noviSad": "Нови Сад",
     "zemun": "Земун"
-  },
-  "mapSearch": {
-    "title": "Претрага на мапи",
-    "subtitle": "Пронађите производе у вашој близини",
-    "productsFound": "производа пронађено",
-    "mapTitle": "Интерактивна мапа",
-    "mapDescription": "Кликните на маркер да видите детаље производа",
-    "loadingMap": "Учитавање мапе...",
-    "mapInfo": "Мапа обезбеђена од стране",
-    "productsList": "Листа производа",
-    "productsDescription": "Изаберите производ за преглед на мапи",
-    "selectedProduct": "Изабрани производ",
-    "selectProduct": "Изаберите производ на мапи или у листи",
-    "showMore": "Прикажи још",
-    "viewDetails": "Детаљи",
-    "viewFullPage": "Отвори пуну страницу",
-    "noProductsFound": "Производи нису пронађени",
-    "error": "Грешка учитавања мапе",
-    "filters": {
-      "category": "Категорија",
-      "city": "Град",
-      "price": "Цена",
-      "allCategories": "Све категорије",
-      "allCities": "Сви градови",
-      "allPrices": "Све цене",
-      "clear": "Очисти филтере",
-      "services": "услуга",
-      "products": "производа",
-      "more": "још",
-      "services": "Услуге",
-      "products": "Производи",
-      "testMarkers": "Тест маркери"
-    },
-    "mapLegend": "Легенда мапе"
   }
 } 

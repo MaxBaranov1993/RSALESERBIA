@@ -6,7 +6,7 @@ import logo from '../assets/svg/logo.svg';
 import serbia from '../assets/svg/serbia.svg';
 import eng from '../assets/svg/eng.svg';
 import russia from '../assets/svg/russia.svg';
-import map from '../assets/svg/map.svg';
+
 import message from '../assets/svg/message.svg';
 import categories from './categoriesData';
 import CategoriesList from './CategoriesList';
@@ -144,18 +144,11 @@ export default function Header() {
       {/* Topbar */}
       <div className="bg-gray-50 border-b border-gray-100 text-gray-600 text-xs sm:text-sm">
         <div className="container mx-auto flex justify-between items-center px-4 sm:px-6 py-2 sm:py-3">
-          <div className="flex items-center gap-2 sm:gap-3">
-            <img src={map} alt="map" className="h-3 w-3 sm:h-4 sm:w-4" />
-            <span className="font-medium">{t('header.location')}</span>
-          </div>
           <nav className="hidden sm:flex gap-4 lg:gap-8">
             <Link to="#" className="hover:text-gray-900 transition-colors duration-200">{t('header.about')}</Link>
             <Link to="#" className="hover:text-gray-900 transition-colors duration-200">{t('header.news')}</Link>
             <Link to="#" className="hover:text-gray-900 transition-colors duration-200">{t('header.advertising')}</Link>
-            <Link to="/map-search" className="hover:text-gray-900 transition-colors duration-200 flex items-center gap-1">
-              <img src={map} alt="map" className="h-4 w-4" />
-              {t('mapSearch.title')}
-            </Link>
+
             <Link to="/users" className="hover:text-gray-900 transition-colors duration-200">{t('header.users')}</Link>
           </nav>
           <div className="flex items-center gap-2 sm:gap-4">

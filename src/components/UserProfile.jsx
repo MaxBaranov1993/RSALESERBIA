@@ -5,7 +5,7 @@ import { useLanguage } from '../context/LanguageContext';
 import { productsData, updateProduct, deleteProduct } from '../data/productsData';
 import ProductCard from './ProductCard';
 import AvatarUpload from './AvatarUpload';
-import LocationMap from './LocationMap';
+
 
 export default function UserProfile() {
   const navigate = useNavigate();
@@ -682,19 +682,7 @@ export default function UserProfile() {
                 </div>
               </div>
 
-              {/* Карта местоположения */}
-              <div className="bg-gray-50 rounded-lg p-6">
-                <h4 className="text-lg font-semibold text-gray-900 mb-4">
-                  Местоположение
-                </h4>
-                <LocationMap 
-                  street={profileData.street}
-                  houseNumber={profileData.houseNumber}
-                  city={profileData.city}
-                  country={profileData.country}
-                  height="300px"
-                />
-              </div>
+
             </div>
           </div>
         )}

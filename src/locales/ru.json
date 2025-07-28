@@ -310,39 +310,5 @@
     "belgrade": "Белград",
     "noviSad": "Нови Сад",
     "zemun": "Земун"
-  },
-  "mapSearch": {
-    "title": "Поиск по карте",
-    "subtitle": "Найдите товары рядом с вами",
-    "productsFound": "товаров найдено",
-    "mapTitle": "Интерактивная карта",
-    "mapDescription": "Кликните на маркер, чтобы увидеть детали товара",
-    "loadingMap": "Загрузка карты...",
-    "mapInfo": "Карта предоставлена",
-    "productsList": "Список товаров",
-    "productsDescription": "Выберите товар для просмотра на карте",
-    "selectedProduct": "Выбранный товар",
-    "selectProduct": "Выберите товар на карте или в списке",
-    "showMore": "Показать еще",
-    "viewDetails": "Подробнее",
-    "viewFullPage": "Открыть полную страницу",
-    "noProductsFound": "Товары не найдены",
-    "error": "Ошибка загрузки карты",
-    "filters": {
-      "category": "Категория",
-      "city": "Город",
-      "price": "Цена",
-      "allCategories": "Все категории",
-      "allCities": "Все города",
-      "allPrices": "Все цены",
-      "clear": "Очистить фильтры",
-      "services": "услуг",
-      "products": "товаров",
-      "more": "еще",
-      "services": "Услуги",
-      "products": "Товары",
-      "testMarkers": "Тестовые маркеры"
-    },
-    "mapLegend": "Легенда карты"
   }
 } 

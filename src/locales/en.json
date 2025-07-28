@@ -234,39 +234,5 @@
     "belgrade": "Belgrade",
     "noviSad": "Novi Sad",
     "zemun": "Zemun"
-  },
-  "mapSearch": {
-    "title": "Map Search",
-    "subtitle": "Find products near you",
-    "productsFound": "products found",
-    "mapTitle": "Interactive Map",
-    "mapDescription": "Click on a marker to see product details",
-    "loadingMap": "Loading map...",
-    "mapInfo": "Map provided by",
-    "productsList": "Products List",
-    "productsDescription": "Select a product to view on the map",
-    "selectedProduct": "Selected Product",
-    "selectProduct": "Select a product on the map or in the list",
-    "showMore": "Show more",
-    "viewDetails": "View Details",
-    "viewFullPage": "Open Full Page",
-    "noProductsFound": "No products found",
-    "error": "Map loading error",
-    "filters": {
-      "category": "Category",
-      "city": "City",
-      "price": "Price",
-      "allCategories": "All Categories",
-      "allCities": "All Cities",
-      "allPrices": "All Prices",
-      "clear": "Clear Filters",
-      "services": "services",
-      "products": "products",
-      "more": "more",
-      "services": "Services",
-      "products": "Products",
-      "testMarkers": "Test markers"
-    },
-    "mapLegend": "Map Legend"
   }
 } 
